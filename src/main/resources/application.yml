@@ -1,0 +1,22 @@
+#thymeleaf еДжц
+spring:
+  thymeleaf:
+    mode: HTML5
+    encoding: UTF-8
+    servlet:
+      content-type: text/html
+    cache: false
+  datasource:
+    url: jdbc:mysql://94.191.94.87:3306/fresh?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: admin
+#иообнд
+server:
+  servlet:
+    context-path: /
+#mybatis
+mybatis:
+  type-aliases-package: com.store.fresh.entity
+  mapper-locations: classpath:mappers/*.xml
+
