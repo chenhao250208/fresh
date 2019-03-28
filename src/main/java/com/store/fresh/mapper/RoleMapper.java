@@ -3,8 +3,11 @@ package com.store.fresh.mapper;
 import com.store.fresh.entity.Role;
 import com.store.fresh.entity.RoleExample;
 import java.util.List;
+
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+@Mapper
 public interface RoleMapper {
     long countByExample(RoleExample example);
 

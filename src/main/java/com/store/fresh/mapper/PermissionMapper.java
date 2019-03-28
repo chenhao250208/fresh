@@ -3,8 +3,11 @@ package com.store.fresh.mapper;
 import com.store.fresh.entity.Permission;
 import com.store.fresh.entity.PermissionExample;
 import java.util.List;
+
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+@Mapper
 public interface PermissionMapper {
     long countByExample(PermissionExample example);
 

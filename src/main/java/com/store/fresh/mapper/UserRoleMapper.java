@@ -3,8 +3,11 @@ package com.store.fresh.mapper;
 import com.store.fresh.entity.UserRoleExample;
 import com.store.fresh.entity.UserRoleKey;
 import java.util.List;
+
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+@Mapper
 public interface UserRoleMapper {
     long countByExample(UserRoleExample example);
 
