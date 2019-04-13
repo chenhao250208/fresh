@@ -1,8 +1,8 @@
 # 软件工程第二次会议资料
 ## 会议安排
-![](https://github.com/chenhao250208/fresh/tree/master/blob/5.jpg)
+![5](https://github.com/chenhao250208/fresh/blob/master/blob/5.jpg)
 ## 开发流程
-![](https://github.com/chenhao250208/fresh/tree/master/blob/4.jpg)
+![4](https://github.com/chenhao250208/fresh/tree/master/blob/4.jpg)
 
 ## 开发规范
 ### 类与对象
@@ -81,8 +81,8 @@ public class User {
 &nbsp;&nbsp;&nbsp;&nbsp;SpringBoot与SSM不同的地方在于，前者需要的配置文件大大减少了，最后只剩下application.yml或.properties，而SSM需要进行大量的配置。其他的地方都与SSM类似，所以要做的是先理解开发流程，然后理解MVC的开发模式，还有Web开发的基本概念，最后完成相应的工作。后面会对开发过程和一些概念做基本介绍。
 ### Shiro
 &nbsp;&nbsp;&nbsp;&nbsp;权限控制系统
-![](https://github.com/chenhao250208/fresh/tree/master/blob/7.png)
-![](https://github.com/chenhao250208/fresh/tree/master/blob/8.png)
+![7](https://github.com/chenhao250208/fresh/tree/master/blob/7.png)
+![8](https://github.com/chenhao250208/fresh/tree/master/blob/8.png)
 ### Thymeleaf
 &nbsp;&nbsp;&nbsp;&nbsp;模板语言，可以便于前端的开发。与jsp文件不同，thymeleaf作为SpringBoot的标配，比jsp更加简洁，但写出来的是html文件，可以不需要服务端程序也能看到效果。同时也支持页面的重用，比如页边框、菜单栏、页脚均可以使用。具体语法可以在网上找到教程。
 ### HTML、CSS、JavaScript
@@ -100,7 +100,7 @@ public class User {
 > ......
 
 ### 开发流程
-![](https://github.com/chenhao250208/fresh/tree/master/blob/6.jpg)
+![6](https://github.com/chenhao250208/fresh/tree/master/blob/6.jpg)
 
 ## 鸣谢
 ```javascript
