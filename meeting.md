@@ -27,13 +27,13 @@
     }
 ```
 ### 返回的json信息
-```json
+```javascript
 {
-   msg : "200",
-   info : {
-      name1 : attr1,
-      name2 : attr2,
-      name3 : attr3
+   "msg" : "200",
+   "info" : {
+      "name1" : attr1,
+      "name2" : attr2,
+      "name3" : attr3
    }
 }
 ```
