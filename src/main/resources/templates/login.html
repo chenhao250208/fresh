@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <link href="https://cdn.bootcss.com/twitter-bootstrap/3.4.1/css/bootstrap.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+
+        <div class="row">
+            <form id="userForm">
+            <div class="col-md-4 col-md-offset-4">
+                <div class="form-group">
+                    <label>用户名</label>
+                    <input type="text" name="username" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>密码</label>
+                    <input type="text" name="password" class="form-control">
+                </div>
+            </div>
+                <div class="col-md-4"></div>
+            </form>
+            <div class="col-md-4 col-md-offset-4">
+                <button id="submit" class="btn btn-success">提交</button>
+                <button type="reset" class="btn btn-info">重置</button>
+            </div>
+
+        </div>
+
+</div>
+<!--<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>-->
+<script src="https://cdn.bootcss.com/jquery/2.0.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/layer/2.3/layer.js"></script>
+<script>
+    $("#submit").click(function () {
+        $.ajax({
+            dataType: "json",
+            url: "/api/user/login",
+            type: "post",
+            data: $('#userForm').serialize(),
+            success: function (data) {
+                if (data.code == 200) {
+                    layer.msg(data.msg, {icon: 1});
+                    setTimeout(function () {
+                            window.location.href = data.url;
+                        },
+                        1000);
+
+                } else {
+                    layer.msg(data.msg, {icon: 5});
+                }
+
+            },
+            error: function (e) {
+                var d = e.responseJSON;
+                if (d) {
+                    layer.msg(d.msg, {icon: 5});
+                }
+            }
+        });
+    });
+</script>
+</body>
+</html>

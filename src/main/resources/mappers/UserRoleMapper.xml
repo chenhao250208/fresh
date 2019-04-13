@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.store.fresh.mapper.UserRoleMapper">
   <resultMap id="BaseResultMap" type="com.store.fresh.entity.UserRoleKey">
-    <id column="uid" jdbcType="INTEGER" property="uid" />
+    <id column="user_id" jdbcType="VARCHAR" property="userId" />
     <id column="role_id" jdbcType="INTEGER" property="roleId" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -64,7 +64,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    uid, role_id
+    user_id, role_id
   </sql>
   <select id="selectByExample" parameterType="com.store.fresh.entity.UserRoleExample" resultMap="BaseResultMap">
     select
@@ -82,7 +82,7 @@
   </select>
   <delete id="deleteByPrimaryKey" parameterType="com.store.fresh.entity.UserRoleKey">
     delete from user_role
-    where uid = #{uid,jdbcType=INTEGER}
+    where user_id = #{userId,jdbcType=VARCHAR}
       and role_id = #{roleId,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="com.store.fresh.entity.UserRoleExample">
@@ -92,22 +92,22 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.store.fresh.entity.UserRoleKey">
-    insert into user_role (uid, role_id)
-    values (#{uid,jdbcType=INTEGER}, #{roleId,jdbcType=INTEGER})
+    insert into user_role (user_id, role_id)
+    values (#{userId,jdbcType=VARCHAR}, #{roleId,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.store.fresh.entity.UserRoleKey">
     insert into user_role
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="uid != null">
-        uid,
+      <if test="userId != null">
+        user_id,
       </if>
       <if test="roleId != null">
         role_id,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="uid != null">
-        #{uid,jdbcType=INTEGER},
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
       </if>
       <if test="roleId != null">
         #{roleId,jdbcType=INTEGER},
@@ -123,8 +123,8 @@
   <update id="updateByExampleSelective" parameterType="map">
     update user_role
     <set>
-      <if test="record.uid != null">
-        uid = #{record.uid,jdbcType=INTEGER},
+      <if test="record.userId != null">
+        user_id = #{record.userId,jdbcType=VARCHAR},
       </if>
       <if test="record.roleId != null">
         role_id = #{record.roleId,jdbcType=INTEGER},
@@ -136,7 +136,7 @@
   </update>
   <update id="updateByExample" parameterType="map">
     update user_role
-    set uid = #{record.uid,jdbcType=INTEGER},
+    set user_id = #{record.userId,jdbcType=VARCHAR},
       role_id = #{record.roleId,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />

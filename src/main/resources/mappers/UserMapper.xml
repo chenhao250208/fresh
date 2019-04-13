@@ -2,13 +2,16 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.store.fresh.mapper.UserMapper">
   <resultMap id="BaseResultMap" type="com.store.fresh.entity.User">
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="mob" jdbcType="VARCHAR" property="mob" />
+    <id column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
     <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="tel" jdbcType="VARCHAR" property="tel" />
+    <result column="salt" jdbcType="VARCHAR" property="salt" />
     <result column="valid" jdbcType="INTEGER" property="valid" />
-    <result column="pticket" jdbcType="VARCHAR" property="pticket" />
-    <result column="role_id" jdbcType="INTEGER" property="roleId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="login_date" jdbcType="TIMESTAMP" property="loginDate" />
+    <result column="login_ip" jdbcType="VARCHAR" property="loginIp" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -69,7 +72,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, name, mob, email, valid, pticket, role_id
+    user_id, username, password, email, tel, salt, valid, create_time, login_date, login_ip
   </sql>
   <select id="selectByExample" parameterType="com.store.fresh.entity.UserExample" resultMap="BaseResultMap">
     select
@@ -85,15 +88,15 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
     <include refid="Base_Column_List" />
     from user
-    where id = #{id,jdbcType=INTEGER}
+    where user_id = #{userId,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from user
-    where id = #{id,jdbcType=INTEGER}
+    where user_id = #{userId,jdbcType=VARCHAR}
   </delete>
   <delete id="deleteByExample" parameterType="com.store.fresh.entity.UserExample">
     delete from user
@@ -102,59 +105,79 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.store.fresh.entity.User">
-    insert into user (id, name, mob, 
-      email, valid, pticket, 
-      role_id)
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{mob,jdbcType=VARCHAR}, 
-      #{email,jdbcType=VARCHAR}, #{valid,jdbcType=INTEGER}, #{pticket,jdbcType=VARCHAR}, 
-      #{roleId,jdbcType=INTEGER})
+    insert into user (user_id, username, password,
+      email, tel, salt, valid,
+      create_time, login_date, login_ip
+      )
+    values (#{userId,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
+      #{email,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, #{salt,jdbcType=VARCHAR}, #{valid,jdbcType=INTEGER},
+      #{createTime,jdbcType=TIMESTAMP}, #{loginDate,jdbcType=TIMESTAMP}, #{loginIp,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.store.fresh.entity.User">
     insert into user
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
+      <if test="userId != null">
+        user_id,
       </if>
-      <if test="name != null">
-        name,
+      <if test="username != null">
+        username,
       </if>
-      <if test="mob != null">
-        mob,
+      <if test="password != null">
+        password,
       </if>
       <if test="email != null">
         email,
       </if>
+      <if test="tel != null">
+        tel,
+      </if>
+      <if test="salt != null">
+        salt,
+      </if>
       <if test="valid != null">
         valid,
       </if>
-      <if test="pticket != null">
-        pticket,
+      <if test="createTime != null">
+        create_time,
       </if>
-      <if test="roleId != null">
-        role_id,
+      <if test="loginDate != null">
+        login_date,
+      </if>
+      <if test="loginIp != null">
+        login_ip,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=INTEGER},
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
       </if>
-      <if test="name != null">
-        #{name,jdbcType=VARCHAR},
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
       </if>
-      <if test="mob != null">
-        #{mob,jdbcType=VARCHAR},
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
       </if>
       <if test="email != null">
         #{email,jdbcType=VARCHAR},
       </if>
+      <if test="tel != null">
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="salt != null">
+        #{salt,jdbcType=VARCHAR},
+      </if>
       <if test="valid != null">
         #{valid,jdbcType=INTEGER},
       </if>
-      <if test="pticket != null">
-        #{pticket,jdbcType=VARCHAR},
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="roleId != null">
-        #{roleId,jdbcType=INTEGER},
+      <if test="loginDate != null">
+        #{loginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loginIp != null">
+        #{loginIp,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -167,26 +190,35 @@
   <update id="updateByExampleSelective" parameterType="map">
     update user
     <set>
-      <if test="record.id != null">
-        id = #{record.id,jdbcType=INTEGER},
+      <if test="record.userId != null">
+        user_id = #{record.userId,jdbcType=VARCHAR},
       </if>
-      <if test="record.name != null">
-        name = #{record.name,jdbcType=VARCHAR},
+      <if test="record.username != null">
+        username = #{record.username,jdbcType=VARCHAR},
       </if>
-      <if test="record.mob != null">
-        mob = #{record.mob,jdbcType=VARCHAR},
+      <if test="record.password != null">
+        password = #{record.password,jdbcType=VARCHAR},
       </if>
       <if test="record.email != null">
         email = #{record.email,jdbcType=VARCHAR},
       </if>
+      <if test="record.tel != null">
+        tel = #{record.tel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.salt != null">
+        salt = #{record.salt,jdbcType=VARCHAR},
+      </if>
       <if test="record.valid != null">
         valid = #{record.valid,jdbcType=INTEGER},
       </if>
-      <if test="record.pticket != null">
-        pticket = #{record.pticket,jdbcType=VARCHAR},
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.roleId != null">
-        role_id = #{record.roleId,jdbcType=INTEGER},
+      <if test="record.loginDate != null">
+        login_date = #{record.loginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.loginIp != null">
+        login_ip = #{record.loginIp,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -195,13 +227,16 @@
   </update>
   <update id="updateByExample" parameterType="map">
     update user
-    set id = #{record.id,jdbcType=INTEGER},
-      name = #{record.name,jdbcType=VARCHAR},
-      mob = #{record.mob,jdbcType=VARCHAR},
-      email = #{record.email,jdbcType=VARCHAR},
-      valid = #{record.valid,jdbcType=INTEGER},
-      pticket = #{record.pticket,jdbcType=VARCHAR},
-      role_id = #{record.roleId,jdbcType=INTEGER}
+    set user_id = #{record.userId,jdbcType=VARCHAR},
+    username = #{record.username,jdbcType=VARCHAR},
+    password = #{record.password,jdbcType=VARCHAR},
+    email = #{record.email,jdbcType=VARCHAR},
+    tel = #{record.tel,jdbcType=VARCHAR},
+    salt = #{record.salt,jdbcType=VARCHAR},
+    valid = #{record.valid,jdbcType=INTEGER},
+    create_time = #{record.createTime,jdbcType=TIMESTAMP},
+    login_date = #{record.loginDate,jdbcType=TIMESTAMP},
+    login_ip = #{record.loginIp,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -209,35 +244,95 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.store.fresh.entity.User">
     update user
     <set>
-      <if test="name != null">
-        name = #{name,jdbcType=VARCHAR},
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
       </if>
-      <if test="mob != null">
-        mob = #{mob,jdbcType=VARCHAR},
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
       </if>
       <if test="email != null">
         email = #{email,jdbcType=VARCHAR},
       </if>
+      <if test="tel != null">
+        tel = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="salt != null">
+        salt = #{salt,jdbcType=VARCHAR},
+      </if>
       <if test="valid != null">
         valid = #{valid,jdbcType=INTEGER},
       </if>
-      <if test="pticket != null">
-        pticket = #{pticket,jdbcType=VARCHAR},
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="roleId != null">
-        role_id = #{roleId,jdbcType=INTEGER},
+      <if test="loginDate != null">
+        login_date = #{loginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loginIp != null">
+        login_ip = #{loginIp,jdbcType=VARCHAR},
       </if>
     </set>
-    where id = #{id,jdbcType=INTEGER}
+    where user_id = #{userId,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.store.fresh.entity.User">
     update user
-    set name = #{name,jdbcType=VARCHAR},
-      mob = #{mob,jdbcType=VARCHAR},
+    set username = #{username,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
       email = #{email,jdbcType=VARCHAR},
+      tel = #{tel,jdbcType=VARCHAR},
+      salt = #{salt,jdbcType=VARCHAR},
       valid = #{valid,jdbcType=INTEGER},
-      pticket = #{pticket,jdbcType=VARCHAR},
-      role_id = #{roleId,jdbcType=INTEGER}
-    where id = #{id,jdbcType=INTEGER}
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      login_date = #{loginDate,jdbcType=TIMESTAMP},
+      login_ip = #{loginIp,jdbcType=VARCHAR}
+    where user_id = #{userId,jdbcType=VARCHAR}
   </update>
+
+  <!--以下是自己写的-->
+  <resultMap id="UserWithRoleMap" type="com.store.fresh.entity.User">
+    <id column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="tel" jdbcType="VARCHAR" property="tel" />
+    <result column="salt" jdbcType="VARCHAR" property="salt" />
+    <result column="valid" jdbcType="INTEGER" property="valid" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="login_date" jdbcType="TIMESTAMP" property="loginDate" />
+    <result column="login_ip" jdbcType="VARCHAR" property="loginIp" />
+  </resultMap>
+  <select id="findRoles" parameterType="java.lang.String" resultType="java.lang.String">
+    select c.role
+    from (select * from user where username = #{username,jdbcType=VARCHAR}) a left join user_role b
+    on a.user_id = b.user_id
+    left join role c
+    on b.role_id = c.id
+  </select>
+
+  <select id="findPermissions" parameterType="java.lang.String" resultType="java.lang.String">
+    select e.`name`
+    from (select * from user where username = #{username,jdbcType=VARCHAR}) a left join user_role b
+    on a.user_id = b.user_id
+    left join role c
+    on c.id = b.role_id
+    left join role_permission d
+    on c.role = d.role_id
+    left join permission e
+    on d.permission_id = e.id
+  </select>
+
+  <!--<select id="selectUserWithRoleByExample" parameterType="com.store.fresh.entity.UserExample" resultMap="BaseResultMap">-->
+    <!--select-->
+    <!--<if test="distinct">-->
+      <!--distinct-->
+    <!--</if>-->
+    <!--<include refid="Base_Column_List" />-->
+    <!--from user-->
+    <!--<if test="_parameter != null">-->
+      <!--<include refid="Example_Where_Clause" />-->
+    <!--</if>-->
+    <!--<if test="orderByClause != null">-->
+      <!--order by ${orderByClause}-->
+    <!--</if>-->
+  <!--</select>-->
 </mapper>

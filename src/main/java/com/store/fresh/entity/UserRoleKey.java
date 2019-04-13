@@ -1,16 +1,16 @@
 package com.store.fresh.entity;
 
 public class UserRoleKey {
-    private Integer uid;
+    private String userId;
 
     private Integer roleId;
 
-    public Integer getUid() {
-        return uid;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setUid(Integer uid) {
-        this.uid = uid;
+    public void setUserId(String userId) {
+        this.userId = userId == null ? null : userId.trim();
     }
 
     public Integer getRoleId() {

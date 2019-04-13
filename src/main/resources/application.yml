@@ -15,8 +15,23 @@ spring:
 server:
   servlet:
     context-path: /
+
+#pagehelper config
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+
 #mybatis
 mybatis:
   type-aliases-package: com.store.fresh.entity
   mapper-locations: classpath:mappers/*.xml
+# print sql
+logging:
+  level:
+     com.store.fresh.mapper : debug
+
+
+
 

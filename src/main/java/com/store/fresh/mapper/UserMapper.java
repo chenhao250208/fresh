@@ -13,7 +13,7 @@ public interface UserMapper {
 
     int deleteByExample(UserExample example);
 
-    int deleteByPrimaryKey(Integer id);
+    int deleteByPrimaryKey(String userId);
 
     int insert(User record);
 
@@ -21,7 +21,7 @@ public interface UserMapper {
 
     List<User> selectByExample(UserExample example);
 
-    User selectByPrimaryKey(Integer id);
+    User selectByPrimaryKey(String userId);
 
     int updateByExampleSelective(@Param("record") User record, @Param("example") UserExample example);
 
@@ -30,4 +30,8 @@ public interface UserMapper {
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
+
+    List<String> findRoles(String username);
+
+    List<String> findPermissions(String username);
 }
