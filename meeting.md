@@ -2,7 +2,7 @@
 ## 会议安排
 ![5](https://github.com/chenhao250208/fresh/blob/master/blob/5.jpg)
 ## 开发流程
-![4](https://github.com/chenhao250208/fresh/tree/master/blob/4.jpg)
+![4](https://github.com/chenhao250208/fresh/blob/master/blob/4.jpg)
 
 ## 开发规范
 ### 类与对象
@@ -81,17 +81,17 @@ public class User {
 &nbsp;&nbsp;&nbsp;&nbsp;SpringBoot与SSM不同的地方在于，前者需要的配置文件大大减少了，最后只剩下application.yml或.properties，而SSM需要进行大量的配置。其他的地方都与SSM类似，所以要做的是先理解开发流程，然后理解MVC的开发模式，还有Web开发的基本概念，最后完成相应的工作。后面会对开发过程和一些概念做基本介绍。
 ### Shiro
 &nbsp;&nbsp;&nbsp;&nbsp;权限控制系统
-![7](https://github.com/chenhao250208/fresh/tree/master/blob/7.png)
-![8](https://github.com/chenhao250208/fresh/tree/master/blob/8.png)
+![7](https://github.com/chenhao250208/fresh/blob/master/blob/7.jpg)
+![8](https://github.com/chenhao250208/fresh/blob/master/blob/8.png)
 ### Thymeleaf
 &nbsp;&nbsp;&nbsp;&nbsp;模板语言，可以便于前端的开发。与jsp文件不同，thymeleaf作为SpringBoot的标配，比jsp更加简洁，但写出来的是html文件，可以不需要服务端程序也能看到效果。同时也支持页面的重用，比如页边框、菜单栏、页脚均可以使用。具体语法可以在网上找到教程。
 ### HTML、CSS、JavaScript
 &nbsp;&nbsp;&nbsp;&nbsp;前端开发三件套，其中JS最为重要，因为很多框架都可以被我们使用。比如：统计报表功能可以使用ECharts进行绘制相关图表、JQuery在各方面都可以应用(Ajax、Selector)、LayUI可以方便地制作遮罩窗口等等。相关的CSS框架也有很多，比如易于上手的Bootstrap。
 
 ## 项目目录介绍
-![1](https://github.com/chenhao250208/fresh/tree/master/blob/1.jpg)
-![2](https://github.com/chenhao250208/fresh/tree/master/blob/2.jpg)
-![3](https://github.com/chenhao250208/fresh/tree/master/blob/3.jpg)
+![1](https://github.com/chenhao250208/fresh/blob/master/blob/1.jpg)
+![2](https://github.com/chenhao250208/fresh/blob/master/blob/2.jpg)
+![3](https://github.com/chenhao250208/fresh/blob/master/blob/3.jpg)
 - fresh是项目目录
 - src是主要的代码区，这里需要介绍一下Maven。Maven是一款项目构建工具，可以对jar包进行有效的管理，现在所看到的项目目录就是由Maven自动生成的。项目运行依赖于src下的main目录。
 - main下的com.store.fresh包下有许多包，里面的内容等会详细介绍。
@@ -100,7 +100,7 @@ public class User {
 > ......
 
 ### 开发流程
-![6](https://github.com/chenhao250208/fresh/tree/master/blob/6.jpg)
+![6](https://github.com/chenhao250208/fresh/blob/master/blob/6.jpg)
 
 ## 鸣谢
 ```javascript
