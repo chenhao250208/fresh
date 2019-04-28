@@ -17,8 +17,6 @@ import org.apache.shiro.subject.Subject;
 import org.apache.shiro.web.util.SavedRequest;
 import org.apache.shiro.web.util.WebUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.ServletRequest;
@@ -32,14 +30,15 @@ public class UserApi {
 
     @PostMapping("/login")
     public @ResponseBody
-    ResponseEntity login(String username, String password, ServletRequest request){
+    ResponseEntity login(String userName, String password, ServletRequest request){
         Subject subject = SecurityUtils.getSubject();
-        UsernamePasswordToken token = new UsernamePasswordToken(username, password);
+        UsernamePasswordToken token = new UsernamePasswordToken(userName, password);
         //登录成功之后跳转到原url
         SavedRequest savedRequest = WebUtils.getSavedRequest(request);
         String url = "/";
         if(savedRequest != null){
-            url = savedRequest.getRequestUrl();
+            /*url = savedRequest.getRequestUrl();*/
+            url = "/foreground/index";
         }else {
             url = "/foreground/index";
         }
@@ -64,7 +63,7 @@ public class UserApi {
         UserExample userExample = new UserExample();
         if(Base.notEmpty(criteria)){
             userExample.setOrderByClause("create_time desc");
-            userExample.or().andUsernameLike("%"+criteria+"%");
+            userExample.or().andUserNameLike("%"+criteria+"%");
             userExample.or().andTelLike("%"+criteria+"%");
             userExample.or().andEmailLike("%"+criteria+"%");
         }
@@ -79,9 +78,9 @@ public class UserApi {
     ResponseEntity save(User user){
         String userId = DataUtil.getRandomNo(15);
         String password = user.getPassword();
-        String passwordEncoded = new SimpleHash("md5",password,user.getUsername(),2).toString();
+        String passwordEncoded = new SimpleHash("md5",password,user.getUserName(),2).toString();
 
-        user.setSalt(user.getUsername());
+        user.setSalt(user.getUserName());
         user.setPassword(passwordEncoded);
         user.setUserId(userId);
 

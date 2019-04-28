@@ -41,7 +41,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User selectByUsername(String username) {
         UserExample userExample = new UserExample();
-        userExample.createCriteria().andUsernameEqualTo(username);
+        userExample.createCriteria().andUserNameEqualTo(username);
         List<User> userList = userMapper.selectByExample(userExample);
         if(userList.size()==1){
             return userList.get(0);
@@ -53,7 +53,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public String getIdByUsername(String username) {
         UserExample userExample = new UserExample();
-        userExample.createCriteria().andUsernameEqualTo(username);
+        userExample.createCriteria().andUserNameEqualTo(username);
         List<User> userList = userMapper.selectByExample(userExample);
         User user = null;
         if(userList.size()>0){
@@ -79,7 +79,7 @@ public class UserServiceImpl implements UserService {
     public List<User> selectWithRoleByExample(UserExample example) {
         List<User> userList = userMapper.selectByExample(example);
         for(int i=0;i<userList.size();i++){
-            List<String> roleList = findRoles(userList.get(i).getUsername());
+            List<String> roleList = findRoles(userList.get(i).getUserName());
             userList.get(i).setRoleList(roleList);
         }
         return userList;

@@ -9,7 +9,7 @@ import java.util.List;
 public class User {
     private String userId;
 
-    private String username;
+    private String userName;
 
     private String password;
 
@@ -26,6 +26,8 @@ public class User {
     private Date loginDate;
 
     private String loginIp;
+
+    private String shippingAddress;
 
     private List<String> roleList;
 }

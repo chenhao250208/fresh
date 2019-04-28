@@ -3,7 +3,7 @@
 <mapper namespace="com.store.fresh.mapper.UserMapper">
   <resultMap id="BaseResultMap" type="com.store.fresh.entity.User">
     <id column="user_id" jdbcType="VARCHAR" property="userId" />
-    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
     <result column="password" jdbcType="VARCHAR" property="password" />
     <result column="email" jdbcType="VARCHAR" property="email" />
     <result column="tel" jdbcType="VARCHAR" property="tel" />
@@ -12,6 +12,7 @@
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="login_date" jdbcType="TIMESTAMP" property="loginDate" />
     <result column="login_ip" jdbcType="VARCHAR" property="loginIp" />
+    <result column="shipping_address" jdbcType="VARCHAR" property="shippingAddress" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -72,7 +73,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    user_id, username, password, email, tel, salt, valid, create_time, login_date, login_ip
+    user_id, user_name, password, email, tel, salt, valid, create_time, login_date, login_ip,
+    shipping_address
   </sql>
   <select id="selectByExample" parameterType="com.store.fresh.entity.UserExample" resultMap="BaseResultMap">
     select
@@ -105,14 +107,14 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.store.fresh.entity.User">
-    insert into user (user_id, username, password,
+    insert into user (user_id, user_name, password,
       email, tel, salt, valid,
-      create_time, login_date, login_ip
-      )
-    values (#{userId,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
+      create_time, login_date, login_ip,
+      shipping_address)
+    values (#{userId,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
       #{email,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, #{salt,jdbcType=VARCHAR}, #{valid,jdbcType=INTEGER},
-      #{createTime,jdbcType=TIMESTAMP}, #{loginDate,jdbcType=TIMESTAMP}, #{loginIp,jdbcType=VARCHAR}
-      )
+      #{createTime,jdbcType=TIMESTAMP}, #{loginDate,jdbcType=TIMESTAMP}, #{loginIp,jdbcType=VARCHAR},
+      #{shippingAddress,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.store.fresh.entity.User">
     insert into user
@@ -120,8 +122,8 @@
       <if test="userId != null">
         user_id,
       </if>
-      <if test="username != null">
-        username,
+      <if test="userName != null">
+        user_name,
       </if>
       <if test="password != null">
         password,
@@ -147,13 +149,16 @@
       <if test="loginIp != null">
         login_ip,
       </if>
+      <if test="shippingAddress != null">
+        shipping_address,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="userId != null">
         #{userId,jdbcType=VARCHAR},
       </if>
-      <if test="username != null">
-        #{username,jdbcType=VARCHAR},
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
       </if>
       <if test="password != null">
         #{password,jdbcType=VARCHAR},
@@ -179,6 +184,9 @@
       <if test="loginIp != null">
         #{loginIp,jdbcType=VARCHAR},
       </if>
+      <if test="shippingAddress != null">
+        #{shippingAddress,jdbcType=VARCHAR},
+      </if>
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.store.fresh.entity.UserExample" resultType="java.lang.Long">
@@ -193,8 +201,8 @@
       <if test="record.userId != null">
         user_id = #{record.userId,jdbcType=VARCHAR},
       </if>
-      <if test="record.username != null">
-        username = #{record.username,jdbcType=VARCHAR},
+      <if test="record.userName != null">
+        user_name = #{record.userName,jdbcType=VARCHAR},
       </if>
       <if test="record.password != null">
         password = #{record.password,jdbcType=VARCHAR},
@@ -220,6 +228,9 @@
       <if test="record.loginIp != null">
         login_ip = #{record.loginIp,jdbcType=VARCHAR},
       </if>
+      <if test="record.shippingAddress != null">
+        shipping_address = #{record.shippingAddress,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -228,7 +239,7 @@
   <update id="updateByExample" parameterType="map">
     update user
     set user_id = #{record.userId,jdbcType=VARCHAR},
-    username = #{record.username,jdbcType=VARCHAR},
+    user_name = #{record.userName,jdbcType=VARCHAR},
     password = #{record.password,jdbcType=VARCHAR},
     email = #{record.email,jdbcType=VARCHAR},
     tel = #{record.tel,jdbcType=VARCHAR},
@@ -236,7 +247,8 @@
     valid = #{record.valid,jdbcType=INTEGER},
     create_time = #{record.createTime,jdbcType=TIMESTAMP},
     login_date = #{record.loginDate,jdbcType=TIMESTAMP},
-    login_ip = #{record.loginIp,jdbcType=VARCHAR}
+    login_ip = #{record.loginIp,jdbcType=VARCHAR},
+    shipping_address = #{record.shippingAddress,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -244,8 +256,8 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.store.fresh.entity.User">
     update user
     <set>
-      <if test="username != null">
-        username = #{username,jdbcType=VARCHAR},
+      <if test="userName != null">
+        user_name = #{userName,jdbcType=VARCHAR},
       </if>
       <if test="password != null">
         password = #{password,jdbcType=VARCHAR},
@@ -271,12 +283,15 @@
       <if test="loginIp != null">
         login_ip = #{loginIp,jdbcType=VARCHAR},
       </if>
+      <if test="shippingAddress != null">
+        shipping_address = #{shippingAddress,jdbcType=VARCHAR},
+      </if>
     </set>
     where user_id = #{userId,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.store.fresh.entity.User">
     update user
-    set username = #{username,jdbcType=VARCHAR},
+    set user_name = #{userName,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},
       email = #{email,jdbcType=VARCHAR},
       tel = #{tel,jdbcType=VARCHAR},
@@ -284,14 +299,15 @@
       valid = #{valid,jdbcType=INTEGER},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       login_date = #{loginDate,jdbcType=TIMESTAMP},
-      login_ip = #{loginIp,jdbcType=VARCHAR}
+      login_ip = #{loginIp,jdbcType=VARCHAR},
+      shipping_address = #{shippingAddress,jdbcType=VARCHAR}
     where user_id = #{userId,jdbcType=VARCHAR}
   </update>
 
   <!--以下是自己写的-->
   <resultMap id="UserWithRoleMap" type="com.store.fresh.entity.User">
     <id column="user_id" jdbcType="VARCHAR" property="userId" />
-    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
     <result column="password" jdbcType="VARCHAR" property="password" />
     <result column="email" jdbcType="VARCHAR" property="email" />
     <result column="tel" jdbcType="VARCHAR" property="tel" />
@@ -300,10 +316,11 @@
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="login_date" jdbcType="TIMESTAMP" property="loginDate" />
     <result column="login_ip" jdbcType="VARCHAR" property="loginIp" />
+    <result column="shipping_address" jdbcType="VARCHAR" property="shippingAddress" />
   </resultMap>
   <select id="findRoles" parameterType="java.lang.String" resultType="java.lang.String">
     select c.role
-    from (select * from user where username = #{username,jdbcType=VARCHAR}) a left join user_role b
+    from (select * from user where user_name = #{username,jdbcType=VARCHAR}) a left join user_role b
     on a.user_id = b.user_id
     left join role c
     on b.role_id = c.id
@@ -311,7 +328,7 @@
 
   <select id="findPermissions" parameterType="java.lang.String" resultType="java.lang.String">
     select e.`name`
-    from (select * from user where username = #{username,jdbcType=VARCHAR}) a left join user_role b
+    from (select * from user where user_name = #{username,jdbcType=VARCHAR}) a left join user_role b
     on a.user_id = b.user_id
     left join role c
     on c.id = b.role_id

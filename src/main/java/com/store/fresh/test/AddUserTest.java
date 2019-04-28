@@ -26,16 +26,17 @@ public class AddUserTest {
 
     @Test
     public void test(){
-        for(int i=0;i<1000;i++){
+        for(int i=0;i<130;i++){
             User user = new User();
             String userId = DataUtil.getRandomNo(15);
             user.setUserId(userId);
-            user.setUsername("user"+i);
-            user.setSalt(""+i);
-            String passwordEncoded = new SimpleHash("md5","123456",""+i,2).toString();
+            user.setUserName("user"+i);
+            user.setSalt("salt"+i);
+            String passwordEncoded = new SimpleHash("md5","123456","salt"+i,2).toString();
             user.setPassword(passwordEncoded);
             user.setTel("18934567879");
             user.setEmail("user"+i+"@xxx.com");
+            user.setShippingAddress("上海市奉贤区海思路999号"+i);
             user.setCreateTime(new Date());
             userMapper.insertSelective(user);
 
