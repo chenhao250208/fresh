@@ -8,7 +8,6 @@ import java.util.List;
 
 @Mapper
 public interface OrderMapper {
-    @Select("select * from order ")
     List<Order> selectAll();
 
 }
