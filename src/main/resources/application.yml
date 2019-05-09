@@ -9,8 +9,8 @@ spring:
   datasource:
     url: jdbc:mysql://94.191.94.87:3306/fresh?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT
     driver-class-name: com.mysql.cj.jdbc.Driver
-    username:
-    password:
+    username: 
+    password: 
 #context
 server:
   servlet:
