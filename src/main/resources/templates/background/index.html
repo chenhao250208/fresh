@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
     <meta charset="UTF-8">
     <title>超市管理</title>
@@ -14,7 +15,7 @@
             <ul class="layui-nav layui-layout-left">
                 <li class="layui-nav-item"><a href="/background/index">控制台</a></li>
                 <li class="layui-nav-item"><a href="/background/order/index">订单管理</a></li>
-                <li class="layui-nav-item"><a href="/background/user/index">用户管理</a></li>
+                <li class="layui-nav-item" shiro:hasRole="admin"><a href="/background/user/index">用户管理</a></li>
                 <!--<li class="layui-nav-item"><a href="">BOM</a></li>-->
                 <!--<li class="layui-nav-item"><a href="">物料管理</a></li>-->
                 <li class="layui-nav-item">
