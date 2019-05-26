@@ -7,25 +7,22 @@
 </head>
 
 <style>
-	body{
-		padding-top: 50px;
-	}
-	footer{
-	    position:fixed;
-	    bottom:0;
-	    width:100%;
-	    background-color: #000000;
-  		color:#777;
-  		padding: 32px;
-  		text-decoration: none;
-	}
-  	sub{
-  	    float:left;
-  	    width:120px;
-  	    position:relative;
-  	    left:-120px;
-
-  	}
+    body{
+        padding-top: 50px;
+        padding-bottom:50px;
+        background-color:#ededed;
+    }
+    footer{
+        position:absolute;
+        height:50px
+        bottom:0px;
+        left:0px;
+        width:100%;
+        background-color: #000000;
+        color:#777;
+        padding: 32px;
+        text-decoration: none;
+    }
 </style>
 
 <body>
@@ -71,52 +68,208 @@
     </div><!-- /.container-fluid -->
 </nav>
 
-<div id="container">
-    <div class="w">
-        <div id="content">
-            <div id="sub">
-                <!--左侧导航栏-->
-                <div id="menu">
-                    <dl class="fore1">
-                        <dt id="_MYJD_order">订单中心</dt>
-                        <dd class="fore1_1 curr" id="_MYJD_ordercenter">
-                            <a href="" target="_self" clstag="homepage|keycount|home2013|Homeoder">我的订单</a>
-                        </dd>
-                        <dd class="fore1_4" id="_MYJD_yushou">
-                            <a href="" target="_self" clstag="homepage|keycount|home2013|Homeys">我的活动</a>
-                        </dd>
-                    </dl>
-                    <dl class="fore2">
-                        <dt id="_MYJD_gz">安全中心</dt>
-                        <dd class="fore2_1" id="_MYJD_product">
-                            <a href="" target="_self" clstag="homepage|keycount|home2013|Homefollow">安全设置</a>
-                        </dd>
-                        <dd class="fore2_2" id="_MYJD_vender">
-                            <a href="" target="_self" clstag="homepage|keycount|home2013|Homefollowv">账户绑定</a>
-                        </dd>
-                    </dl>
-                    <dl class="fore3">
-                        <dt id="_MYJD_sz">设置</dt>
-                        <dd class="fore6_1" id="_MYJD_info">
-                            <a href="" target="_self" clstag="homepage|keycount|home2013|Homeyser2">个人信息</a>
-                        </dd>
-                        <dd class="fore6_2" id="_MYJD_add">
-                            <a href="" target="_self" clstag="homepage|keycount|home2013|Homeadd2">收货地址</a>
-                        </dd>
-                    </dl>
-                </div>
-            </div>
-            <div id="main">
+<div id="container" style="top: 50px; bottom:50px;">
+    <div class="row">
+        <!--左侧导航栏-->
+        <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2" style="left:10px; top: 16px; text-align: center; background-color: #e6e6ea;">
+            <div class="list-group">
+                <h1 style="font-family:STKaiti;">个人中心</h1>
 
+                <h3 class="list-group-item">订单中心</h3>
+                <a href="#" target="_self" class="list-group-item">我的订单</a>
+
+                <h3 class="list-group-item">安全中心</h3>
+                <a href="#shopping-address" target="_self" class="list-group-item">收货地址</a>
+                <a href="#personal-messages" target="_self" class="list-group-item">个人信息</a>
+                <a href="#safe-setting" target="_self" class="list-group-item">账户密码</a>
             </div>
         </div>
-        <div class="ui-slidebar">
+        <!--右侧内容-->
+        <!--订单-->
+        <div class="box-0 col-xs-12 col-sm-10 col-md-10 col-lg-10" style="left:32px; top:32px; bottom:50px; width:78%; text-align: center; color:#777;">
+            <div class="panel panel-default" >
+                <div class="panel-heading">
+                    <h2 style="text-align: left;">我的订单</h2>
+                </div>
 
+                <div class="panel-body">
+                    <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9" style="text-align:center; font-size: 25px;">
+                        <div class="col-md-3">
+                            <a class="item item2" href="" target="_blank">
+                                <span class="glyphicon glyphicon-usd">待付款</span>
+                            </a>
+                        </div>
+                        <div class="col-md-3">
+                            <a class="item item0" href="" target="_blank">
+                                <span class="glyphicon glyphicon-export">待发货</span>
+                            </a>
+                        </div>
+                        <div class="col-md-3">
+                            <a class="item item1" href="" target="_blank">
+                                <span class="glyphicon glyphicon-import">待收货</span>
+                            </a>
+                        </div>
+                        <div class="col-md-3">
+                            <a class="item item4" href="" target="_blank">
+                                <span class="glyphicon glyphicon-book">全部订单</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--设置-->
+        <div class="box-0 col-xs-12 col-sm-10 col-md-10 col-lg-10" style="left:32px; top: 32px; bottom:50px; width:78%; text-align: center; color:#777;">
+            <div class="panel panel-default" >
+                <div class="panel-heading">
+                    <h2 style="text-align: left;">安全中心</h2>
+                    <ul class="nav nav-tabs">
+                        <li class="active">
+                            <a href="#shopping-address" data-toggle="tab">收货地址</a>
+                        </li>
+                        <li>
+                            <a href="#personal-messages" data-toggle="tab">个人信息</a>
+                        </li>
+                        <li>
+                            <a href="#safe-setting" data-toggle="tab">账户密码</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="panel-body">
+                    <div class="tab-content">
+                        <!--个人信息-->
+                        <div class="tab-pane" id="personal-messages">
+                            <div class="user-set userset-lcol" style="line-height: 32px; min-width:80px; text-align: left; list-style-type:none">
+                                <div class="form" >
+                                    <div class="item" id="aliasArea" style="list-style-type:none">
+                                        <li>用户名：<strong>hongerli</strong></li>
+                                    </div>
+                                    <div class="item">
+                                        <span>昵  称：</span>
+                                        <input id="code" style="display:none" value="">
+                                        <input id="rkey" style="display:none" value="">
+                                        <input name="userVo.nickName" class="itxt" id="nickName" type="text" maxlength="20" value="aaaa" clstag="homepage|keycount|home2013|infoname">
+                                    </div>
+                                    <div class="item">
+                                        <span>性  别：</span>
+                                        <input name="sex" class="jdradio" type="radio" value="0"><label class="mr10">男</label>
+                                        <input name="sex" class="jdradio" type="radio" value="1"><label class="mr10">女</label>
+                                        <input name="sex" class="jdradio" type="radio" value="2"><label class="mr10 active">保密</label>
+                                    </div>
+                                    <div class="item">
+                                        <span>邮  箱：</span>
+                                        <input style="display:none" value="">
+                                        <input style="display:none" value="">
+                                        <input name="userVo.nickName" class="itxt"type="text" maxlength="20" value="123@163.com" clstag="homepage|keycount|home2013|infoname">
+                                    </div>
+                                </div>
+                                <nav class="pull-left" style="padding-top: 10px">
+                                    <button type="button" class="btn btn-primary">保存</button>
+                                </nav>
+                            </div>
+                        </div>
+                        <!--账户-->
+                        <div class="tab-pane" id="safe-setting">
+                            <h2 style="text-align: left;">密码设置</h2>
+                            <!-- style="left:32px; top:32px; bottom:50px; width:78%; text-align: center; color:#777;" -->
+                            <div class="main-content">
+                                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" style="list-style-type: none; text-align: left; line-height: 32px; font-size: 15px; color: #000">
+                                    <hr/>
+                                    <div class="col-md-4"><li>输入原密码</li></div>
+                                    <div class="col-md-6"><input type="text" id="1" placeholder="旧密码"></div>
+
+                                    <div class="col-md-4"><li>输入新密码</li></div>
+                                    <div class="col-md-6"><input type="text" id="2" placeholder="新密码"></div>
+
+                                    <div class="col-md-4"><li>确认新密码</li></div>
+                                    <div class="col-md-6"><input type="text" id="3" placeholder="新密码"></div>
+
+                                    <div class="col-md-4"><li>手机号码</li></div>
+                                    <div class="col-md-6"><input type="text" id="5" placeholder="手机号"></div>
+
+                                    <div class="col-md-4"><li>验证码</li></div>
+                                    <div class="col-md-5"><input type="text" id="4" placeholder="验证码"></div>
+                                    <div class="col-md-3"><li><a href="#">获取验证码</a></li></div>
+
+                                    <div class="col-md-12" style="text-align: center; padding-top:32px">
+                                        <button type="button" class="btn btn-primary">修改</button>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" style="list-style-type: none; line-height: 35px; color: #000">
+
+
+                                </div>
+                            </div>
+                        </div>
+                        <!--收货地址-->
+                        <div class="tab-pane active" id="shopping-address">
+                            <table class="table" style="text-align: left;">
+                                <thead>
+                                <tr>
+                                    <th>收货人</th>
+                                    <th>所在地区</th>
+                                    <th>详细地址</th>
+                                    <th>邮编</th>
+                                    <th>电话/手机</th>
+                                    <th>操作</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <th scope="row">李二红</th>
+                                    <td>上海 上海市 奉贤区 海湾镇</td>
+                                    <td>海思路999#</td>
+                                    <td>999999</td>
+                                    <td>18918911891</td>
+                                    <td>
+                                        <div role="presentation" class="dropup">
+                                            <button href="#" role="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">操作<span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu" style="line-height: 5px; min-width:80px; text-align: center; list-style-type:none">
+                                                <li><a href="#">编译</a></li>
+                                                <li><a href="#">删除</a></li>
+                                                <li role="separator" class="divider"></li>
+                                                <li><a href="#">设为默认</a></li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">李二红1</th>
+                                    <td>上海 上海市 奉贤区 海湾镇1</td>
+                                    <td>海思路999#1</td>
+                                    <td>888888</td>
+                                    <td>18918911111</td>
+                                    <td>
+                                        <div role="presentation" class="dropup">
+                                            <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">操作<span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu" style="line-height: 5px; min-width:80px; text-align: center;list-style-type:none">
+                                                <li><a href="#">编译</a></li>
+                                                <li><a href="#">删除</a></li>
+                                                <li><a href="#">设为默认</a></li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <nav class="pull-right" style="padding-right: 100px">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-primary">新增</button>
+                                    <button type="button" class="btn btn-danger">清空</button>
+                                </div>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
-
+<hr/>
 
 <footer class="container-fluid" >
     <div class="container">
@@ -173,8 +326,7 @@
 
 </body>
 <script src="https://cdn.bootcss.com/jquery/2.0.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="https://cdn.bootcss.com/layer/2.3/layer.js"></script>
 
 </html>
-
-
