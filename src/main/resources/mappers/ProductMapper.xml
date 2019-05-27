@@ -1,8 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.store.fresh.mapper.ProductMapper">
-    <select id="findAll" resultType="Product">
-        select * from product
-    </select>
+  <resultMap id="BaseResultMap" type="com.store.fresh.entity.Product">
+    <result column="product_id" jdbcType="VARCHAR" property="productId" />
+    <result column="product_name" jdbcType="VARCHAR" property="productName" />
+    <result column="category" jdbcType="VARCHAR" property="category" />
+    <result column="cost" jdbcType="REAL" property="cost" />
+    <result column="pre_price" jdbcType="REAL" property="prePrice" />
+    <result column="price" jdbcType="REAL" property="price" />
+    <result column="deposit" jdbcType="INTEGER" property="deposit" />
+    <result column="unit" jdbcType="VARCHAR" property="unit" />
+    <result column="scale" jdbcType="VARCHAR" property="scale" />
+  </resultMap>
+
+  <insert id="insert" parameterType="com.store.fresh.entity.Product">
+    insert into product (product_id, product_name, category, 
+      cost, pre_price, price, deposit, 
+      unit, scale)
+    values (#{productId,jdbcType=VARCHAR}, #{productName,jdbcType=VARCHAR}, #{category,jdbcType=VARCHAR}, 
+      #{cost,jdbcType=REAL}, #{prePrice,jdbcType=REAL}, #{price,jdbcType=REAL}, #{deposit,jdbcType=INTEGER}, 
+      #{unit,jdbcType=VARCHAR}, #{scale,jdbcType=VARCHAR})
+  </insert>
+
+  <select id="selectAll" resultMap="BaseResultMap">
+    select product_id, product_name, category, cost, pre_price, price, deposit, unit, scale
+    from product
+  </select>
+  <select id="selectByPrimaryKey" resultType="com.store.fresh.entity.Product" resultMap="BaseResultMap">
+    select * from product where product_id = #{productId}
+  </select>
+
+  <update id="updateByPrimaryKey" parameterType="com.store.fresh.entity.Product">
+    update product set
+    <set>
+      <if test="productName != null">
+        productName = #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="category != null">
+        category = #{category,jdbcType=VARCHAR},
+      </if>
+      <if test="cost != null">
+        cost = #{cost,jdbcType=REAL},
+      </if>
+      <if test="prePrice != null">
+        pre_price = #{prePrice,jdbcType=REAL},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=REAL},
+      </if>
+      <if test="deposit != null">
+        deposit = #{deposit,jdbcType=INTEGER},
+      </if>
+      <if test="unit != null">
+        unit = #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="scale != null">
+        scale = #{scale,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where product_id = #{productId,jdbcType=VARCHAR}
+  </update>
+
+  <delete id="deleteByPrimaryKey">
+    delete from product
+    where product_id = #{productId}
+  </delete>
+
 
 </mapper>

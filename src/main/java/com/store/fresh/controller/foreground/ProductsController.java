@@ -1,4 +1,4 @@
-package com.store.fresh.controller;
+package com.store.fresh.controller.foreground;
 
 import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.stereotype.Controller;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("")
 public class ProductsController {
 
-    @GetMapping("/login")
+/*    @GetMapping("/login")
     public String login(){
         return "login";
     }
@@ -23,5 +23,5 @@ public class ProductsController {
     @GetMapping("/background/index")
     public String backgroundIndex(){
         return "background/index";
-    }
+    }*/
 }
