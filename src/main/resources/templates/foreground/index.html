@@ -1,142 +1,515 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>欢迎来到生鲜超市！</title>
+    <title>Home</title>
+    <!-- for-mobile-apps -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+    function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!-- //for-mobile-apps -->
+    <link href="../../static/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" th:href="@{/css/bootstrap.css}"/>
+    <link href="../../static/css/style.css" rel="stylesheet" type="text/css" media="all" th:href="@{/css/style.css}"/>
+    <!-- font-awesome icons -->
+    <link href="../../static/css/font-awesome.css" rel="stylesheet" type="text/css" media="all" th:href="@{/css/font-awesome.css}"/>
+    <!-- //font-awesome icons -->
+    <!-- js -->
+    <script src="../../static/js/jquery-1.11.1.min.js" th:src="@{/js/jquery-1.11.1.min.js}"></script>
+    <!-- //js -->
+    <link href='https://fonts.googleapis.com/css?family=Ubuntu:400,300,300italic,400italic,500,500italic,700,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+    <!-- start-smoth-scrolling -->
+    <script type="text/javascript" src="../../static/js/move-top.js" th:src="@{/js/move-top.js}"></script>
+    <script type="text/javascript" src="../../static/js/easing.js" th:src="@{/js/easing.js}"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function($) {
+            $(".scroll").click(function(event){
+                event.preventDefault();
+                $('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+            });
+        });
+    </script>
 </head>
 <body>
-<table width="80%" align="center">
+<!-- header -->
+<div class="agileits_header">
+    <div class="w3l_offers">
+        <a href="products.html">今日特惠!</a>
+    </div>
+    <div class="w3l_search">
+        <form action="#" method="post">
+            <input type="text" name="Product" value="Search a product..." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '搜索商品...';}" required="">
+            <input type="submit" value=" ">
+        </form>
+    </div>
+    <div class="product_list_header">
+        <div style="cursor: pointer;">
+            <span class="glyphicon glyphicon-shopping-cart my-cart-icon"><i class="badge badge-notify my-cart-badge"></i></span>
+        </div>
+    </div>
+    <div class="w3l_header_right">
+        <ul>
+            <li class="dropdown profile_details_drop">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user" aria-hidden="true"></i><span class="caret"></span></a>
+                <div class="mega-dropdown-menu">
+                    <div class="w3ls_vegetables">
+                        <ul class="dropdown-menu drp-mnu">
+                            <li><a href="login.html">登陆</a></li>
+                            <li><a href="login.html">注册</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="w3l_header_right1">
+        <h2><a href="mail.html">联系我们</a></h2>
+    </div>
+    <div class="clearfix"> </div>
+</div>
+<!-- script-for sticky-nav -->
+<script>
+    $(document).ready(function() {
+        var navoffeset=$(".agileits_header").offset().top;
+        $(window).scroll(function(){
+            var scrollpos=$(window).scrollTop();
+            if(scrollpos >=navoffeset){
+                $(".agileits_header").addClass("fixed");
+            }else{
+                $(".agileits_header").removeClass("fixed");
+            }
+        });
 
-    <tr>
-        <td>
-            <table width="100%" align="center" cellpadding="0px" cellspacing="0px" border="1">
+    });
+</script>
+<!-- //script-for sticky-nav -->
+<div class="logo_products">
+    <div class="container">
+        <div class="w3ls_logo_products_left">
+            <h1><a href="index.html"><span>fresh</span> 超市</a></h1>
+        </div>
+        <div class="w3ls_logo_products_left1">
+            <ul class="special_items">
+                <li><a href="events.html">时间</a><i>/</i></li>
+                <li><a href="about.html">关于我们</a><i>/</i></li>
+                <li><a href="products.html">特惠</a><i>/</i></li>
+                <li><a href="services.html">服务</a></li>
+            </ul>
+        </div>
+        <div class="w3ls_logo_products_left1">
+            <ul class="phone_email">
+                <li><i class="fa fa-phone" aria-hidden="true"></i>123456789</li>
+                <li><i class="fa fa-envelope-o" aria-hidden="true"></i><a href="mailto:store@grocery.com">cs161@ecust.com</a></li>
+            </ul>
+        </div>
+        <div class="clearfix"> </div>
+    </div>
+</div>
+<!-- //header -->
+<!-- banner -->
+<div class="banner">
+    <div class="w3l_banner_nav_left">
+        <nav class="navbar nav_bottom">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header nav_2">
+                <button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse" data-target="#bs-megadropdown-tabs">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
+                <ul class="nav navbar-nav nav_1">
+                    <li><a href="products.html">水果</a></li>
+                    <li><a href="household.html">肉类</a></li>
+                    <li class="dropdown mega-dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Veggies & Fruits<span class="caret"></span></a>
+                        <div class="dropdown-menu mega-dropdown-menu w3ls_vegetables_menu">
+                            <div class="w3ls_vegetables">
+                                <ul>
+                                    <li><a href="vegetables.html">Vegetables</a></li>
+                                    <li><a href="vegetables.html">Fruits</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a href="kitchen.html">海鲜</a></li>
+                    <li><a href="short-codes.html">Short Codes</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">饮料<span class="caret"></span></a>
+                        <div class="dropdown-menu mega-dropdown-menu w3ls_vegetables_menu">
+                            <div class="w3ls_vegetables">
+                                <ul>
+                                    <li><a href="drinks.html">Soft Drinks</a></li>
+                                    <li><a href="drinks.html">Juices</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a href="pet.html">Pet Food</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Frozen Foods<span class="caret"></span></a>
+                        <div class="dropdown-menu mega-dropdown-menu w3ls_vegetables_menu">
+                            <div class="w3ls_vegetables">
+                                <ul>
+                                    <li><a href="frozen.html">Frozen Snacks</a></li>
+                                    <li><a href="frozen.html">Frozen Nonveg</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a href="bread.html">Bread & Bakery</a></li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </nav>
+    </div>
+    <div class="w3l_banner_nav_right">
+        <section class="slider">
+            <div class="flexslider">
+                <ul class="slides">
+                    <li>
+                        <div class="w3l_banner_nav_right_banner">
+                            <div class="more">
+                                <a href="products.html" class="button--saqui button--round-l button--text-thick" data-text="Shop now">立即购买</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="w3l_banner_nav_right_banner1">
+                            <div class="more">
+                                <a href="products.html" class="button--saqui button--round-l button--text-thick" data-text="Shop now">立即购买</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="w3l_banner_nav_right_banner2">
+                            <h3>高达 <i>50%</i> off折扣.</h3>
+                            <div class="more">
+                                <a href="products.html" class="button--saqui button--round-l button--text-thick" data-text="Shop now">立即购买</a>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+        <!-- flexSlider -->
+        <link rel="stylesheet" href="../../static/css/flexslider.css" type="text/css" media="screen" property="" th:href="@{/css/flexslider.css}"/>
+        <script defer src="../../static/js/jquery.flexslider.js" th:src="@{/js/jquery.flexslider.js}"></script>
+        <script type="text/javascript">
+            $(window).load(function(){
+                $('.flexslider').flexslider({
+                    animation: "slide",
+                    start: function(slider){
+                        $('body').removeClass('loading');
+                    }
+                });
+            });
+        </script>
+        <!-- //flexSlider -->
+    </div>
+    <div class="clearfix"></div>
+</div>
+<!-- banner -->
+<div class="banner_bottom">
+    <div class="wthree_banner_bottom_left_grid_sub">
+    </div>
+    <div class="wthree_banner_bottom_left_grid_sub1">
+        <div class="col-md-4 wthree_banner_bottom_left">
+            <div class="wthree_banner_bottom_left_grid">
+                <img src="../../static/images/4.jpg" alt=" " class="img-responsive" th:src="@{/images/4.jpg}"/>
+                <div class="wthree_banner_bottom_left_grid_pos">
+                    <h4>折扣优惠 <span>25%</span></h4>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 wthree_banner_bottom_left">
+            <div class="wthree_banner_bottom_left_grid">
+                <img src="../../static/images/5.jpg" alt=" " class="img-responsive" th:src="@{/images/5.jpg}"/>
+                <div class="wthree_banner_btm_pos">
+                    <h3>介绍 <span>最好的</span> 的 <i>产品</i></h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 wthree_banner_bottom_left">
+            <div class="wthree_banner_bottom_left_grid">
+                <img src="images/6.jpg" alt=" " class="img-responsive" th:src="@{/images/6.jpg}"/>
+                <div class="wthree_banner_btm_pos1">
+                    <h3>节省 <span>高达</span> ￥30</h3>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"> </div>
+    </div>
+    <div class="clearfix"> </div>
+</div>
+<!-- top-brands -->
+<div class="top-brands">
+    <div class="container">
+        <h3>热门优惠</h3>
+        <div class="agile_top_brands_grids">
+            <div class="col-md-3 top_brand_left">
+                <div class="hover14 column">
+                    <div class="agile_top_brand_left_grid">
+                        <div class="tag"><img src="images/tag.png" alt=" " class="img-responsive" th:src="@{/images/tag.png}"/></div>
+                        <div class="agile_top_brand_left_grid1">
+                            <figure>
+                                <div class="snipcart-item block" >
+                                    <div class="snipcart-thumb">
+                                        <a href="single.html"><img title=" " alt=" " src="images/1.png" th:src="@{/images/1.png}"/></a>
+                                        <p>fortune sunflower oil</p>
+                                        <h4>￥7.99 <span>￥10.00</span></h4>
+                                    </div>
+                                    <div class="snipcart-details top_brand_home_details">
+                                        <button class="btn btn-danger my-cart-btn hvr-sweep-to-right" data-id="1" data-name="Fortune sunflower oil" data-summary="summary 1" data-price="7.99" data-quantity="1" data-image="images/1.png">添加到购物车</button>
+                                    </div>
+                                </div>
+                            </figure>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 top_brand_left">
+                <div class="hover14 column">
+                    <div class="agile_top_brand_left_grid">
+                        <div class="agile_top_brand_left_grid1">
+                            <figure>
+                                <div class="snipcart-item block" >
+                                    <div class="snipcart-thumb">
+                                        <a href="single.html"><img title=" " alt=" " src="images/3.png" th:src="@{/images/3.png}"/></a>
+                                        <p>basmati rise (5 Kg)</p>
+                                        <h4>$11.99 <span>$15.00</span></h4>
+                                    </div>
+                                    <div class="snipcart-details top_brand_home_details">
+                                        <button class="btn btn-danger my-cart-btn hvr-sweep-to-right" data-id="2" data-name="Indian gate basmati rise" data-summary="summary 2" data-price="11.99" data-quantity="1" data-image="images/3.png">添加到购物车</button>
+                                    </div>
+                                </div>
+                            </figure>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 top_brand_left">
+                <div class="hover14 column">
+                    <div class="agile_top_brand_left_grid">
+                        <div class="agile_top_brand_left_grid_pos">
+                            <img src="images/offer.png" alt=" " class="img-responsive" th:src="@{/images/offer.png}"/>
+                        </div>
+                        <div class="agile_top_brand_left_grid1">
+                            <figure>
+                                <div class="snipcart-item block">
+                                    <div class="snipcart-thumb">
+                                        <a href="single.html"><img src="images/2.png" alt=" " class="img-responsive" th:src="@{/images/2.png}"/></a>
+                                        <p>Pepsi soft drink (2 Ltr)</p>
+                                        <h4>$8.00 <span>$10.00</span></h4>
+                                    </div>
+                                    <div class="snipcart-details top_brand_home_details">
+                                        <button class="btn btn-danger my-cart-btn hvr-sweep-to-right" data-id="3" data-name="Pepsi soft drink bottles" data-summary="summary 3" data-price="8.00" data-quantity="1" data-image="images/2.png">添加到购物车</button>
+                                    </div>
+                                </div>
+                            </figure>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 top_brand_left">
+                <div class="hover14 column">
+                    <div class="agile_top_brand_left_grid">
+                        <div class="agile_top_brand_left_grid_pos">
+                            <img src="images/offer.png" alt=" " class="img-responsive" th:src="@{/images/offer.png}"/>
+                        </div>
+                        <div class="agile_top_brand_left_grid1">
+                            <figure>
+                                <div class="snipcart-item block">
+                                    <div class="snipcart-thumb">
+                                        <a href="single.html"><img src="images/4.png" alt=" " class="img-responsive" th:src="@{/images/4.png}"/></a>
+                                        <p>dogs food (4 Kg)</p>
+                                        <h4>$9.00 <span>$11.00</span></h4>
+                                    </div>
+                                    <div class="snipcart-details top_brand_home_details">
+                                        <button class="btn btn-danger my-cart-btn hvr-sweep-to-right" data-id="4" data-name="Dogs food" data-summary="summary 4" data-price="9.00" data-quantity="1" data-image="images/4.png">添加到购物车</button>
+                                    </div>
+                                </div>
+                            </figure>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+</div>
+<!-- //top-brands -->
+<div class="tlinks">Collect from <a href="http://www.cssmoban.com/" >网页模板</a></div>
+<!-- fresh-vegetables -->
+<div class="fresh-vegetables">
+    <div class="container">
+        <h3>热门商品</h3>
+        <div class="w3l_fresh_vegetables_grids">
+            <div class="col-md-3 w3l_fresh_vegetables_grid w3l_fresh_vegetables_grid_left">
+                <div class="w3l_fresh_vegetables_grid2">
+                    <ul>
+                        <li><i class="fa fa-check" aria-hidden="true"></i><a href="products.html">All Brands</a></li>
+                        <li><i class="fa fa-check" aria-hidden="true"></i><a href="vegetables.html">Vegetables</a></li>
+                        <li><i class="fa fa-check" aria-hidden="true"></i><a href="vegetables.html">Fruits</a></li>
+                        <li><i class="fa fa-check" aria-hidden="true"></i><a href="drinks.html">Juices</a></li>
+                        <li><i class="fa fa-check" aria-hidden="true"></i><a href="pet.html">Pet Food</a></li>
+                        <li><i class="fa fa-check" aria-hidden="true"></i><a href="bread.html">Bread & Bakery</a></li>
+                        <li><i class="fa fa-check" aria-hidden="true"></i><a href="household.html">Cleaning</a></li>
+                        <li><i class="fa fa-check" aria-hidden="true"></i><a href="products.html">Spices</a></li>
+                        <li><i class="fa fa-check" aria-hidden="true"></i><a href="products.html">Dry Fruits</a></li>
+                        <li><i class="fa fa-check" aria-hidden="true"></i><a href="products.html">Dairy Products</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-9 w3l_fresh_vegetables_grid_right">
+                <div class="col-md-4 w3l_fresh_vegetables_grid">
+                    <div class="w3l_fresh_vegetables_grid1">
+                        <img src="images/8.jpg" alt=" " class="img-responsive" th:src="@{/images/8.jpg}"/>
+                    </div>
+                </div>
+                <div class="col-md-4 w3l_fresh_vegetables_grid">
+                    <div class="w3l_fresh_vegetables_grid1">
+                        <div class="w3l_fresh_vegetables_grid1_rel">
+                            <img src="images/7.jpg" alt=" " class="img-responsive" th:src="@{/images/7.jpg}"/>
+                            <div class="w3l_fresh_vegetables_grid1_rel_pos">
+                                <div class="more m1">
+                                    <a href="products.html" class="button--saqui button--round-l button--text-thick" data-text="Shop now">立即购买</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w3l_fresh_vegetables_grid1_bottom">
+                        <img src="images/10.jpg" alt=" " class="img-responsive" th:src="@{/images/10.jpg}"/>
+                        <div class="w3l_fresh_vegetables_grid1_bottom_pos">
+                            <h5>Special Offers</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 w3l_fresh_vegetables_grid">
+                    <div class="w3l_fresh_vegetables_grid1">
+                        <img src="images/9.jpg" alt=" " class="img-responsive" th:src="@{/images/9.jpg}"/>
+                    </div>
+                    <div class="w3l_fresh_vegetables_grid1_bottom">
+                        <img src="images/11.jpg" alt=" " class="img-responsive" th:src="@{/images/11.jpg}"/>
+                    </div>
+                </div>
+                <div class="clearfix"> </div>
+                <div class="agileinfo_move_text">
+                    <div class="agileinfo_marquee">
+                        <h4>get <span class="blink_me">25% off</span> on first order and also get gift voucher</h4>
+                    </div>
+                    <div class="agileinfo_breaking_news">
+                        <span> </span>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+</div>
+<!-- //fresh-vegetables -->
+<!-- newsletter -->
+<div class="newsletter">
+    <div class="container">
+        <div class="w3agile_newsletter_left">
+            <h3>注册我们的通讯</h3>
+        </div>
+        <div class="w3agile_newsletter_right">
+            <form action="#" method="post">
+                <input type="email" name="Email" value="Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}" required="">
+                <input type="submit" value="现在订阅">
+            </form>
+        </div>
+        <div class="clearfix"> </div>
+    </div>
+</div>
+<!-- //newsletter -->
+<!-- footer -->
+<div class="footer">
+    <div class="container">
 
-                <td width="80%" align="center">
-                    <a href="#">登录</a>
-                       <a href="#">注册<a>
-                          <a href="#">购物车</a>
-                </td>
-                </tr>
+        <div class="wthree_footer_copy">
+            <p>计161fresh生鲜超市</p>
+        </div>
+    </div>
+</div>
+<!-- //footer -->
+<!-- Bootstrap Core JavaScript -->
+<script src="../../static/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+<script>
+    $(document).ready(function(){
+        $(".dropdown").hover(
+            function() {
+                $('.dropdown-menu', this).stop( true, true ).slideDown("fast");
+                $(this).toggleClass('open');
+            },
+            function() {
+                $('.dropdown-menu', this).stop( true, true ).slideUp("fast");
+                $(this).toggleClass('open');
+            }
+        );
+    });
+</script>
+<!-- here stars scrolling icon -->
+<script type="text/javascript">
+    $(document).ready(function() {
+        /*
+            var defaults = {
+            containerID: 'toTop', // fading element id
+            containerHoverID: 'toTopHover', // fading element hover id
+            scrollSpeed: 1200,
+            easingType: 'linear'
+            };
+        */
 
-            </table>
-        </td>
-    </tr>
+        $().UItoTop({ easingType: 'easeOutQuart' });
 
-    <tr style="height: 50px">
-        <td bgcolor="#448CFF" style="border: 1px solid red">
-            <a href="#" style="padding: 150px"><span style="font-size: 30px;color: white;">首页</span>
-                <a href="#" style="padding: 150px"><span style="font-size: 30px;color: white;">海鲜</span>
-                    <a href="#" style="padding: 150px"><span style="font-size: 30px;color: white;">水果</span>
-                        <a href="#" style="padding: 150px"><span style="font-size: 30px;color: white;">肉类</span>
-                            <a href="#" style="padding: 150px"><span style="font-size: 30px;color: white;">浏览历史</span>
+    });
+</script>
+<!-- //here ends scrolling icon -->
+<script type='text/javascript' src="../../static/js/jquery.mycart.js" th:src="@{/js/jquery.mycart.js}"></script>
+<script type="text/javascript">
+    $(function () {
 
-        </td>
-    </tr>
+        var goToCartIcon = function($addTocartBtn){
+            var $cartIcon = $(".my-cart-icon");
+            var $image = $('<img width="30px" height="30px" src="' + $addTocartBtn.data("image") + '"/>').css({"position": "fixed", "z-index": "999"});
+            $addTocartBtn.prepend($image);
+            var position = $cartIcon.position();
+            $image.animate({
 
-    <tr>
-        <td>
-            <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1557970065&di=ce7187d4e3f034ddcc0e839aa129b24d&imgtype=jpg&er=1&src=http%3A%2F%2Fwww.bosum.com.cn%2Fd%2Ffile%2Fzhiyejingliren%2F2015-12-15%2Fd721f2658ae37b6f3f16e658e4abb5d8.png" height="700" width="100%"/>
-        </td>
-    </tr>
+            }, 500 , "linear", function() {
+                $image.remove();
+            });
+        }
 
-    <tr>
-        <td>
-            <table style="height: 500px;width: 100%;" border="1">
+        $('.my-cart-btn').myCart({
+            classCartIcon: 'my-cart-icon',
+            classCartBadge: 'my-cart-badge',
+            affixCartIcon: true,
+            checkoutCart: function(products) {
+                $.each(products, function(){
+                    console.log(this);
+                });
+            },
+            clickOnAddToCart: function($addTocart){
+                goToCartIcon($addTocart);
+            },
+            getDiscountPrice: function(products) {
+                var total = 0;
+                $.each(products, function(){
+                    total += this.quantity * this.price;
+                });
+                return total * 1;
+            }
+        });
 
-                <tr style="height: 50px">
-                    <td bgcolor="#448CFF" colspan="7">
-                        <b style="color: white;font-size: 30px;padding: 30px">最新商品</b>
-                    </td>
-                </tr>
-
-                <tr>
-
-
-                    <td align="center" style="margin: auto">
-                        <img src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=4044290785,366973501&fm=26&gp=0.jpg" width="500" height="500"/>
-                        <p style="font-size: 20px">东山岛野生海鲜海捕小章鱼八爪鱼 盒装 500g/盒</p>
-                        <p style=" color:gold;font-size:25px;">¥140.00</p>
-                    </td>
-
-                    <td align="center" style="margin: auto">
-                        <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1557967883&di=bdc545fe17e03bb61ec4110315ff0c04&imgtype=jpg&er=1&src=http%3A%2F%2Fimg001.hc360.cn%2Fm5%2FM03%2FF2%2FBA%2FwKhQ6lSr5OGEad_rAAAAAPnFFWg423.jpg" width="500" height="500"/>
-                        <p style="font-size: 20px">俄罗斯进口鲜活帝王蟹 1.8-2.2kg</p>
-                        <p style=" color:gold;font-size: 25px;">1288.00¥</p>
-                    </td>
-
-                    <td align="center" style="margin: auto">
-                        <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1557966437&di=c385c2bada757e353b6474151263d4d4&imgtype=jpg&er=1&src=http%3A%2F%2Fimg.alicdn.com%2Ftfscom%2Fi3%2F1579528508%2FTB2AOleiVXXXXaDXXXXXXXXXXXX_%21%211579528508.jpg" width="500" height="500"/>
-                        <p style="font-size: 20px">加拿大活鲜波士顿龙虾550g-650g/只</p>
-                        <p style=" color:gold;font-size: 25px;">198.00¥</p>
-                    </td>
-
-                    <td align="center" style="margin: auto">
-                        <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1557967116&di=bdc1ac05ec607e50c8621c283b7c4f07&imgtype=jpg&er=1&src=http%3A%2F%2Fpic2.womai.com%2Fupload%2F601%2F603%2F606%2F64306%2F280375%2F219300%2F219301%2F638151%2F638151_1_pic1080_3091.jpg" width="500" height="500"/>
-                        <p style="font-size: 20px">马来西亚进口老虎虾800g </p>
-                        <p style=" color:gold;font-size: 25px;">138.00¥</p>
-                    </td>
-                </tr>
-            </table>
-        </td>
-    </tr>
-
-    <tr>
-        <td>
-            <img src="https://img.alicdn.com/simba/img/TB1J.BIcWmWBuNkHFJHSuuatVXa.jpg" width="100%">
-        </td>
-    </tr>
-
-    <tr>
-        <td>
-            <table style="height: 500px;width: 100%;" border="1">
-
-                <tr style="height: 50px">
-                    <td bgcolor="#448CFF" colspan="7">
-                        <b style="color: white;font-size: 30px;padding: 30px">热门商品</b>
-                    </td>
-                </tr>
-
-                <tr>
-
-
-                    <td align="center" style="margin: auto">
-                        <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1557965523&di=3769b449ae6421ec56eaab04afd98d50&imgtype=jpg&er=1&src=http%3A%2F%2Fimage4.suning.cn%2Fuimg%2Fb2c%2Fnewcatentries%2F0070115359-000000000143690559_1_800x800.jpg" width="500" height="500"/>
-                        <p style="font-size: 20px">丹东红颜九九牛奶草莓 1.5kg</p>
-                        <p style=" color:gold;font-size:25px;">108.00¥</p>
-                    </td>
-
-                    <td align="center" style="margin: auto">
-                        <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1557965927&di=82e8b181beddda99c259579f0f4c6d45&imgtype=jpg&er=1&src=http%3A%2F%2Fstatic.100hl.cn%2F2015%2F04%2F1428656298TNvtCG.jpg" width="500" height="500"/>
-                        <p style="font-size: 20px">海南麒麟西瓜 2.5~3.5kg</p>
-                        <p style=" color:gold;font-size: 25px;">32.80¥</p>
-                    </td>
-
-                    <td align="center" style="margin: auto">
-                        <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1557967263&di=9a174f6b658c13fc518409cb8db007fc&imgtype=jpg&er=1&src=http%3A%2F%2Fmall5.qiyipic.com%2Fimage%2F20151011%2F08%2F01%2Fmall_1558040_1444576725284_1x1.jpg" width="500" height="500"/>
-                        <p style="font-size: 20px">江西赣南脐橙 橙子1.5kg</p>
-                        <p style=" color:gold;font-size: 25px;">10.00¥</p>
-                    </td>
-
-                    <td align="center" style="margin: auto">
-                        <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1557967783&di=e626dfac5d97aad9b6d82fd5f704ea6c&imgtype=jpg&er=1&src=http%3A%2F%2Fm.360buyimg.com%2Fn12%2Fjfs%2Ft853%2F198%2F1527186159%2F334342%2Fbc95c852%2F57303183N7748a52e.jpg%21q70.jpg" width="500" height="500"/>
-                        <p style="font-size: 20px">栖霞红富士山东烟台苹果 2.5kg</p>
-                        <p style=" color:gold;font-size: 25px;">37.80¥</p>
-                    </td>
-                </tr>
-            </table>
-        </td>
-    </tr>
-
-    <tr>
-        <td>
-            <img src="https://img.alicdn.com/simba/img/TB1J.BIcWmWBuNkHFJHSuuatVXa.jpg" width="100%">
-        </td>
-    </tr>
-</table>
-
-
-
-
+    });
+</script>
 </body>
 </html>
 
