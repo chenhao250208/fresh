@@ -28,4 +28,29 @@ public class ProductServiceImpl implements ProductService {
         }
         return productList;
     }
+
+    @Override
+    public List<Product> selectAll() {
+        return productMapper.findAll();
+    }
+
+    @Override
+    public Product selectByPrimaryKey(String productId) {
+        return productMapper.selectByPrimaryKey(productId);
+    }
+
+    @Override
+    public int insert(Product product) {
+        return productMapper.insert(product);
+    }
+
+    @Override
+    public int updateByPrimaryKey(Product product) {
+        return productMapper.updateByPrimaryKey(product);
+    }
+
+    @Override
+    public int deleteByPrimaryKey(String productId) {
+        return productMapper.deleteByPrimaryKey(productId);
+    }
 }
