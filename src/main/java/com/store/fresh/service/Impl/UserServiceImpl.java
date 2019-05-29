@@ -3,6 +3,8 @@ package com.store.fresh.service.Impl;
 import com.store.fresh.entity.*;
 import com.store.fresh.mapper.*;
 import com.store.fresh.service.UserService;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -93,5 +95,17 @@ public class UserServiceImpl implements UserService {
         userRoleKey.setUserId(user.getUserId());
         userRoleKey.setRoleId(1);
         return userRoleMapper.insertSelective(userRoleKey);
+    }
+
+    @Override
+    public String getUserIdFromSecurity() {
+//从SecurityUtils中获得用户主体
+        Subject subject = SecurityUtils.getSubject();
+        String userName = (String) subject.getPrincipal();
+        UserExample userExample = new UserExample();
+        UserExample.Criteria criteria = userExample.createCriteria();
+        criteria.andUserNameEqualTo(userName);
+        User user = userMapper.selectByExample(userExample).get(0);
+        return user.getUserId();
     }
 }

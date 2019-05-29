@@ -21,7 +21,7 @@ public class BasePageController {
         return "login";
     }
 
-    @GetMapping("/foreground/index")
+    @GetMapping("/index")
     public String foregroundIndex(Model model){
         List<Product> discountList = productService.getHotDiscount();
         model.addAttribute("discountList",discountList);

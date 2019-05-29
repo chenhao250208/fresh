@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>我的购物车</title>
+    <div th:replace="/foreground/index::hdcntnt"></div>
+    <link href="../../../static/css/view/gouwu.css" rel="stylesheet" type="text/css" media="all"
+          th:href="@{/css/view/gouwu.css}"/>
+</head>
+<body>
+<div th:replace="/foreground/index::header"></div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div id="page">
+                <div id="listdiv"> <h4>购物车</h4>
+                    <table width="1200" cellpadding="0" cellspacing="0" id="gwcTable">
+                        <tbody>
+                        <tr>
+                            <td width="79"><input type="checkbox" id="checkAll">全选</td>
+                            <td width="175">商品</td>
+                            <td width="92">单价</td>
+                            <td width="201">数量</td>
+                            <td width="96">小计</td>
+                            <td width="79">操作</td>
+                        </tr>
+                        <div th:each="shopCart:${shopCartList}">
+                            <tr>
+                                <td><input type="checkbox" class="checkCss"></td>
+                                <td><p><img src="./shouji.jpg" th:src="@{${shopCart.picturePath}}"></p><p>[[${shopCart.productName}]]</p></td>
+                                <td>[[${shopCart.price}]]</td>
+                                <td class="count"><input class="reduceCss" id="jia1" value="-" type="button">
+                                    <input type="text" class="inputCountCss" id="inputCountCss1" th:value="${shopCart.count}" size="8">
+                                    <input class="addCss" id="jia2" value="+" type="button"></td>
+                                <td id="stotal3">[[${shopCart.price * shopCart.count}]]</td>
+                                <td><a href="#" class="a">删除</a></td>
+                                <td style="display:none" id="productId" class="productId">[[${shopCart.productId}]]</td>
+                            </tr>
+                        </div>
+                        </tbody></table>
+                </div>
+                <div id="jiesuan">
+                    <div class="t jisuanbtn">
+                        <input type="submit" name="btnOrder" id="btnOrder" value="立即结算">
+                    </div>
+                    <div class="t TotalMoney">合计：￥<span id="priceTotal">0</span></div>
+                    <div class="t">已选商品 <span id="countTotal">0</span> 件</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<div th:replace="/foreground/index::footerAndJs"></div>
+
+<script>
+    window.onload = function demo(){
+        var oCheckBoxAll = document.getElementById("checkAll");
+        //找到全选框
+        var oCheck = document.getElementsByClassName("checkCss");
+        //定义总共数量以及总金额
+        var totalCount = 0;
+        var totalMoney = 0;
+        //找到显示数量和金额的元素
+        var priceTotal = document.getElementById("priceTotal");
+        var countTotal = document.getElementById("countTotal");
+        //找到数量输入框的值
+        var oInputCount = document.getElementsByClassName("inputCountCss");
+        //获取表格元素的值
+        var otab = document.getElementById("gwcTable");
+        var otr = document.getElementsByTagName("tr");
+        //加减按钮元素
+        var oBtn_jian = document.getElementsByClassName("reduceCss");
+        var oBtn_jia = document.getElementsByClassName("addCss");
+        //删除
+        var oDel = document.getElementsByClassName("a");
+        //获取结算按钮id
+        var orderBtn = document.getElementById("btnOrder");
+        //判断全选按钮是否勾选
+        var flag = 0;
+
+
+        var start = new Date().getTime();
+
+        //单击全选按钮函数
+        function Fcheck(){
+            if(oCheckBoxAll.checked == true){
+                for(i = 0;i < oCheck.length; i++){
+                    if(!oCheck[i].checked) {
+                        oCheck[i].checked = true;
+                        flag+=1;
+                        totalCount += parseInt(oInputCount[i].value);
+                        totalMoney += parseInt(otr[i + 1].cells[4].innerText);
+                    }
+                }
+            }else{
+                for(i = 0; i< oCheck.length; i++){
+                    oCheck[i].checked = false;
+                    flag = 0;
+                }
+                totalCount = 0;
+                totalMoney = 0;
+            }
+            SpanTotal();
+        }
+
+        //显示总金额和总件数函数
+        function SpanTotal(){
+            countTotal.innerHTML = totalCount;
+            priceTotal.innerHTML = totalMoney;
+        }
+
+        //单选按钮函数
+        function check() {
+            for(i = 0; i < oCheck.length; i++) {
+                if(this == oCheck[i]) {
+                    index = i;
+                    break;
+                }
+            }
+            if(oCheck[index].checked) {
+                totalCount += parseInt(oInputCount[index].value);
+                totalMoney += parseInt(oInputCount[index].value) * parseInt(otr[index + 1].cells[2].innerText);
+                flag+= 1;
+            } else {
+                totalCount -= parseInt(oInputCount[index].value);
+                totalMoney -= parseInt(oInputCount[index].value) * parseInt(otr[index + 1].cells[2].innerText);
+                flag-= 1;
+            }
+            if(flag==oCheck.length){
+                oCheckBoxAll.checked=true;
+            }
+            else{
+                oCheckBoxAll.checked=false;
+            }
+            SpanTotal();
+        }
+        //删除函数
+        function shanChu(){
+            for(i=0;i < oDel.length; i++){
+                if(this == oDel[i]){
+                    index = i;
+                    break;
+                }
+            }
+            if(oCheck[index].checked == true){
+                totalCount -= parseInt(oInputCount[index].value);
+                totalMoney -= parseInt(otr[index + 1].cells[4].innerText);
+            }
+            SpanTotal();
+            otr[index + 1].remove();
+        }
+        //减按钮功能函数
+        function jian() {
+            for(i = 0; i < oBtn_jian.length; i++) {
+                if(this == oBtn_jian[i]){
+                    index = i;
+                    break;
+                }
+            }
+            if(oInputCount[index].value > 0) {
+                if(oInputCount[index].value==1){
+                    layer.msg("该宝贝不能再少了哦");
+                    return;
+                }
+                oInputCount[index].value = oInputCount[index].value - 1;
+                otr[index+1].cells[4].innerText = parseInt(oInputCount[index].value) * parseInt(otr[index+1].cells[2].innerText);
+                if(oCheck[index].checked && oInputCount[index].value != 0) {
+                    totalCount -= 1;
+                    totalMoney -= parseInt(otr[index+1].cells[2].innerText);
+                    SpanTotal();
+                }
+            }
+        }
+        //加按钮功能函数
+        function jia() {
+            for(i = 0; i < oBtn_jia.length; i++) {
+                if(this == oBtn_jia[i]){
+                    index = i;
+                    break;
+                }
+            }
+            oInputCount[index].value = +(oInputCount[index].value) + 1;
+            otr[index+1].cells[4].innerText = parseInt(oInputCount[index].value) * parseInt(otr[index+1].cells[2].innerText);
+            if(oCheck[index].checked) {
+                totalCount += 1;
+                totalMoney += parseInt(otr[index+1].cells[2].innerText);
+                SpanTotal();
+            }
+        }
+        function jiesuan(){
+            var data = [];
+            for(i =0; i< oCheck.length; i++){
+                if(oCheck[i].checked==true){
+                    var number = oCheck[i].parentElement.parentElement.getElementsByClassName("inputCountCss")[0].value;
+                    var productId = oCheck[i].parentElement.parentElement.getElementsByClassName("productId")[0].innerText;
+                    var order = {};
+                    order.number = number;
+                    order.productId = productId;
+                    data.push(order);
+                }
+            }
+            var json_data = JSON.stringify(data);
+            // var json_data = '[{"count":"10","productId":"01348785172"},{"count":"6","productId":"1348785173"}]';
+            if(flag!=0){
+                $.ajax({
+                    dataType: "json",
+                    url: "/api/shopcart/settle",
+                    type: "post",
+                    contentType: "application/json; charset=utf-8",
+                    data: json_data,
+                    success: function (data) {
+                        if(data.code == 200){
+                            window.location.href = "/foreground/order/myOrder";
+                        }else{
+                            layer.msg(data.msg, {icon: 5});
+                        }
+                    },
+                    error: function (e) {
+                        var d = e.responseJSON;
+                        if (d) {
+                            layer.msg(d.msg, {icon: 5});
+                        }
+                    }
+                });
+            } else{
+                layer.msg("请至少选择一件商品结算");
+            }
+        }
+
+        function updateCart(){
+            start = new Date().getTime();
+            // console.log(this);
+            // console.log(this.parentElement);
+            // console.log(this.parentElement.parentElement);
+            // console.log(this.parentElement.parentElement.childNodes[13]);
+            var productId = this.parentElement.parentElement.childNodes[13].innerText;
+            var count = this.parentElement.getElementsByClassName("inputCountCss")[0].value;
+            setTimeout(function () {
+                if((new Date().getTime()-start)<500) //小于定时时间，表示新的点击事件改了start
+                    return;
+                else{
+                    $.ajax({
+                        dataType: "json",
+                        url: "/api/shopcart/update",
+                        type: "post",
+                        data: {"productId":productId,"count":count},
+                        success: function (data) {
+                            if (data.code != 200) {
+                                layer.msg(data.msg, {icon: 5});
+                            }
+                        },
+                        error: function (e) {
+                            var d = e.responseJSON;
+                            if (d) {
+                                layer.msg(d.msg, {icon: 5});
+                            }
+                        }
+                    });
+                }
+
+            },500);
+
+        }
+        oCheckBoxAll.onclick = Fcheck;			//调用全选函数
+        for(i = 0; i < oCheck.length; i++)
+            oCheck.item(i).onclick = check; 	//调用单选函数
+        for(i = 0; i < oDel.length; i++)
+            oDel.item(i).onclick = shanChu;			//调用删除函数
+        for(i = 0; i < oBtn_jian.length; i++) {//调用减
+            // oBtn_jian.item(i).onclick = jian;
+            // oBtn_jian.item(i).onclick = updateCart;
+            oBtn_jian.item(i).addEventListener("click",jian);
+            oBtn_jian.item(i).addEventListener("click",updateCart);
+        }
+        for(i = 0; i < oBtn_jia.length; i++){//调用加
+            oBtn_jia.item(i).addEventListener("click",jia);
+            oBtn_jia.item(i).addEventListener("click",updateCart);
+        }
+
+        orderBtn.onclick=jiesuan;				//调用结算函数
+    }
+</script>
+</body>
+</html>

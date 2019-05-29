@@ -1,17 +1,24 @@
 package com.store.fresh.entity;
 
-import java.util.Date;
-import java.util.List;
 import lombok.Data;
+
+import java.util.Date;
 
 @Data
 public class Order {
-    private Integer orderId;
+    private String orderId;
+
     private String productId;
+
     private Date orderTime;
+
     private String userId;
-    private Float price;
+
+    private String saId;
+
     private Integer number;
+
+    private Float price;
+
     private String state;
-    private List<String> orderList;
 }

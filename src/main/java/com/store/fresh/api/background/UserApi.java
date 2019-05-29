@@ -21,6 +21,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.ServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @RestController
@@ -90,7 +91,7 @@ public class UserApi {
         if(userService.saveUser(user)==1){
             return ResponseEntity.ok("添加成功");
         }else{
-            return ResponseEntity.error(410,"添加失败");
+            return ResponseEntity.error(400,"添加失败");
         }
     }
 }

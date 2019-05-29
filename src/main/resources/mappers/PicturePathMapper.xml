@@ -1,15 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.store.fresh.mapper.OrderMapper">
-  <resultMap id="BaseResultMap" type="com.store.fresh.entity.Order">
-    <result column="order_id" jdbcType="VARCHAR" property="orderId" />
-    <result column="product_id" jdbcType="VARCHAR" property="productId" />
-    <result column="order_time" jdbcType="TIMESTAMP" property="orderTime" />
-    <result column="user_id" jdbcType="VARCHAR" property="userId" />
-    <result column="sa_id" jdbcType="VARCHAR" property="saId" />
-    <result column="number" jdbcType="INTEGER" property="number" />
-    <result column="price" jdbcType="REAL" property="price" />
-    <result column="state" jdbcType="VARCHAR" property="state" />
+<mapper namespace="com.store.fresh.mapper.PicturePathMapper">
+  <resultMap id="BaseResultMap" type="com.store.fresh.entity.PicturePathKey">
+    <id column="product_id" jdbcType="VARCHAR" property="productId" />
+    <id column="picture_path" jdbcType="VARCHAR" property="picturePath" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -70,15 +64,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    order_id, product_id, order_time, user_id, sa_id, number, price, state
+    product_id, picture_path
   </sql>
-  <select id="selectByExample" parameterType="com.store.fresh.entity.OrderExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.store.fresh.entity.PicturePathExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from orders
+    from picture_path
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -86,107 +80,54 @@
       order by ${orderByClause}
     </if>
   </select>
-  <delete id="deleteByExample" parameterType="com.store.fresh.entity.OrderExample">
-    delete from orders
+  <delete id="deleteByPrimaryKey" parameterType="com.store.fresh.entity.PicturePathKey">
+    delete from picture_path
+    where product_id = #{productId,jdbcType=VARCHAR}
+      and picture_path = #{picturePath,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.store.fresh.entity.PicturePathExample">
+    delete from picture_path
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.store.fresh.entity.Order">
-    insert into orders (order_id, product_id, order_time,
-      user_id, sa_id, number,
-      price, state)
-    values (#{orderId,jdbcType=VARCHAR}, #{productId,jdbcType=VARCHAR}, #{orderTime,jdbcType=TIMESTAMP},
-      #{userId,jdbcType=VARCHAR}, #{saId,jdbcType=VARCHAR}, #{number,jdbcType=INTEGER},
-      #{price,jdbcType=REAL}, #{state,jdbcType=VARCHAR})
+  <insert id="insert" parameterType="com.store.fresh.entity.PicturePathKey">
+    insert into picture_path (product_id, picture_path)
+    values (#{productId,jdbcType=VARCHAR}, #{picturePath,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.store.fresh.entity.Order">
-    insert into orders
+  <insert id="insertSelective" parameterType="com.store.fresh.entity.PicturePathKey">
+    insert into picture_path
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="orderId != null">
-        order_id,
-      </if>
       <if test="productId != null">
         product_id,
       </if>
-      <if test="orderTime != null">
-        order_time,
-      </if>
-      <if test="userId != null">
-        user_id,
-      </if>
-      <if test="saId != null">
-        sa_id,
-      </if>
-      <if test="number != null">
-        number,
-      </if>
-      <if test="price != null">
-        price,
-      </if>
-      <if test="state != null">
-        state,
+      <if test="picturePath != null">
+        picture_path,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="orderId != null">
-        #{orderId,jdbcType=VARCHAR},
-      </if>
       <if test="productId != null">
         #{productId,jdbcType=VARCHAR},
       </if>
-      <if test="orderTime != null">
-        #{orderTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="userId != null">
-        #{userId,jdbcType=VARCHAR},
-      </if>
-      <if test="saId != null">
-        #{saId,jdbcType=VARCHAR},
-      </if>
-      <if test="number != null">
-        #{number,jdbcType=INTEGER},
-      </if>
-      <if test="price != null">
-        #{price,jdbcType=REAL},
-      </if>
-      <if test="state != null">
-        #{state,jdbcType=VARCHAR},
+      <if test="picturePath != null">
+        #{picturePath,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.store.fresh.entity.OrderExample" resultType="java.lang.Long">
-    select count(*) from orders
+  <select id="countByExample" parameterType="com.store.fresh.entity.PicturePathExample" resultType="java.lang.Long">
+    select count(*) from picture_path
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update orders
+    update picture_path
     <set>
-      <if test="record.orderId != null">
-        order_id = #{record.orderId,jdbcType=VARCHAR},
-      </if>
       <if test="record.productId != null">
         product_id = #{record.productId,jdbcType=VARCHAR},
       </if>
-      <if test="record.orderTime != null">
-        order_time = #{record.orderTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.userId != null">
-        user_id = #{record.userId,jdbcType=VARCHAR},
-      </if>
-      <if test="record.saId != null">
-        sa_id = #{record.saId,jdbcType=VARCHAR},
-      </if>
-      <if test="record.number != null">
-        number = #{record.number,jdbcType=INTEGER},
-      </if>
-      <if test="record.price != null">
-        price = #{record.price,jdbcType=REAL},
-      </if>
-      <if test="record.state != null">
-        state = #{record.state,jdbcType=VARCHAR},
+      <if test="record.picturePath != null">
+        picture_path = #{record.picturePath,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -194,15 +135,9 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update orders
-    set order_id = #{record.orderId,jdbcType=VARCHAR},
-    product_id = #{record.productId,jdbcType=VARCHAR},
-    order_time = #{record.orderTime,jdbcType=TIMESTAMP},
-    user_id = #{record.userId,jdbcType=VARCHAR},
-    sa_id = #{record.saId,jdbcType=VARCHAR},
-    number = #{record.number,jdbcType=INTEGER},
-    price = #{record.price,jdbcType=REAL},
-    state = #{record.state,jdbcType=VARCHAR}
+    update picture_path
+    set product_id = #{record.productId,jdbcType=VARCHAR},
+      picture_path = #{record.picturePath,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>

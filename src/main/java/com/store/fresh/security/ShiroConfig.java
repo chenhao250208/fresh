@@ -42,12 +42,17 @@ public class ShiroConfig {
         //拦截器.
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<String, String>();
         //配置映射关系
-        filterChainDefinitionMap.put("/foreground/index","anon");
+        filterChainDefinitionMap.put("/index","anon");
+        filterChainDefinitionMap.put("/foreground/product/**","anon");
         filterChainDefinitionMap.put("/logout", "anon");
         filterChainDefinitionMap.put("/api/user/login","anon");
         filterChainDefinitionMap.put("/api/user/register","anon");
         filterChainDefinitionMap.put("/afterlogout", "anon");
-        filterChainDefinitionMap.put("/static/**", "anon");
+        filterChainDefinitionMap.put("/images/**", "anon");
+        filterChainDefinitionMap.put("/css/**", "anon");
+        filterChainDefinitionMap.put("/fonts/**", "anon");
+        filterChainDefinitionMap.put("/js/**", "anon");
+        filterChainDefinitionMap.put("/plugins/**", "anon");
         //filterChainDefinitionMap.put("/html/**","anon");
         filterChainDefinitionMap.put("/afterlogin", "anon");
         filterChainDefinitionMap.put("/**", "authc");

@@ -1,13 +1,27 @@
 package com.store.fresh.mapper;
 
 import com.store.fresh.entity.Order;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
-
+import com.store.fresh.entity.OrderExample;
 import java.util.List;
+
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 @Mapper
 public interface OrderMapper {
-    List<Order> selectAll();
+    long countByExample(OrderExample example);
+
+    int deleteByExample(OrderExample example);
+
+    int insert(Order record);
+
+    int insertSelective(Order record);
+
+    List<Order> selectByExample(OrderExample example);
+
+
+    int updateByExampleSelective(@Param("record") Order record, @Param("example") OrderExample example);
+
+    int updateByExample(@Param("record") Order record, @Param("example") OrderExample example);
 
 }

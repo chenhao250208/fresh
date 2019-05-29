@@ -29,4 +29,6 @@ public interface UserService {
 
     public int saveUser(User user);
 
+    public String getUserIdFromSecurity();
+
 }
