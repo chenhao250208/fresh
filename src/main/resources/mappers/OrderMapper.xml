@@ -161,6 +161,15 @@
       <include refid="Example_Where_Clause" />
     </if>
   </select>
+
+  <select id="findAll" resultType="order">
+    select * from orders
+  </select>
+
+  <select id="selectOrderByPrimaryKey" resultType="order">
+    select * from orders where order_id = #{orderId}
+  </select>
+
   <update id="updateByExampleSelective" parameterType="map">
     update orders
     <set>

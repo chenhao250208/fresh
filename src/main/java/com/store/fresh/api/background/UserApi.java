@@ -41,7 +41,7 @@ public class UserApi {
         if(savedRequest != null){
             /*url = savedRequest.getRequestUrl();*/
             url = "/foreground/index";
-        }else {
+        } else {
             url = "/foreground/index";
         }
         try {
@@ -71,6 +71,7 @@ public class UserApi {
             userExample.or().andEmailLike("%"+criteria+"%");
         }
         PageHelper.startPage(pageNum,pageSize);
+        // PageInfo
         List<User> userList = userService.selectWithRoleByExample(userExample);
         PageInfo pageInfo=new PageInfo(userList);
         return ResponseEntity.ok("获取成功").put("pageInfo",pageInfo);
@@ -94,4 +95,5 @@ public class UserApi {
             return ResponseEntity.error(400,"添加失败");
         }
     }
+
 }

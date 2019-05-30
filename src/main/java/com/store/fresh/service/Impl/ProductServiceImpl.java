@@ -1,6 +1,7 @@
 package com.store.fresh.service.Impl;
 
 import com.store.fresh.entity.Product;
+import com.store.fresh.entity.ProductExample;
 import com.store.fresh.mapper.ProductMapper;
 import com.store.fresh.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,13 +31,23 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<Product> selectAll() {
-        return productMapper.findAll();
+    public Product selectByPrimaryKey(String productId) {
+        return productMapper.selectByPrimaryKey(productId);
     }
 
     @Override
-    public Product selectByPrimaryKey(String productId) {
-        return productMapper.selectByPrimaryKey(productId);
+    public int updateByExampleSelective(Product record, ProductExample example) {
+        return productMapper.updateByExampleSelective(record, example);
+    }
+
+    @Override
+    public int updateByExample(Product record, ProductExample example) {
+        return productMapper.updateByExample(record, example);
+    }
+
+    @Override
+    public int updateByPrimaryKeySelective(Product record) {
+        return productMapper.updateByPrimaryKeySelective(record);
     }
 
     @Override
@@ -45,8 +56,33 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public int insertSelective(Product record) {
+        return productMapper.insertSelective(record);
+    }
+
+    @Override
+    public List<Product> selectByExample(ProductExample example) {
+        return productMapper.selectByExample(example);
+    }
+
+    @Override
     public int updateByPrimaryKey(Product product) {
         return productMapper.updateByPrimaryKey(product);
+    }
+
+    @Override
+    public List<Product> findAll() {
+        return productMapper.findAll();
+    }
+
+    @Override
+    public long countByExample(ProductExample example) {
+        return productMapper.countByExample(example);
+    }
+
+    @Override
+    public int deleteByExample(ProductExample example) {
+        return productMapper.deleteByExample(example);
     }
 
     @Override

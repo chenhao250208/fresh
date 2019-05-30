@@ -1,8 +1,7 @@
 package com.store.fresh.controller.background;
 
-import com.store.fresh.entity.User;
-import com.store.fresh.entity.UserExample;
-import com.store.fresh.service.UserService;
+import com.store.fresh.entity.Order;
+import com.store.fresh.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,23 +15,33 @@ import java.util.List;
 @RequestMapping("background/order")
 public class OrderController {
     @Autowired
-    UserService orderService;
+    OrderService orderService;
 
-
-    @GetMapping("/index")
+    @GetMapping({"/index", ""})
     public String index(){
         return "background/order/index";
     }
 
-   /* @GetMapping("/edit/{userId}")
-    public String edit(Model model, @PathVariable("userId")String userId){
-        User user = orderService.selectByPrimaryKey(userId);
-        model.addAttribute("user",user);
-        return "background/user/edit";
-    }*/
+    @GetMapping("/edit/{orderId}")
+    public String edit(Model model, @PathVariable("orderId")String orderId){
+        Order order = orderService.selectOrderByPrimaryKey(orderId);
+        model.addAttribute("order", order);
+        return "background/order/edit";
+    }
 
-    /*@GetMapping("/create")
+    @GetMapping("/pending")
+    public String pending(){
+        return "background/order/pending";
+    }
+
+    @GetMapping("/processing")
+    public String processing(){
+        return "background/order/processing";
+    }
+
+    @GetMapping("/solved")
     public String create(){
-        return "background/user/create";
-    }*/
+        return "background/order/solved";
+    }
+
 }
