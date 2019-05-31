@@ -75,4 +75,11 @@ public class BasePageController {
             return "redirect:/login";
         }
     }
+
+    @GetMapping("logout")
+    public String logout(){
+        Subject subject = SecurityUtils.getSubject();
+        subject.logout();
+        return "redirect:/index";
+    }
 }

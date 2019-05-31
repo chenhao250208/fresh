@@ -49,7 +49,7 @@
 <footer th:fragment="header">
     <div class="agileits_header">
         <div class="w3l_offers">
-            <a href="products.html">今日特惠!</a>
+            <a href="#">今日特惠!</a>
         </div>
         <div class="w3l_search">
             <form action="#" method="post">
@@ -76,7 +76,7 @@
                             <ul class="dropdown-menu drp-mnu">
                                 <shiro:guest><li><a href="/login">登陆</a></li>
                                     <li><a href="#">注册</a></li></shiro:guest>
-                                <shiro:user><p id="user"><shiro:principal/></p><li><a href="#">退出</a></li></shiro:user>
+                                <shiro:user><p id="user"><shiro:principal/></p><li><a href="/logout">退出</a></li></shiro:user>
                             </ul>
                         </div>
                     </div>
@@ -112,8 +112,8 @@
             <div class="w3ls_logo_products_left1">
                 <ul class="special_items">
                     <li><a href="/index">首页</a><i>/</i></li>
-                    <li><a href="#discount">热门优惠</a><i>/</i></li>
-                    <li><a href="#hot">热门产品</a><i>/</i></li>
+                    <li><a href="/index#discount">热门优惠</a><i>/</i></li>
+                    <li><a href="/index#hot">热门产品</a><i>/</i></li>
                     <li><a href="/foreground/order/myOrder">我的订单</a></li>
                 </ul>
             </div>
@@ -176,7 +176,7 @@
                         <li>
                             <div class="w3l_banner_nav_right_banner">
                                 <div class="more">
-                                    <a href="products.html" class="button--saqui button--round-l button--text-thick"
+                                    <a href="#" class="button--saqui button--round-l button--text-thick"
                                        data-text="Shop now">立即购买</a>
                                 </div>
                             </div>
@@ -184,7 +184,7 @@
                         <li>
                             <div class="w3l_banner_nav_right_banner1">
                                 <div class="more">
-                                    <a href="products.html" class="button--saqui button--round-l button--text-thick"
+                                    <a href="#" class="button--saqui button--round-l button--text-thick"
                                        data-text="Shop now">立即购买</a>
                                 </div>
                             </div>
@@ -193,7 +193,7 @@
                             <div class="w3l_banner_nav_right_banner2">
                                 <h3>高达 <i>50%</i> off折扣.</h3>
                                 <div class="more">
-                                    <a href="products.html" class="button--saqui button--round-l button--text-thick"
+                                    <a href="#" class="button--saqui button--round-l button--text-thick"
                                        data-text="Shop now">立即购买</a>
                                 </div>
                             </div>
@@ -274,12 +274,12 @@
                         </li>
                         <li><i class="fa fa-check" aria-hidden="true"></i><a href="/foreground/products/fruit">水果</a></li>
                         <li><i class="fa fa-check" aria-hidden="true"></i><a href="/foreground/products/">鲜榨</a></li>
-                        <li><i class="fa fa-check" aria-hidden="true"></i><a href="pet.html">宠物生鲜</a></li>
-                        <li><i class="fa fa-check" aria-hidden="true"></i><a href="bread.html">新鲜面包</a>
+                        <li><i class="fa fa-check" aria-hidden="true"></i><a href="#">宠物生鲜</a></li>
+                        <li><i class="fa fa-check" aria-hidden="true"></i><a href=#>新鲜面包</a>
                         </li>
-                        <li><i class="fa fa-check" aria-hidden="true"></i><a href="household.html">干果</a></li>
-                        <li><i class="fa fa-check" aria-hidden="true"></i><a href="products.html">肉类</a></li>
-                        <li><i class="fa fa-check" aria-hidden="true"></i><a href="products.html">禽蛋</a>
+                        <li><i class="fa fa-check" aria-hidden="true"></i><a href="#">干果</a></li>
+                        <li><i class="fa fa-check" aria-hidden="true"></i><a href="#">肉类</a></li>
+                        <li><i class="fa fa-check" aria-hidden="true"></i><a href="#">禽蛋</a>
                         </li>
                     </ul>
                 </div>
@@ -296,7 +296,7 @@
                             <img src="images/7.jpg" alt=" " class="img-responsive" th:src="@{/images/7.jpg}"/>
                             <div class="w3l_fresh_vegetables_grid1_rel_pos">
                                 <div class="more m1">
-                                    <a href="products.html" class="button--saqui button--round-l button--text-thick"
+                                    <a href="#" class="button--saqui button--round-l button--text-thick"
                                        data-text="Shop now">立即购买</a>
                                 </div>
                             </div>
