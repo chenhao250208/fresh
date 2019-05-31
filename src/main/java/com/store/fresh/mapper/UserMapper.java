@@ -34,4 +34,5 @@ public interface UserMapper {
     List<String> findRoles(String username);
 
     List<String> findPermissions(String username);
+
 }

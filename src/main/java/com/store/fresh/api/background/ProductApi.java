@@ -50,7 +50,7 @@ public class ProductApi {
         }
     }
 
-    @PostMapping("edit")
+    @PostMapping("/edit")
     public @ResponseBody
     ResponseEntity edit(Product product) {
         if(productService.updateByPrimaryKeySelective(product) == 1) {
@@ -59,7 +59,7 @@ public class ProductApi {
         return ResponseEntity.error(400, "修改失败");
     }
 
-    @GetMapping("delete")
+    @GetMapping("/delete")
     public @ResponseBody
     ResponseEntity delete(String productId) {
         if(productService.deleteByPrimaryKey(productId) == 1) {

@@ -25,9 +25,9 @@
                         <button type="button" class="btn btn-success" onclick="reloadProduct()">查找</button>
                     </form>
                 </div>
-                <div class="col-md-1 col-md-offset-7">
+<!--                <div class="col-md-1 col-md-offset-7">
                     <button id="addProduct" class="btn btn-primary">增加</button>
-                </div>
+                </div>-->
             </div>
         </div>
         <table id="productTable"></table>
@@ -101,7 +101,8 @@
                     //         return roleStr;
                     //     }
                     // },
-                    {title:'操作',templet:function (data) {
+                    {
+                        title:'操作',templet:function (data) {
                             var productId = "'"+data.productId+"'";
                             var editButton = '<button type="button" class="btn btn-success" onclick="edit('+productId+')">编辑</button>';
                             return editButton;
@@ -120,7 +121,7 @@
             $.each(formArray1,function(index,entity){
                 formObject1[entity.name]=entity.value;
             });
-            userTable.reload({
+            productTable.reload({
                 page:{ curr:1 },
                 where: formObject1
             })
@@ -129,17 +130,17 @@
 
     function edit(productId) {
         layer.open({
-            type: 2,
-            title: "编辑商品",
-            shadeClose: true,
-            shade: false,
-            maxmin: true, //开启最大化最小化按钮
-            area: ['80%', '90%'],
-            content: "/background/product/edit/" + productId
-        })
+        type: 2,
+        title: "编辑商品",
+        shadeClose: true,
+        shade: false,
+        maxmin: true, //开启最大化最小化按钮
+        area: ['80%', '90%'],
+        content: "/background/product/edit/" + productId
+    })
     }
 
-    $("#addProduct").click(function () {
+/*    $("#addProduct").click(function () {
         layer.open({
             type:2,
             title: "新增商品",
@@ -149,6 +150,6 @@
             area: ['80%', '90%'],
             content: "/background/product/create"
     })
-    });
+    });*/
 </script>
 </html>
