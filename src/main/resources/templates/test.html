@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+</head>
+<body>
+<button>点击</button>
+</body>
+<script>
+    var btn = document.getElementsByTagName("button")[0];
+    btn.onclick = function () {
+        $.ajax({
+            dataType: "json",
+            url: "/hello",
+            type: "post",
+            data: {"message":"ybh"}
+        })
+    }
+</script>
+</html>

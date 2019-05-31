@@ -19,8 +19,8 @@ public class ShopCartApi {
 
     @PostMapping("/add")
     public @ResponseBody
-    ResponseEntity add(String productId){
-        if(shopCartService.addToCart(productId)==1){
+    ResponseEntity add(String productId,Integer count){
+        if(shopCartService.addToCart(productId,count)==1){
             return ResponseEntity.ok("添加到购物车成功");
         }else{
             return ResponseEntity.error(400,"未知错误");

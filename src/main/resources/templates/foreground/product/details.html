@@ -1,10 +1,208 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>产品</title>
+    <div th:replace="/foreground/index::hdcntnt"></div>
+    <style>
+        .purchase{
+            width: 110px;
+            height: 34px;
+            background-color: #4e7fff;
+            color: white;
+        }
+        .count{
+            width: 230px;
+            margin-bottom: 20px;
+        }
+        .count button{
+            width: 35px;
+            background-color: #fcf8e3;
+        }
+        .count input{
+            width: 60px;
+        }
+    </style>
+    <script src="https://cdn.bootcss.com/layer/2.3/layer.js"></script>
 </head>
 <body>
+<div th:replace="/foreground/index::header"></div>
+<!-- banner -->
+<div class="banner">
+    <div class="w3l_banner_nav_left">
+        <nav class="navbar nav_bottom">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header nav_2">
+                <button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse"
+                        data-target="#bs-megadropdown-tabs">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
+                <ul class="nav navbar-nav nav_1">
+                    <li><a href="/foreground/product/fruit">时令水果</a></li>
+                    <li><a href="/foreground/product/seafood">海鲜水产</a></li>
+                    <li><a href="/foreground/product/meat">猪牛羊肉</a></li>
+                    <li><a href="/foreground/product/egg">禽类蛋品</a></li>
+                    <li><a href="/foreground/product/vegetable">新鲜蔬菜</a></li>
+                    <li><a href="/foreground/product/frozen">速冻食品</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">其他<span class="caret"></span></a>
+                        <div class="dropdown-menu mega-dropdown-menu w3ls_vegetables_menu">
+                            <div class="w3ls_vegetables">
+                                <ul>
+                                    <li><a href="/foreground/product/softdrink">软饮料</a></li>
+                                    <li><a href="/foreground/product/juice">果汁</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </nav>
+    </div>
 
+    <div class="w3l_banner_nav_right">
+        <!-- services -->
+        <div class="services">
+            <h3 th:text="${product.productName}"></h3>
+            <div class="w3ls_service_grids">
+                <div class="col-md-5 w3ls_service_grid_left">
+                    <h4>新鲜美味健康</h4>
+                    <div th:with="type=${product.category}">
+                        <p>We carefully select <span th:text="${type}">水果</span>  for you!<br>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-7 w3ls_service_grid_right">
+                    <div th:each="picture : ${product.picturePath}">
+                        <div class="col-md-4 w3ls_service_grid_right_1">
+                            <img src="images/18.jpg" alt=" " class="img-responsive" th:src="@{${picture}}" width="192"
+                                 height="128"/>
+                        </div>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+            <div class="w3ls_service_grids1">
+                <div class="col-md-6 w3ls_service_grids1_left">
+                    <div th:switch="${#lists.size(product.picturePath)}">
+                        <img th:src="@{/images/default.jpg}" th:case="0"  height="360"
+                             width="450"/>
+                        <img title=" "
+                             alt=" "
+                             src="images/1.png"
+                             th:src="@{${product.picturePath[0]}}"
+                             th:case="*"height="360"
+                             width="450"/>
+                    </div>
+                </div>
+                <div class="col-md-6 w3ls_service_grids1_right">
+                    <ul>
+                        <li><i class="fa fa-long-arrow-right" aria-hidden="true"></i>数量有限，赶紧抢购</li>
+                        <li><i class="fa fa-long-arrow-right" aria-hidden="true"></i>现在购买，预计三小时送达</li>
+                        <li><i class="fa fa-long-arrow-right" aria-hidden="true"></i>规格：<span th:text="${product.scale}"></span></li>
+                        <li><i class="fa fa-long-arrow-right" aria-hidden="true"></i>价格：￥<span th:text="${product.price}"></span></li>
+                    </ul>
+                    <div class="count">
+                        <button id="minus">-</button><input type="number" value="1" id="count" readonly/><button id="plus">+</button>
+                        <div th:text="${product.productId}" style="display:none"></div>
+                    </div><!-- /input-group -->
+                    <button class="btn btn-danger my-cart-icon-affix">加入购物车</button>
+                    <button class="purchase">立即购买</button>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    window.onload = function addAndPurchase() {
+        var user = $("#user").text();
+        var start = new Date().getTime();
+        var addCartBtn = document.getElementsByClassName("my-cart-icon-affix")[0];
+        var purchaseBtn = document.getElementsByClassName("purchase")[0];
+        var minus = document.getElementById("minus");
+        var plus = document.getElementById("plus");
+        var count = document.getElementById("count");
+        addCartBtn.addEventListener("click",addCart);
+        purchaseBtn.addEventListener("click",purchase);
+        minus.addEventListener("click",jian);
+        plus.addEventListener("click",jia);
+        function purchase(){
+            if(user==""){
+                layer.msg("请先登录！");
+                return ;
+            }
+            var order = {}
+            var orderList = []
+            order.productId = this.parentElement.getElementsByTagName("div")[1].innerText;
+            order.number = this.parentElement.getElementsByTagName("input")[0].value;
+            orderList.push(order);
+            $.ajax({
+                dataType: "json",
+                url: "/api/order/save",
+                type: "post",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(orderList),
+                success: function (data) {
+                    if (data.code == 200) {
+                        layer.msg(data.msg);
+                        setTimeout(function () {
+                            window.location.href = "/foreground/order/myOrder";
+                        },1000);
+                    } else {
+                        layer.msg(data.msg, {icon: 5});
+                    }
+
+                },
+                error: function (e) {
+                    if (e) {
+                        layer.msg(e, {icon: 5});
+                    }
+                }
+            });
+        }
+        function jia() {
+            count.value = parseInt(count.value)+1;
+        }
+        function jian() {
+            var num = parseInt(count.value);
+            count.value = (num ==1)?1:(num-1);
+        }
+        function addCart(){
+            if(user==""){
+                alert("请先登录！");
+                return ;
+            }
+            start = new Date().getTime();
+            var productId = this.parentElement.getElementsByTagName("div")[1].innerText;
+            var count = this.parentElement.getElementsByTagName("input")[0].value;
+            $.ajax({
+                dataType: "json",
+                url: "/api/shopcart/add",
+                type: "post",
+                data: {productId:productId,count:count},
+                success: function (data) {
+                    if (data.code == 200) {
+                        window.location.href = "/foreground/shopcart/index";
+                    } else {
+                        layer.msg(data.msg, {icon: 5});
+                    }
+
+                },
+                error: function (e) {
+                    if (d) {
+                        layer.msg(e, {icon: 5});
+                    }
+                }
+            });
+        }
+    }
+</script>
 </body>
 </html>

@@ -6,7 +6,7 @@ import com.store.fresh.entity.ShopCart;
 import java.util.List;
 
 public interface ShopCartService {
-    public int addToCart(String productId);
+    public int addToCart(String productId,Integer count);
     public int updateCart(String productId,Integer count);
     public List<ShopCart> getPersonalCarts();
     public void settle(List<Order> orderList);

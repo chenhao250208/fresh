@@ -1,147 +1,51 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Document</title>
-    <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="index.css">
+    <title>产品</title>
+    <div th:replace="/foreground/index::hdcntnt"></div>
 </head>
 <body>
-<!-- 页面结构划分 -->
-<div id="container">
-    <!-- 1.导航 -->
-    <div id="nav">
-        <!-- 1.1右侧导航 -->
-        <ul class="rightNav">
-            <li>
-                <a href="#">[登录]</a>
-                ，
-                <a href="#">[注册，有惊喜]</a>
-            </li>
-            <li>
-                <b></b>
-                <a href="#">果园公告</a>
-            </li>
-            <li>
-                <b></b>
-                <a href="#">券卡兑换</a>
-            </li>
-            <li>
-                <b></b>
-                <a href="#">手机果园</a>
-            </li>
-        </ul>
-        <!-- 1.2左侧导航 -->
-        <ol class="leftNav">
-            <li class="address">
-                <span>上海</span>     <!-- 用于修改显示地区信息 -->
-                <!-- 左侧导航的三角标 -->
-                <u></u>
-                <!-- 地区下拉列表 -->
-                <ul class="select">
-                    <li>北京</li>
-                    <li>广州</li>
-                    <li>深圳</li>
-                </ul>
-            </li>
-            <li>满百包邮</li>
-            <li>星夜达</li>
-        </ol>
-    </div>
-    <!-- 2.横幅 -->
-    <div id="banner">
-        <!-- 图片轮番播放 -->
-        <img src="1-270x270-430-9RBRWTU9.jpg">
-    </div>
-    <!-- 3.今日推荐 -->
-    <div id="adv">
-        <a href="">
-            <img src="25af37592bf484fbeaef1cc4ff1e09c7.jpg">
-        </a>
-        <a href="">
-            <img src="2ba20598135dbba5e97d241ebfa167d9.jpg">
-        </a>
-        <a href="">
-            <img src="904419aa2e364412b3c07c3cbda24ef9.jpg">
-        </a>
-        <a href="">
-            <img src="2ba20598135dbba5e97d241ebfa167d9.jpg" class="lastImg">
-        </a>
-    </div>
-    <!-- 4.主体信息 -->
-    <div id="main">
-        <!-- 上方  生活卡券部分 -->
-        <div class="item">
-            <p class="goodsClass">
-                <img src="t4.png">
-                <a href="#">更多</a>
-            </p>
-            <!-- 下方 商品信息展示 -->
-            <ul>
-                <li>
-                    <p><img src="1-270x270-3877-BXDY6KCU.jpg"></p>
-                    <div class="content">
-                        <a href="#">
-                            <img src="cart.png">
-                        </a>
-                        <p>欢乐时光果篮</p>
-                        <span>
-							&yen;188.00/份
-							</span>
+<div th:replace="/foreground/index::header"></div>
+<!-- top-brands -->
+<div class="top-brands" id="discount">
+    <div class="container">
+        <div class="agile_top_brands_grids" th:each="hotpro,state : ${productList}">
+            <div class="col-md-3 top_brand_left">
+                <div class="hover14 column">
+                    <div class="agile_top_brand_left_grid">
+                        <div class="agile_top_brand_left_grid1">
+                            <figure>
+                                <div class="snipcart-item block">
+                                    <div class="snipcart-thumb">
+                                        <a th:href="'/foreground/product/detail?productId='+${hotpro.productId}">
+                                            <div th:switch="${#lists.size(hotpro.picturePath)}">
+                                                <img th:src="@{/images/default.jpg}" th:case="0"  height="140"
+                                                     width="140"/>
+                                                <img title=" "
+                                                     alt=" "
+                                                     src="images/1.png"
+                                                     th:src="@{${hotpro.picturePath[0]}}"
+                                                     th:case="*"height="140"
+                                                     width="140"/>
+                                            </div>
+                                        </a>
+                                        <p th:text="${hotpro.productName}"></p>
+                                        <h4>[['￥'+${hotpro.price}]]<span th:text="'￥'+${hotpro.prePrice}"></span></h4>
+                                    </div>
+                                    <div class="snipcart-details top_brand_home_details">
+                                        <!--<button class="btn btn-danger my-cart-btn hvr-sweep-to-right" th:onclick="|addTocart(${hotpro.productId})|">添加到购物车-->
+                                        <!--</button>-->
+                                        <button class="btn btn-danger my-cart-btn hvr-sweep-to-right" th:onclick="addTocart([[${hotpro.productId}]])">添加到购物车</button>
+                                    </div>
+                                </div>
+                            </figure>
+                        </div>
                     </div>
-                </li>
-                <li>
-                    <p><img src="1-270x270-3877-BXDY6KCU.jpg"></p>
-                    <div class="content">
-                        <a href="#">
-                            <img src="cart.png">
-                        </a>
-                        <p>欢乐时光果篮</p>
-                        <span>
-							&yen;188.00/份
-							</span>
-                    </div>
-                </li>
-                <li>
-                    <p><img src="1-270x270-3877-BXDY6KCU.jpg"></p>
-                    <div class="content">
-                        <a href="#">
-                            <img src="cart.png">
-                        </a>
-                        <p>欢乐时光果篮</p>
-                        <span>
-							&yen;188.00/份
-							</span>
-                    </div>
-                </li>
-                <li>
-                    <p><img src="1-270x270-3877-BXDY6KCU.jpg"></p>
-                    <div class="content">
-                        <a href="#">
-                            <img src="cart.png">
-                        </a>
-                        <p>欢乐时光果篮</p>
-                        <span>
-							&yen;188.00/份
-							</span>
-                    </div>
-                </li>
-                <li class="no-margin">
-                    <p><img src="1-270x270-3877-BXDY6KCU.jpg"></p>
-                    <div class="content">
-                        <a href="#">
-                            <img src="cart.png">
-                        </a>
-                        <p>欢乐时光果篮</p>
-                        <span>
-							&yen;188.00/份
-							</span>
-                    </div>
-                </li>
-            </ul>
+                </div>
+            </div>
         </div>
     </div>
-    <!-- 5.底部信息 -->
-    <div id="footer"></div>
 </div>
+<div th:replace="/foreground/index::footerAndJs"></div>
 </body>
 </html>

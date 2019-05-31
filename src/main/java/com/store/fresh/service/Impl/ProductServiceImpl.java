@@ -1,6 +1,7 @@
 package com.store.fresh.service.Impl;
 
 import com.store.fresh.entity.Product;
+import com.store.fresh.entity.ProductExample;
 import com.store.fresh.mapper.ProductMapper;
 import com.store.fresh.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +37,9 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product selectByPrimaryKey(String productId) {
-        return productMapper.selectByPrimaryKey(productId);
+        Product product = productMapper.selectByPrimaryKey(productId);
+        product.setPicturePath(getPicturePathById(productId));
+        return product;
     }
 
     @Override
@@ -52,5 +55,21 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public int deleteByPrimaryKey(String productId) {
         return productMapper.deleteByPrimaryKey(productId);
+    }
+
+    @Override
+    public List<Product> selectByCategory(String categoty) {
+        ProductExample productExample = new ProductExample();
+        if(!categoty.equals("all")){
+            ProductExample.Criteria criteria = productExample.createCriteria();
+            criteria.andCategoryEqualTo(categoty);
+        }
+        List<Product> productList = productMapper.selectByExample(productExample);
+        for (Product product: productList
+             ) {
+            List<String> picturePaths = getPicturePathById(product.getProductId());
+            product.setPicturePath(picturePaths);
+        }
+        return productList;
     }
 }

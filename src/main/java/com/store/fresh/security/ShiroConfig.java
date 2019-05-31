@@ -43,10 +43,12 @@ public class ShiroConfig {
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<String, String>();
         //配置映射关系
         filterChainDefinitionMap.put("/index","anon");
+        filterChainDefinitionMap.put("/last_access","anon");
         filterChainDefinitionMap.put("/foreground/product/**","anon");
         filterChainDefinitionMap.put("/logout", "anon");
-        filterChainDefinitionMap.put("/api/user/login","anon");
-        filterChainDefinitionMap.put("/api/user/register","anon");
+//        filterChainDefinitionMap.put("/api/user/login","anon");
+        filterChainDefinitionMap.put("/login","anon");
+//        filterChainDefinitionMap.put("/api/user/register","anon");
         filterChainDefinitionMap.put("/afterlogout", "anon");
         filterChainDefinitionMap.put("/images/**", "anon");
         filterChainDefinitionMap.put("/css/**", "anon");

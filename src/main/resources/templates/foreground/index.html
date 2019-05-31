@@ -148,19 +148,19 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
                     <ul class="nav navbar-nav nav_1">
-                        <li><a href="products.html">时令水果</a></li>
-                        <li><a href="household.html">海鲜水产</a></li>
-                        <li><a href="household.html">猪牛羊肉</a></li>
-                        <li><a href="household.html">禽类蛋品</a></li>
-                        <li><a href="household.html">新鲜蔬菜</a></li>
-                        <li><a href="household.html">速冻食品</a></li>
+                        <li><a href="/foreground/product/fruit">时令水果</a></li>
+                        <li><a href="/foreground/product/seafood">海鲜水产</a></li>
+                        <li><a href="/foreground/product/meat">猪牛羊肉</a></li>
+                        <li><a href="/foreground/product/egg">禽类蛋品</a></li>
+                        <li><a href="/foreground/product/vegetable">新鲜蔬菜</a></li>
+                        <li><a href="/foreground/product/frozen">速冻食品</a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">其他<span class="caret"></span></a>
                             <div class="dropdown-menu mega-dropdown-menu w3ls_vegetables_menu">
                                 <div class="w3ls_vegetables">
                                     <ul>
-                                        <li><a href="drinks.html">软饮料</a></li>
-                                        <li><a href="drinks.html">果汁</a></li>
+                                        <li><a href="/foreground/product/softdrink">软饮料</a></li>
+                                        <li><a href="/foreground/product/juice">果汁</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -236,10 +236,12 @@
                             <figure>
                                 <div class="snipcart-item block">
                                     <div class="snipcart-thumb">
-                                        <a th:href="'/foreground/product/productId='+${hotpro.productId}"><img title=" "
-                                                                                                               alt=" "
-                                                                                                               src="images/1.png"
-                                                                                                               th:src="@{${hotpro.picturePath[0]}}"/></a>
+                                        <a th:href="'/foreground/product/detail?productId='+${hotpro.productId}"><img title=" "
+                                                                                                                      alt=" "
+                                                                                                                      src="images/1.png"
+                                                                                                                      th:src="@{${hotpro.picturePath[0]}}"
+                                                                                                                      height="140"
+                                                                                                                      width="140"/></a>
                                         <p th:text="${hotpro.productName}"></p>
                                         <h4>[['￥'+${hotpro.price}]]<span th:text="'￥'+${hotpro.price+5}"></span></h4>
                                     </div>
@@ -256,172 +258,173 @@
             </div>
         </div>
     </div>
-    <!-- //top-brands -->
-    <!-- fresh-vegetables -->
-    <div class="fresh-vegetables" id="hot">
-        <div class="container">
-            <h3>热门商品</h3>
-            <div class="w3l_fresh_vegetables_grids">
-                <div class="col-md-3 w3l_fresh_vegetables_grid w3l_fresh_vegetables_grid_left">
-                    <div class="w3l_fresh_vegetables_grid2">
-                        <ul>
-                            <li><i class="fa fa-check" aria-hidden="true"></i><a href="products.html">所有种类</a>
-                            </li>
-                            <li><i class="fa fa-check" aria-hidden="true"></i><a href="vegetables.html">蔬菜</a>
-                            </li>
-                            <li><i class="fa fa-check" aria-hidden="true"></i><a href="vegetables.html">水果</a></li>
-                            <li><i class="fa fa-check" aria-hidden="true"></i><a href="drinks.html">鲜榨</a></li>
-                            <li><i class="fa fa-check" aria-hidden="true"></i><a href="pet.html">宠物生鲜</a></li>
-                            <li><i class="fa fa-check" aria-hidden="true"></i><a href="bread.html">新鲜面包</a>
-                            </li>
-                            <li><i class="fa fa-check" aria-hidden="true"></i><a href="household.html">干果</a></li>
-                            <li><i class="fa fa-check" aria-hidden="true"></i><a href="products.html">肉类</a></li>
-                            <li><i class="fa fa-check" aria-hidden="true"></i><a href="products.html">禽蛋</a>
-                            </li>
-                        </ul>
+</div>
+<!-- //top-brands -->
+<!-- fresh-vegetables -->
+<div class="fresh-vegetables" id="hot">
+    <div class="container">
+        <h3>热门商品</h3>
+        <div class="w3l_fresh_vegetables_grids">
+            <div class="col-md-3 w3l_fresh_vegetables_grid w3l_fresh_vegetables_grid_left">
+                <div class="w3l_fresh_vegetables_grid2">
+                    <ul>
+                        <li><i class="fa fa-check" aria-hidden="true"></i><a href="/foreground/products/all">所有种类</a>
+                        </li>
+                        <li><i class="fa fa-check" aria-hidden="true"></i><a href="/foreground/products/vegetable">蔬菜</a>
+                        </li>
+                        <li><i class="fa fa-check" aria-hidden="true"></i><a href="/foreground/products/fruit">水果</a></li>
+                        <li><i class="fa fa-check" aria-hidden="true"></i><a href="/foreground/products/">鲜榨</a></li>
+                        <li><i class="fa fa-check" aria-hidden="true"></i><a href="pet.html">宠物生鲜</a></li>
+                        <li><i class="fa fa-check" aria-hidden="true"></i><a href="bread.html">新鲜面包</a>
+                        </li>
+                        <li><i class="fa fa-check" aria-hidden="true"></i><a href="household.html">干果</a></li>
+                        <li><i class="fa fa-check" aria-hidden="true"></i><a href="products.html">肉类</a></li>
+                        <li><i class="fa fa-check" aria-hidden="true"></i><a href="products.html">禽蛋</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-9 w3l_fresh_vegetables_grid_right">
+                <div class="col-md-4 w3l_fresh_vegetables_grid">
+                    <div class="w3l_fresh_vegetables_grid1">
+                        <img src="images/8.jpg" alt=" " class="img-responsive" th:src="@{/images/8.jpg}"/>
                     </div>
                 </div>
-                <div class="col-md-9 w3l_fresh_vegetables_grid_right">
-                    <div class="col-md-4 w3l_fresh_vegetables_grid">
-                        <div class="w3l_fresh_vegetables_grid1">
-                            <img src="images/8.jpg" alt=" " class="img-responsive" th:src="@{/images/8.jpg}"/>
-                        </div>
-                    </div>
-                    <div class="col-md-4 w3l_fresh_vegetables_grid">
-                        <div class="w3l_fresh_vegetables_grid1">
-                            <div class="w3l_fresh_vegetables_grid1_rel">
-                                <img src="images/7.jpg" alt=" " class="img-responsive" th:src="@{/images/7.jpg}"/>
-                                <div class="w3l_fresh_vegetables_grid1_rel_pos">
-                                    <div class="more m1">
-                                        <a href="products.html" class="button--saqui button--round-l button--text-thick"
-                                           data-text="Shop now">立即购买</a>
-                                    </div>
+                <div class="col-md-4 w3l_fresh_vegetables_grid">
+                    <div class="w3l_fresh_vegetables_grid1">
+                        <div class="w3l_fresh_vegetables_grid1_rel">
+                            <img src="images/7.jpg" alt=" " class="img-responsive" th:src="@{/images/7.jpg}"/>
+                            <div class="w3l_fresh_vegetables_grid1_rel_pos">
+                                <div class="more m1">
+                                    <a href="products.html" class="button--saqui button--round-l button--text-thick"
+                                       data-text="Shop now">立即购买</a>
                                 </div>
                             </div>
                         </div>
-                        <div class="w3l_fresh_vegetables_grid1_bottom">
-                            <img src="images/10.jpg" alt=" " class="img-responsive" th:src="@{/images/10.jpg}"/>
-                            <div class="w3l_fresh_vegetables_grid1_bottom_pos">
-                                <h5>Special Offers</h5>
-                            </div>
+                    </div>
+                    <div class="w3l_fresh_vegetables_grid1_bottom">
+                        <img src="images/10.jpg" alt=" " class="img-responsive" th:src="@{/images/10.jpg}"/>
+                        <div class="w3l_fresh_vegetables_grid1_bottom_pos">
+                            <h5>Special Offers</h5>
                         </div>
                     </div>
-                    <div class="col-md-4 w3l_fresh_vegetables_grid">
-                        <div class="w3l_fresh_vegetables_grid1">
-                            <img src="images/9.jpg" alt=" " class="img-responsive" th:src="@{/images/9.jpg}"/>
-                        </div>
-                        <div class="w3l_fresh_vegetables_grid1_bottom">
-                            <img src="images/11.jpg" alt=" " class="img-responsive" th:src="@{/images/11.jpg}"/>
-                        </div>
+                </div>
+                <div class="col-md-4 w3l_fresh_vegetables_grid">
+                    <div class="w3l_fresh_vegetables_grid1">
+                        <img src="images/9.jpg" alt=" " class="img-responsive" th:src="@{/images/9.jpg}"/>
                     </div>
-                    <div class="clearfix"></div>
-                    <div class="agileinfo_move_text">
-                        <div class="agileinfo_marquee">
-                            <h4>get <span class="blink_me">25% off</span> on first order and also get gift voucher</h4>
-                        </div>
-                        <div class="agileinfo_breaking_news">
-                            <span> </span>
-                        </div>
-                        <div class="clearfix"></div>
+                    <div class="w3l_fresh_vegetables_grid1_bottom">
+                        <img src="images/11.jpg" alt=" " class="img-responsive" th:src="@{/images/11.jpg}"/>
                     </div>
                 </div>
                 <div class="clearfix"></div>
-            </div>
-        </div>
-    </div>
-    <!-- //fresh-vegetables -->
-    <!-- newsletter -->
-    <div class="newsletter">
-        <div class="container">
-            <div class="w3agile_newsletter_left">
-                <h3>注册我们的通讯</h3>
-            </div>
-            <div class="w3agile_newsletter_right">
-                <form action="#" method="post">
-                    <input type="email" name="Email" value="Email" onfocus="this.value = '';"
-                           onblur="if (this.value == '') {this.value = 'Email';}" required="">
-                    <input type="submit" value="现在订阅">
-                </form>
+                <div class="agileinfo_move_text">
+                    <div class="agileinfo_marquee">
+                        <h4>get <span class="blink_me">25% off</span> on first order and also get gift voucher</h4>
+                    </div>
+                    <div class="agileinfo_breaking_news">
+                        <span> </span>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
             </div>
             <div class="clearfix"></div>
         </div>
     </div>
-    <!-- //newsletter -->
+</div>
+<!-- //fresh-vegetables -->
+<!-- newsletter -->
+<div class="newsletter">
+    <div class="container">
+        <div class="w3agile_newsletter_left">
+            <h3>注册我们的通讯</h3>
+        </div>
+        <div class="w3agile_newsletter_right">
+            <form action="#" method="post">
+                <input type="email" name="Email" value="Email" onfocus="this.value = '';"
+                       onblur="if (this.value == '') {this.value = 'Email';}" required="">
+                <input type="submit" value="现在订阅">
+            </form>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+<!-- //newsletter -->
 
-    <footer th:fragment="footerAndJs">
-        <!-- footer -->
-        <div class="">
-            <div class="container">
-                <div class="wthree_footer_copy">
-                    <p>计161fresh生鲜超市</p>
-                </div>
+<footer th:fragment="footerAndJs">
+    <!-- footer -->
+    <div class="">
+        <div class="container">
+            <div class="wthree_footer_copy">
+                <p>计161fresh生鲜超市</p>
             </div>
         </div>
-        <!-- //footer -->
-        <!-- Bootstrap Core JavaScript -->
-        <script src="../../static/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
-        <script>
-            $(document).ready(function () {
-                $(".dropdown").hover(
-                    function () {
-                        $('.dropdown-menu', this).stop(true, true).slideDown("fast");
-                        $(this).toggleClass('open');
-                    },
-                    function () {
-                        $('.dropdown-menu', this).stop(true, true).slideUp("fast");
-                        $(this).toggleClass('open');
-                    }
-                );
-            });
-        </script>
-        <!-- here stars scrolling icon -->
-        <script type="text/javascript">
-            $(document).ready(function () {
-                /*
-                    var defaults = {
-                    containerID: 'toTop', // fading element id
-                    containerHoverID: 'toTopHover', // fading element hover id
-                    scrollSpeed: 1200,
-                    easingType: 'linear'
-                    };
-                */
-                $().UItoTop({easingType: 'easeOutQuart'});
-            });
-        </script>
-
-        <script src="https://cdn.bootcss.com/layer/2.3/layer.js"></script>
-        <script th:inline="javascript">
-            var user = $("#user").text();
-            function addTocart(productId){
-                if(user==""){
-                    layer.msg("请先登录！");
-                }else{
-                    $.ajax({
-                        dataType: "json",
-                        url: "/api/shopcart/add",
-                        type: "post",
-                        data: {productId:productId},
-                        success: function (data) {
-                            if (data.code == 200) {
-                                layer.msg(data.msg, {icon: 1});
-
-                            } else {
-                                layer.msg(data.msg, {icon: 5});
-                            }
-
-                        },
-                        error: function (e) {
-                            var d = e.responseJSON;
-                            if (d) {
-                                layer.msg(d.msg, {icon: 5});
-                            }
-                        }
-                    });
+    </div>
+    <!-- //footer -->
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../../static/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+    <script>
+        $(document).ready(function () {
+            $(".dropdown").hover(
+                function () {
+                    $('.dropdown-menu', this).stop(true, true).slideDown("fast");
+                    $(this).toggleClass('open');
+                },
+                function () {
+                    $('.dropdown-menu', this).stop(true, true).slideUp("fast");
+                    $(this).toggleClass('open');
                 }
-            };
-        </script>
-        <!-- //here ends scrolling icon -->
-    </footer>
+            );
+        });
+    </script>
+    <!-- here stars scrolling icon -->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            /*
+                var defaults = {
+                containerID: 'toTop', // fading element id
+                containerHoverID: 'toTopHover', // fading element hover id
+                scrollSpeed: 1200,
+                easingType: 'linear'
+                };
+            */
+            $().UItoTop({easingType: 'easeOutQuart'});
+        });
+    </script>
+
+    <script src="https://cdn.bootcss.com/layer/2.3/layer.js"></script>
+    <script th:inline="javascript">
+        var user = $("#user").text();
+        function addTocart(productId){
+            if(user==""){
+                layer.msg("请先登录！");
+            }else{
+                $.ajax({
+                    dataType: "json",
+                    url: "/api/shopcart/add",
+                    type: "post",
+                    data: {productId:productId},
+                    success: function (data) {
+                        if (data.code == 200) {
+                            layer.msg(data.msg, {icon: 1});
+
+                        } else {
+                            layer.msg(data.msg, {icon: 5});
+                        }
+
+                    },
+                    error: function (e) {
+                        var d = e.responseJSON;
+                        if (d) {
+                            layer.msg(d.msg, {icon: 5});
+                        }
+                    }
+                });
+            }
+        };
+    </script>
+    <!-- //here ends scrolling icon -->
+</footer>
 </body>
 </html>
 

@@ -236,6 +236,8 @@
             // console.log(this.parentElement.parentElement.childNodes[13]);
             var productId = this.parentElement.parentElement.childNodes[13].innerText;
             var count = this.parentElement.getElementsByClassName("inputCountCss")[0].value;
+            var shopcartList = [];
+
             setTimeout(function () {
                 if((new Date().getTime()-start)<500) //小于定时时间，表示新的点击事件改了start
                     return;

@@ -4,6 +4,7 @@ import com.store.fresh.entity.*;
 import com.store.fresh.mapper.*;
 import com.store.fresh.service.ShopCartService;
 import com.store.fresh.service.UserService;
+import com.store.fresh.util.Base;
 import com.store.fresh.util.DataUtil;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
@@ -36,7 +37,7 @@ public class ShopCartServiceImpl implements ShopCartService {
     UserMapper userMapper;
 
     @Override
-    public int addToCart(String productId) {
+    public int addToCart(String productId,Integer count) {
         String userId = userService.getUserIdFromSecurity();
         ShopCartExample shopCartExample = new ShopCartExample();
         ShopCartExample.Criteria criteria = shopCartExample.createCriteria();
@@ -44,8 +45,12 @@ public class ShopCartServiceImpl implements ShopCartService {
         criteria.andUserIdEqualTo(userId);
         List<ShopCart> shopCartList = shopCartMapper.selectByExample(shopCartExample);
         ShopCart shopCart = new ShopCart();
-        if(shopCartList.size()==0){
+        if(Base.notEmpty(count)){
+            shopCart.setCount(count);
+        }else{
             shopCart.setCount(1);
+        }
+        if(shopCartList.size()==0){
             shopCart.setUserId(userId);
             shopCart.setProductId(productId);
             shopCart.setAddTime(new Date());

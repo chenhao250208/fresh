@@ -17,4 +17,6 @@ public interface ProductService {
     int updateByPrimaryKey(Product product);
 
     int deleteByPrimaryKey(String productId);
+
+    List<Product> selectByCategory(String categoty);
 }
