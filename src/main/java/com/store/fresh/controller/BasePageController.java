@@ -62,12 +62,12 @@ public class BasePageController {
             subject.login(token);
             Session session = subject.getSession();
             session.setAttribute("subject", subject);
-            if(WebUtils.getSavedRequest(request)!=null){
-                return "forward:/last_access";
-            }
             if(subject.hasRole("admin")){
                 return "redirect:/background/index";
-            }else{
+            }
+            if(WebUtils.getSavedRequest(request)!=null){
+                return "forward:/last_access";
+            } else{
                 return "redirect:/index";
             }
         }catch (AuthenticationException e){

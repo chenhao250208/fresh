@@ -11,9 +11,13 @@ public class Order {
 
     private String productId;
 
+    private Product product;
+
     private Date orderTime;
 
     private String userId;
+
+    private User user;
 
     private String saId;
 

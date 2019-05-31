@@ -28,4 +28,6 @@ public interface OrderService {
     List<Order> findAll();
 
     Order selectOrderByPrimaryKey(String orderId);
+
+    List<Order> listByState(String state);
 }

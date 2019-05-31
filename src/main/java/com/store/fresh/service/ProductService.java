@@ -34,4 +34,6 @@ public interface ProductService {
 
     List<Product> getHotDiscount();
 
+    List<Product> getProductListBySearchInfo(String criteria);
+
 }

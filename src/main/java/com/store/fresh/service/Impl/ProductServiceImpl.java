@@ -4,6 +4,7 @@ import com.store.fresh.entity.Product;
 import com.store.fresh.entity.ProductExample;
 import com.store.fresh.mapper.ProductMapper;
 import com.store.fresh.service.ProductService;
+import com.store.fresh.util.Base;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +27,29 @@ public class ProductServiceImpl implements ProductService {
             String productId = productList.get(i).getProductId();
             List<String> picturePath = productMapper.getPicturePath(productId);
             productList.get(i).setPicturePath(picturePath);
+        }
+        return productList;
+    }
+
+    @Override
+    public List<Product> getProductListBySearchInfo(String criteria) {
+        ProductExample productExample = new ProductExample();
+        if(Base.notEmpty(criteria)){
+            switch (criteria){
+                case "水果":criteria="fruit";break;
+                case "肉":criteria="meat";break;
+                case "蔬菜":criteria="vegetable";break;
+                case "海鲜":criteria="seafood";
+            }
+            productExample.or().andCategoryLike("%"+criteria+"%");
+            productExample.or().andProductIdEqualTo(criteria);
+            productExample.or().andProductNameLike("%"+criteria+"%");
+        }
+        List<Product> productList = productMapper.selectByExample(productExample);
+        for (Product product:productList
+             ) {
+            List<String> picturePath = productMapper.getPicturePath(product.getProductId());
+            product.setPicturePath(picturePath);
         }
         return productList;
     }

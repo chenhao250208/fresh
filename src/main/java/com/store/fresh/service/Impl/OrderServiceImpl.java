@@ -8,6 +8,7 @@ import com.store.fresh.mapper.ProductMapper;
 import com.store.fresh.mapper.UserMapper;
 import com.store.fresh.service.OrderService;
 import com.store.fresh.service.UserService;
+import com.store.fresh.util.Base;
 import com.store.fresh.util.DataUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -87,6 +88,32 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public Order selectOrderByPrimaryKey(String orderId) {
         return orderMapper.selectOrderByPrimaryKey(orderId);
+    }
+
+    @Override
+    public List<Order> listByState(String state) {
+        String userId = userService.getUserIdFromSecurity();
+        User user = userMapper.selectByPrimaryKey(userId);
+        OrderExample orderExample = new OrderExample();
+        orderExample.setOrderByClause("order_time desc");
+        OrderExample.Criteria criteria = orderExample.createCriteria();
+        criteria.andUserIdEqualTo(userId);
+        if(Base.notEmpty(state)&& !state.equals("all")){
+            criteria.andStateEqualTo(state);
+        }
+        List<Order> orderList = orderMapper.selectByExample(orderExample);
+        for (Order order:orderList
+             ) {
+            Product product = productMapper.selectByPrimaryKey(order.getProductId());
+            List<String> picturePath = productMapper.getPicturePath(order.getProductId());
+            if(picturePath.size()==0){
+                picturePath.add("/images/defalt.jpg");
+            }
+            product.setPicturePath(picturePath);
+            order.setUser(user);
+            order.setProduct(product);
+        }
+        return orderList;
     }
 
 }

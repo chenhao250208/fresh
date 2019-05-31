@@ -52,8 +52,8 @@
             <a href="#">今日特惠!</a>
         </div>
         <div class="w3l_search">
-            <form action="#" method="post">
-                <input type="text" name="Product" value="搜索商品..." onfocus="this.value = '';"
+            <form action="/foreground/product/search" method="get">
+                <input type="text" name="criteria" value="搜索商品..." onfocus="this.value = '';"
                        onblur="if (this.value == '') {this.value = '搜索商品...';}" required="">
                 <input type="submit" value=" ">
             </form>
@@ -76,7 +76,7 @@
                             <ul class="dropdown-menu drp-mnu">
                                 <shiro:guest><li><a href="/login">登陆</a></li>
                                     <li><a href="#">注册</a></li></shiro:guest>
-                                <shiro:user><p id="user"><shiro:principal/></p><li><a href="/logout">退出</a></li></shiro:user>
+                                <shiro:user><li><a id="user" href="/foreground/user/center"><shiro:principal/></a></li><li><a href="/logout">退出</a></li></shiro:user>
                             </ul>
                         </div>
                     </div>
@@ -114,7 +114,7 @@
                     <li><a href="/index">首页</a><i>/</i></li>
                     <li><a href="/index#discount">热门优惠</a><i>/</i></li>
                     <li><a href="/index#hot">热门产品</a><i>/</i></li>
-                    <li><a href="/foreground/order/myOrder">我的订单</a></li>
+                    <li><a href="/foreground/order/index/all">我的订单</a></li>
                 </ul>
             </div>
             <div class="w3ls_logo_products_left1">
@@ -268,12 +268,12 @@
             <div class="col-md-3 w3l_fresh_vegetables_grid w3l_fresh_vegetables_grid_left">
                 <div class="w3l_fresh_vegetables_grid2">
                     <ul>
-                        <li><i class="fa fa-check" aria-hidden="true"></i><a href="/foreground/products/all">所有种类</a>
+                        <li><i class="fa fa-check" aria-hidden="true"></i><a href="/foreground/product/all">所有种类</a>
                         </li>
-                        <li><i class="fa fa-check" aria-hidden="true"></i><a href="/foreground/products/vegetable">蔬菜</a>
+                        <li><i class="fa fa-check" aria-hidden="true"></i><a href="/foreground/product/vegetable">蔬菜</a>
                         </li>
-                        <li><i class="fa fa-check" aria-hidden="true"></i><a href="/foreground/products/fruit">水果</a></li>
-                        <li><i class="fa fa-check" aria-hidden="true"></i><a href="/foreground/products/">鲜榨</a></li>
+                        <li><i class="fa fa-check" aria-hidden="true"></i><a href="/foreground/product/fruit">水果</a></li>
+                        <li><i class="fa fa-check" aria-hidden="true"></i><a href="/foreground/product/">鲜榨</a></li>
                         <li><i class="fa fa-check" aria-hidden="true"></i><a href="#">宠物生鲜</a></li>
                         <li><i class="fa fa-check" aria-hidden="true"></i><a href=#>新鲜面包</a>
                         </li>

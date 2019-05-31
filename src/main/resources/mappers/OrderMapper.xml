@@ -162,11 +162,11 @@
     </if>
   </select>
 
-  <select id="findAll" resultType="order">
+  <select id="findAll" resultMap="BaseResultMap">
     select * from orders
   </select>
 
-  <select id="selectOrderByPrimaryKey" resultType="order">
+  <select id="selectOrderByPrimaryKey" resultMap="BaseResultMap">
     select * from orders where order_id = #{orderId}
   </select>
 

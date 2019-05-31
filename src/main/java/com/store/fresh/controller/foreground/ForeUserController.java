@@ -5,11 +5,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("foreground/order")
-public class OrderForeController {
-
-    @GetMapping("/myOrder")
-    public String myOrder(){
-        return "foreground/order/myOrder";
+@RequestMapping("foreground/user")
+public class ForeUserController {
+    @GetMapping("center")
+    public String center(){
+        return "foreground/user/personalCenter";
     }
 }

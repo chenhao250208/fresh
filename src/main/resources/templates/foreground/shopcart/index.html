@@ -211,7 +211,7 @@
                     data: json_data,
                     success: function (data) {
                         if(data.code == 200){
-                            window.location.href = "/foreground/order/myOrder";
+                            window.location.href = "/foreground/order/index/all";
                         }else{
                             layer.msg(data.msg, {icon: 5});
                         }
