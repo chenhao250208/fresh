@@ -14,6 +14,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Date;
+import java.util.Random;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = FreshApplication.class)
@@ -31,8 +32,11 @@ public class AddUserTest {
             String userId = DataUtil.getRandomNo(15);
             user.setUserId(userId);
             user.setUserName("user"+i);
-            user.setSalt("salt"+i);
-            String passwordEncoded = new SimpleHash("md5","123456","salt"+i,2).toString();
+
+            String salt = String.valueOf(new Random().nextInt(8999)+1000);
+            user.setSalt(salt);
+            String passwordEncoded = new SimpleHash("md5","123456",salt,2).toString();
+
             user.setPassword(passwordEncoded);
             user.setTel("18934567879");
             user.setEmail("user"+i+"@xxx.com");

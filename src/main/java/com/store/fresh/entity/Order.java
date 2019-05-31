@@ -6,6 +6,7 @@ import java.util.Date;
 
 @Data
 public class Order {
+
     private String orderId;
 
     private String productId;
@@ -21,4 +22,5 @@ public class Order {
     private Float price;
 
     private String state;
+
 }

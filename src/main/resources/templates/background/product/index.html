@@ -1,11 +1,155 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-<!-- 后台商品管理的首页 -->
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>商品管理</title>
+    <link href="https://cdn.bootcss.com/twitter-bootstrap/3.4.1/css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../static/plugins/layui/css/layui.css"
+          th:href="@{/plugins/layui/css/layui.css}"/>
 </head>
-<body>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <div th:replace="/background/index::menu"></div>
+
+    <div class="layui-body">
+        <!-- 内容主体区域 -->
+        <br>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <form class="navbar-form navbar-left" role="search" id="searchForm">
+                        <div class="form-group">
+                            <input class="form-control" type="text" name="criteria"
+                                   placeholder="输入编号、名称或分类"/>
+                        </div>
+                        <button type="button" class="btn btn-success" onclick="reloadProduct()">查找</button>
+                    </form>
+                </div>
+<!--                <div class="col-md-1 col-md-offset-7">
+                    <button id="addProduct" class="btn btn-primary">增加</button>
+                </div>-->
+            </div>
+        </div>
+        <table id="productTable"></table>
+    </div>
+
+    <div th:replace="/background/index::foot"></div>
+</div>
 
 </body>
+<script src="https://cdn.bootcss.com/jquery/2.0.1/jquery.min.js"></script>
+<script src="../../../static/plugins/layui/layui.js" th:src="@{/plugins/layui/layui.js}"></script>
+<script src="https://cdn.bootcss.com/layer/2.3/layer.js"></script>
+<script>
+    //JavaScript代码区域
+    layui.use('element', function () {
+        var element = layui.element;
+    });
+
+
+    $(function () {
+    })
+
+    layui.use(['table'], function () {
+        var table = layui.table;
+        var formObject={};
+        var formArray=$("#searchForm").serializeArray();
+        $.each(formArray,function(index,entity){
+            formObject[entity.name]=entity.value;
+        });
+
+        productTable = table.render({
+            elem: '#productTable',
+            url: '/api/product/getList',
+            contentType: 'application/x-www-form-urlencoded',
+            where: formObject,
+            method: 'get',
+            page: true,
+            toolbar: true,
+            defaultToolbar: ['filter', 'exports'],
+            // 前 | 后台对应
+            request: {
+                pageName: 'pageNum',
+                limitName: 'pageSize'
+            },
+            limit: 25,
+            limits: [25, 50, 100, 500],
+            parseData: function (res) {
+                return {
+                    "code": res.code, //解析接口状态
+                    "msg": res.msg, //解析提示文本
+                    "count": res.pageInfo.total, //解析数据长度
+                    "data": res.pageInfo.list //解析数据列表
+                }
+            },
+            cols: [
+                [
+                    {field: 'productId', title: '商品编号'},
+                    {field: 'productName', title: '商品名称'},
+                    {field: 'category', title: '分类'},
+                    {field: 'cost', title: '成本'},
+                    {field: 'price', title: '售价'},
+                    {field: 'deposit', title: '库存'},
+                    {field: 'unit', title: '单位'},
+                    // {
+                    //     field: 'roleList', title: '角色',
+                    //     templet: function (res) {
+                    //         var roleStr = '';
+                    //         for(var i=0;i<res.roleList.length;i++){
+                    //             roleStr += res.roleList+" ";
+                    //         }
+                    //         return roleStr;
+                    //     }
+                    // },
+                    {
+                        title:'操作',templet:function (data) {
+                            var productId = "'"+data.productId+"'";
+                            var editButton = '<button type="button" class="btn btn-success" onclick="edit('+productId+')">编辑</button>';
+                            return editButton;
+                        }
+                    }
+                ]
+            ],
+            response: {
+                statusCode: 200 //规定成功的状态码，默认：0
+            }
+        });
+
+        window.reloadProduct = function(){
+            var formObject1={};
+            var formArray1=$("#searchForm").serializeArray();
+            $.each(formArray1,function(index,entity){
+                formObject1[entity.name]=entity.value;
+            });
+            productTable.reload({
+                page:{ curr:1 },
+                where: formObject1
+            })
+        }
+    });
+
+    function edit(productId) {
+        layer.open({
+        type: 2,
+        title: "编辑商品",
+        shadeClose: true,
+        shade: false,
+        maxmin: true, //开启最大化最小化按钮
+        area: ['80%', '90%'],
+        content: "/background/product/edit/" + productId
+    })
+    }
+
+/*    $("#addProduct").click(function () {
+        layer.open({
+            type:2,
+            title: "新增商品",
+            shadeClose: true,
+            shade: false,
+            maxmin: true, //开启最大化最小化按钮
+            area: ['80%', '90%'],
+            content: "/background/product/create"
+    })
+    });*/
+</script>
 </html>

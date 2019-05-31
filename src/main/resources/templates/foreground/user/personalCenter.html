@@ -165,7 +165,7 @@
                                     </div>
                                 </div>
                                 <nav class="pull-left" style="padding-top: 10px">
-                                    <button type="button" class="btn btn-primary">保存</button>
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>保存</button>
                                 </nav>
                             </div>
                         </div>
@@ -193,7 +193,7 @@
                                     <div class="col-md-3"><li><a href="#">获取验证码</a></li></div>
 
                                     <div class="col-md-12" style="text-align: center; padding-top:32px">
-                                        <button type="button" class="btn btn-primary">修改</button>
+                                        <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>修改</button>
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" style="list-style-type: none; line-height: 35px; color: #000">
@@ -204,7 +204,7 @@
                         </div>
                         <!--收货地址-->
                         <div class="tab-pane active" id="shopping-address">
-                            <table class="table" style="text-align: left;">
+                            <table class="table table-hover" style="text-align: left;">
                                 <thead>
                                 <tr>
                                     <th>收货人</th>
@@ -218,8 +218,8 @@
                                 <tbody>
                                 <tr>
                                     <th scope="row">李二红</th>
-                                    <td>上海 上海市 奉贤区 海湾镇</td>
-                                    <td>海思路999#</td>
+                                    <td>上海 上海市 奉贤区</td>
+                                    <td>海湾镇海思路999#</td>
                                     <td>999999</td>
                                     <td>18918911891</td>
                                     <td>
@@ -237,8 +237,8 @@
                                 </tr>
                                 <tr>
                                     <th scope="row">李二红1</th>
-                                    <td>上海 上海市 奉贤区 海湾镇1</td>
-                                    <td>海思路999#1</td>
+                                    <td>上海 上海市 奉贤区</td>
+                                    <td>海湾镇海思路999#1</td>
                                     <td>888888</td>
                                     <td>18918911111</td>
                                     <td>
@@ -257,13 +257,77 @@
                             </table>
                             <nav class="pull-right" style="padding-right: 100px">
                                 <div class="btn-group">
-                                    <button type="button" class="btn btn-primary">新增</button>
-                                    <button type="button" class="btn btn-danger">清空</button>
+                                    <button type="button" class="btn btn-primary"  data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 新增</button>
+                                    <button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> 清空</button>
                                 </div>
                             </nav>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--模态框 新增收货地址-->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h2 class="modal-title" id="myModalLabel">新增</h2>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>收货人</label>
+                    <input type="text" name="txt_peoplename" class="form-control" id="txt_peoplename" placeholder="收货人">
+                </div>
+                <div class="form-group">
+                    <label>所在地区</label>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <select id="province" class="selectpicker" style="width: 150px;">
+                                <option value="1">选择省</option>
+                                <option value="2">浙江省</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <select id="city" class="selectpicker" style="width: 150px;">
+                                <option value="1">选择市</option>
+                                <option value="2">浙江省</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <select id="county" class="selectpicker" style="width: 150px;">
+                                <option value="1">选择县</option>
+                                <option value="2">浙江省</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>详细地址</label>
+                    <input type="text" name="txt_address" class="form-control" id="txt_address" placeholder="详细地址">
+                </div>
+                <div class="form-group">
+                    <label>邮编</label>
+                    <input type="text" name="txt_postal" class="form-control" id="txt_postal" placeholder="邮编">
+                </div>
+                <div class="form-group">
+                    <label>电话/手机</label>
+                    <input type="text" name="txt_phone" class="form-control" id="txt_phone" placeholder="电话/手机">
+                </div>
+                <div class="form-group">
+                    <form role="form">
+                        <div class="checkbox">
+                            <label><input type="checkbox" value="">设为默认地址</label>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>关闭</button>
+                <button type="button" id="btn_submit" class="btn btn-primary" data-dismiss="modal"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>保存</button>
             </div>
         </div>
     </div>

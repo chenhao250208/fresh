@@ -24,4 +24,7 @@ public interface OrderMapper {
 
     int updateByExample(@Param("record") Order record, @Param("example") OrderExample example);
 
+    List<Order> findAll();
+
+    Order selectOrderByPrimaryKey(String orderId);
 }

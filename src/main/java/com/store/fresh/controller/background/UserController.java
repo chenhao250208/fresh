@@ -27,6 +27,7 @@ public class UserController {
     public String edit(Model model, @PathVariable("userId")String userId){
         User user = userService.selectByPrimaryKey(userId);
         model.addAttribute("user",user);
+        System.out.println(user);
         return "background/user/edit";
     }
 

@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
+import java.util.Random;
 
 @RestController
 @RequestMapping("/api/user")
@@ -41,7 +42,7 @@ public class UserApi {
         if(savedRequest != null){
             /*url = savedRequest.getRequestUrl();*/
             url = "/foreground/index";
-        }else {
+        } else {
             url = "/foreground/index";
         }
         try {
@@ -71,6 +72,7 @@ public class UserApi {
             userExample.or().andEmailLike("%"+criteria+"%");
         }
         PageHelper.startPage(pageNum,pageSize);
+        // PageInfo
         List<User> userList = userService.selectWithRoleByExample(userExample);
         PageInfo pageInfo=new PageInfo(userList);
         return ResponseEntity.ok("获取成功").put("pageInfo",pageInfo);
@@ -79,11 +81,11 @@ public class UserApi {
     @PostMapping("/save")
     public @ResponseBody
     ResponseEntity save(User user){
+        user.setSalt(String.valueOf(new Random().nextInt(8999)+1000));
+        System.out.println(user.getSalt());
         String userId = DataUtil.getRandomNo(15);
         String password = user.getPassword();
-        String passwordEncoded = new SimpleHash("md5",password,user.getUserName(),2).toString();
-
-        user.setSalt(user.getUserName());
+        String passwordEncoded = new SimpleHash("md5",password,user.getSalt(),2).toString();
         user.setPassword(passwordEncoded);
         user.setUserId(userId);
 
@@ -94,4 +96,17 @@ public class UserApi {
             return ResponseEntity.error(400,"添加失败");
         }
     }
+
+    @PostMapping("/edit")
+    public @ResponseBody
+    ResponseEntity edit(User user) {
+        String password = user.getPassword();
+        String md5Password = new SimpleHash("md5", password, user.getSalt(), 2).toString();
+        user.setPassword(md5Password);
+        if(userService.updateByPrimaryKeySelective(user) == 1) {
+            return ResponseEntity.ok("修改成功").put(user.getUserId(), user);
+        }
+        return ResponseEntity.error(400, "修改失败");
+    }
+
 }

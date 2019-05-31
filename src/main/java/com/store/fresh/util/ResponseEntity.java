@@ -57,7 +57,4 @@ public class ResponseEntity extends HashMap<String,Object> {
         return this;
     }
 
-
-
-
 }

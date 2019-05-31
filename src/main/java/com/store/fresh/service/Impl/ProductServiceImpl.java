@@ -37,9 +37,22 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product selectByPrimaryKey(String productId) {
-        Product product = productMapper.selectByPrimaryKey(productId);
-        product.setPicturePath(getPicturePathById(productId));
-        return product;
+        return productMapper.selectByPrimaryKey(productId);
+    }
+
+    @Override
+    public int updateByExampleSelective(Product record, ProductExample example) {
+        return productMapper.updateByExampleSelective(record, example);
+    }
+
+    @Override
+    public int updateByExample(Product record, ProductExample example) {
+        return productMapper.updateByExample(record, example);
+    }
+
+    @Override
+    public int updateByPrimaryKeySelective(Product record) {
+        return productMapper.updateByPrimaryKeySelective(record);
     }
 
     @Override
@@ -48,8 +61,33 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public int insertSelective(Product record) {
+        return productMapper.insertSelective(record);
+    }
+
+    @Override
+    public List<Product> selectByExample(ProductExample example) {
+        return productMapper.selectByExample(example);
+    }
+
+    @Override
     public int updateByPrimaryKey(Product product) {
         return productMapper.updateByPrimaryKey(product);
+    }
+
+    @Override
+    public List<Product> findAll() {
+        return productMapper.findAll();
+    }
+
+    @Override
+    public long countByExample(ProductExample example) {
+        return productMapper.countByExample(example);
+    }
+
+    @Override
+    public int deleteByExample(ProductExample example) {
+        return productMapper.deleteByExample(example);
     }
 
     @Override

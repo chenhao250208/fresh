@@ -15,7 +15,6 @@ import org.apache.shiro.mgt.SecurityManager;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
-
 @Configuration
 public class ShiroConfig {
 

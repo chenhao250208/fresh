@@ -31,4 +31,6 @@ public interface UserService {
 
     public String getUserIdFromSecurity();
 
+    public int updateByPrimaryKeySelective(User user);
+
 }

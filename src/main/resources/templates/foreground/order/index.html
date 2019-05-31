@@ -2,23 +2,27 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>订单中心</title>
+    <title>我的订单</title>
     <link href="https://cdn.bootcss.com/twitter-bootstrap/3.4.1/css/bootstrap.css" rel="stylesheet">
 </head>
 
 <style>
-	body{
-		padding-top: 50px;
-	}
-  	footer{
-  		background-color: #000000;
-  		color:f5f5f5;
-  		padding: 32px;
-  	}
-  	footer{
-  		color: #777;
-  		text-decoration: none;
-  	}
+    body{
+        padding-top: 50px;
+        padding-bottom:50px;
+        background-color:#ededed;
+    }
+    footer{
+        position:absolute;
+        height:50px
+        bottom:0px;
+        left:0px;
+        width:100%;
+        background-color: #000000;
+        color:#777;
+        padding: 32px;
+        text-decoration: none;
+    }
 </style>
 
 <body>
@@ -63,9 +67,329 @@
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
-<li>
 
-</li>
+<div id="container" style="top: 50px; bottom:50px;">
+    <div class="row">
+        <!--订单-->
+        <div class="box-0 col-xs-12 col-sm-10 col-md-10 col-lg-10" style="left:2.5%;top: 32px; width:95%; text-align: center; color:#777;">
+            <div class="panel panel-success" >
+                <div class="panel-heading">
+                    <h2 style="text-align: left;">我的订单</h2>
+                    <ul class="nav nav-tabs">
+                        <li class="active">
+                            <a href="#all-order" data-toggle="tab">全部订单</a>
+                        </li>
+                        <li>
+                            <a href="#wait-pay" data-toggle="tab">待付款</a>
+                        </li>
+                        <li>
+                            <a href="#wait-sendout" data-toggle="tab">待发货</a>
+                        </li>
+                        <li>
+                            <a href="#wait-finish" data-toggle="tab">待收货</a>
+                        </li>
+                    </ul>
+                </div>
+                <!--订单主体-->
+                <div class="panel-body">
+                    <!--订单信息抬头-->
+                    <div class="panel panel-info">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <!--订单详情-->
+                                <td class="col-md-6">
+                                    <div class="col-md-4">商品图片</div>
+                                    <div class="col-md-8">商品名</div>
+                                </td>
+                                <td class="col-md-1">
+                                    <div>单价</div>
+                                </td>
+                                <td class="col-md-1">
+                                    <div>数量</div>
+                                </td>
+                                <td class="col-md-1">
+                                    <div>收货人</div>
+                                </td>
+                                <td class="col-md-1">
+                                    <div>金额</div>
+                                </td>
+                                <td class="col-md-1">
+                                    <div>状态</div>
+                                </td>
+                                <td class="col-md-1">
+                                    <div>操作</div>
+                                </td>
+                            </tr>
+                            </thead>
+                        </table>
+                    </div>
+                    <div class="tab-content">
+                        <!--全部订单-->
+                        <div class="tab-pane active" id="all-order">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <ul class="nav nav-tabs">
+                                        <div class="col-md-8">
+                                            <div class="col-md-4">订单号：<span><a href="#">201902282110</a></span></div>
+                                            <div class="col-md-4">订单日期：<span>2019-5-28 23:27</span></div>
+                                            <div class="col-md-4">订单金额：<span>￥18.90</span></div>
+                                        </div>
+                                        <div class="col-md-4" style="text-align: right;">
+                                            <a href="#">查看订单详情></a>
+                                        </div>
+                                    </ul>
+                                </div>
+                                <div class="panel-body">
+                                    <table class="table table-bordered" style="list-style-type: none;word-break:break-all; word-wrap:break-all;">
+                                        <tbody>
+                                        <tr>
+                                            <!--订单详情-->
+                                            <td class="col-md-6" style="vertical-align: middle;">
+                                                <div class="col-md-3">
+                                                    <img src="..." alt="..." class="img-thumbnail img-responsive">
+                                                </div>
+                                                <div class="col-md-8" style="text-align: left;">
+                                                    <li>商品名ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd</li>
+                                                </div>
+                                            </td>
+                                            <td class="col-md-1">
+                                                <div><span>￥9.45</span></div>
+                                            </td>
+                                            <td class="col-md-1">
+                                                <div><span>x2</span></div>
+                                            </td>
+                                            <td class="col-md-1">
+                                                <div><span>李二红</span></div>
+                                            </td>
+                                            <td class="col-md-1">
+                                                <div><span>￥18.90</span></div>
+                                            </td>
+                                            <td class="col-md-1">
+                                                <div><span>待收货</span></div>
+                                            </td>
+                                            <td class="col-md-1" style="list-style-type: none;">
+                                                <li><a href="#">查看详情</a></li>
+                                                <hr/>
+                                                <li role="separator" class="divider"></li>
+                                                <li><a href="#">删除订单</a></li>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 center">
+                                <ul class="pagination">
+                                    <li><a href="#" aria-label="Previous">&laquo;</a></li>
+                                    <li class="active"><a href="#">1</a></li>
+                                    <li><a href="#">2</a></li>
+                                    <li><a href="#">3</a></li>
+                                    <li><a href="#"><span aria-hidden="true">&raquo;</span></a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane" id="wait-pay">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <ul class="nav nav-tabs">
+                                        <div class="col-md-8">
+                                            <div class="col-md-4">订单号：<span><a href="#">201902282110</a></span></div>
+                                            <div class="col-md-4">订单日期：<span>2019-5-28 23:27</span></div>
+                                            <div class="col-md-4">订单金额：<span>￥18.90</span></div>
+                                        </div>
+                                        <div class="col-md-4" style="text-align: right;">
+                                            <a href="#">查看订单详情></a>
+                                        </div>
+                                    </ul>
+                                </div>
+                                <div class="panel-body">
+                                    <table class="table table-bordered" style="list-style-type: none;word-break:break-all; word-wrap:break-all;">
+                                        <tbody>
+                                        <tr>
+                                            <!--订单详情-->
+                                            <td class="col-md-6" style="vertical-align: middle;">
+                                                <div class="col-md-3">
+                                                    <img src="..." alt="..." class="img-thumbnail img-responsive">
+                                                </div>
+                                                <div class="col-md-8" style="text-align: left;">
+                                                    <li>商品名ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd</li>
+                                                </div>
+                                            </td>
+                                            <td class="col-md-1">
+                                                <div><span>￥9.45</span></div>
+                                            </td>
+                                            <td class="col-md-1">
+                                                <div><span>x2</span></div>
+                                            </td>
+                                            <td class="col-md-1">
+                                                <div><span>李二红</span></div>
+                                            </td>
+                                            <td class="col-md-1">
+                                                <div><span>￥18.90</span></div>
+                                            </td>
+                                            <td class="col-md-1">
+                                                <div><span>待付款</span></div>
+                                            </td>
+                                            <td class="col-md-1" style="list-style-type: none;">
+                                                <li><a href="#">查看详情</a></li>
+                                                <hr/>
+                                                <li role="separator" class="divider"></li>
+                                                <li><a href="#">删除订单</a></li>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 center">
+                                <ul class="pagination">
+                                    <li><a href="#" aria-label="Previous">&laquo;</a></li>
+                                    <li class="active"><a href="#">1</a></li>
+                                    <li><a href="#">2</a></li>
+                                    <li><a href="#">3</a></li>
+                                    <li><a href="#"><span aria-hidden="true">&raquo;</span></a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane" id="wait-sendout">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <ul class="nav nav-tabs">
+                                        <div class="col-md-8">
+                                            <div class="col-md-4">订单号：<span><a href="#">201902282110</a></span></div>
+                                            <div class="col-md-4">订单日期：<span>2019-5-28 23:27</span></div>
+                                            <div class="col-md-4">订单金额：<span>￥18.90</span></div>
+                                        </div>
+                                        <div class="col-md-4" style="text-align: right;">
+                                            <a href="#">查看订单详情></a>
+                                        </div>
+                                    </ul>
+                                </div>
+                                <div class="panel-body">
+                                    <table class="table table-bordered" style="list-style-type: none;word-break:break-all; word-wrap:break-all;">
+                                        <tbody>
+                                        <tr>
+                                            <!--订单详情-->
+                                            <td class="col-md-6" style="vertical-align: middle;">
+                                                <div class="col-md-3">
+                                                    <img src="..." alt="..." class="img-thumbnail img-responsive">
+                                                </div>
+                                                <div class="col-md-8" style="text-align: left;">
+                                                    <li>商品名ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd</li>
+                                                </div>
+                                            </td>
+                                            <td class="col-md-1">
+                                                <div><span>￥9.45</span></div>
+                                            </td>
+                                            <td class="col-md-1">
+                                                <div><span>x2</span></div>
+                                            </td>
+                                            <td class="col-md-1">
+                                                <div><span>李二红</span></div>
+                                            </td>
+                                            <td class="col-md-1">
+                                                <div><span>￥18.90</span></div>
+                                            </td>
+                                            <td class="col-md-1">
+                                                <div><span>待发货</span></div>
+                                            </td>
+                                            <td class="col-md-1" style="list-style-type: none;">
+                                                <li><a href="#">查看详情</a></li>
+                                                <hr/>
+                                                <li role="separator" class="divider"></li>
+                                                <li><a href="#">删除订单</a></li>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 center">
+                                <ul class="pagination">
+                                    <li><a href="#" aria-label="Previous">&laquo;</a></li>
+                                    <li class="active"><a href="#">1</a></li>
+                                    <li><a href="#">2</a></li>
+                                    <li><a href="#">3</a></li>
+                                    <li><a href="#"><span aria-hidden="true">&raquo;</span></a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane" id="wait-finish">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <ul class="nav nav-tabs">
+                                        <div class="col-md-8">
+                                            <div class="col-md-4">订单号：<span><a href="#">201902282110</a></span></div>
+                                            <div class="col-md-4">订单日期：<span>2019-5-28 23:27</span></div>
+                                            <div class="col-md-4">订单金额：<span>￥18.90</span></div>
+                                        </div>
+                                        <div class="col-md-4" style="text-align: right;">
+                                            <a href="#">查看订单详情></a>
+                                        </div>
+                                    </ul>
+                                </div>
+                                <div class="panel-body">
+                                    <table class="table table-bordered" style="list-style-type: none;word-break:break-all; word-wrap:break-all;">
+                                        <tbody>
+                                        <tr>
+                                            <!--订单详情-->
+                                            <td class="col-md-6" style="vertical-align: middle;">
+                                                <div class="col-md-3">
+                                                    <img src="..." alt="..." class="img-thumbnail img-responsive">
+                                                </div>
+                                                <div class="col-md-8" style="text-align: left;">
+                                                    <li>商品名ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd</li>
+                                                </div>
+                                            </td>
+                                            <td class="col-md-1">
+                                                <div><span>￥9.45</span></div>
+                                            </td>
+                                            <td class="col-md-1">
+                                                <div><span>x2</span></div>
+                                            </td>
+                                            <td class="col-md-1">
+                                                <div><span>李二红</span></div>
+                                            </td>
+                                            <td class="col-md-1">
+                                                <div><span>￥18.90</span></div>
+                                            </td>
+                                            <td class="col-md-1">
+                                                <div><span>待收货</span></div>
+                                            </td>
+                                            <td class="col-md-1" style="list-style-type: none;">
+                                                <li><a href="#">查看详情</a></li>
+                                                <hr/>
+                                                <li role="separator" class="divider"></li>
+                                                <li><a href="#">删除订单</a></li>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 center">
+                                <ul class="pagination">
+                                    <li><a href="#" aria-label="Previous">&laquo;</a></li>
+                                    <li class="active"><a href="#">1</a></li>
+                                    <li><a href="#">2</a></li>
+                                    <li><a href="#">3</a></li>
+                                    <li><a href="#"><span aria-hidden="true">&raquo;</span></a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<hr/>
 
 <footer class="container-fluid" >
     <div class="container">
@@ -122,6 +446,7 @@
 
 </body>
 <script src="https://cdn.bootcss.com/jquery/2.0.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="https://cdn.bootcss.com/layer/2.3/layer.js"></script>
 
 </html>
