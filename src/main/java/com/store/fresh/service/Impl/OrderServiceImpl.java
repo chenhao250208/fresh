@@ -12,9 +12,12 @@ import com.store.fresh.util.DataUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import com.store.fresh.entity.OrderExample;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 import java.util.Date;
-import java.util.List;
 
 @Service
 public class OrderServiceImpl implements OrderService {
@@ -36,11 +39,11 @@ public class OrderServiceImpl implements OrderService {
         String userId = userService.getUserIdFromSecurity();
         User user = userMapper.selectByPrimaryKey(userId);
         String orderId = DataUtil.getRandomNo(15);
-        for (Order order:orderList
-             ) {
+        for (Order order : orderList
+                ) {
             Product product = productMapper.selectByPrimaryKey(order.getProductId());
             order.setOrderId(orderId);
-            order.setPrice(product.getPrice()*order.getNumber());
+            order.setPrice(product.getPrice() * order.getNumber());
             order.setOrderTime(new Date());
             order.setSaId(user.getShippingAddress());
             order.setState("待发货");
@@ -49,22 +52,6 @@ public class OrderServiceImpl implements OrderService {
         }
         return true;
     }
-import com.store.fresh.entity.Order;
-import com.store.fresh.entity.OrderExample;
-import com.store.fresh.mapper.OrderMapper;
-import com.store.fresh.service.OrderService;
-import org.apache.ibatis.annotations.Param;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.util.List;
-
-@Service
-public class OrderServiceImpl implements OrderService {
-
-    @Autowired
-    OrderMapper orderMapper;
-
     public long countByExample(OrderExample example) {
         return orderMapper.countByExample(example);
     }

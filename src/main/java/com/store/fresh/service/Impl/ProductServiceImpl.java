@@ -37,22 +37,9 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product selectByPrimaryKey(String productId) {
-        return productMapper.selectByPrimaryKey(productId);
-    }
-
-    @Override
-    public int updateByExampleSelective(Product record, ProductExample example) {
-        return productMapper.updateByExampleSelective(record, example);
-    }
-
-    @Override
-    public int updateByExample(Product record, ProductExample example) {
-        return productMapper.updateByExample(record, example);
-    }
-
-    @Override
-    public int updateByPrimaryKeySelective(Product record) {
-        return productMapper.updateByPrimaryKeySelective(record);
+        Product product = productMapper.selectByPrimaryKey(productId);
+        product.setPicturePath(getPicturePathById(productId));
+        return product;
     }
 
     @Override
@@ -75,20 +62,6 @@ public class ProductServiceImpl implements ProductService {
         return productMapper.updateByPrimaryKey(product);
     }
 
-    @Override
-    public List<Product> findAll() {
-        return productMapper.findAll();
-    }
-
-    @Override
-    public long countByExample(ProductExample example) {
-        return productMapper.countByExample(example);
-    }
-
-    @Override
-    public int deleteByExample(ProductExample example) {
-        return productMapper.deleteByExample(example);
-    }
 
     @Override
     public int deleteByPrimaryKey(String productId) {
@@ -109,5 +82,20 @@ public class ProductServiceImpl implements ProductService {
             product.setPicturePath(picturePaths);
         }
         return productList;
+    }
+
+    @Override
+    public int updateByExampleSelective(Product record, ProductExample example) {
+        return productMapper.updateByExampleSelective(record, example);
+    }
+
+    @Override
+    public int updateByExample(Product record, ProductExample example) {
+        return productMapper.updateByExample(record, example);
+    }
+
+    @Override
+    public int updateByPrimaryKeySelective(Product record) {
+        return productMapper.updateByPrimaryKeySelective(record);
     }
 }
