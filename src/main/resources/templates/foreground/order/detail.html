@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>我的订单</title>
+    <title>订单详情</title>
     <link href="https://cdn.bootcss.com/twitter-bootstrap/3.4.1/css/bootstrap.css" rel="stylesheet">
 </head>
 
@@ -23,123 +23,80 @@
         padding: 32px;
         text-decoration: none;
     }
+    .dt{
+        color: red;
+    }
+    .label{
+        color: #777;
+        text-align: left;
+    }
 </style>
 
 <body>
-<nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">Brand</a>
-        </div>
+<div style="margin-left: 5%; margin-top: 16px; font-family: STKaiti;"><h2>订单详情：<span style="color: #0000ff">201902282110</span></h2></div>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-                <li><a href="#">Link</a></li>
-            </ul>
-            <form class="navbar-form navbar-nav">
-                <div class="form-group col-md-8">
-                    <input type="text" class="form-control" placeholder="Search">
+<div class="panel panel-default" style="width: 90%;margin-left: 5%; margin-top: 16px;">
+    <div class="container">
+        <div class="row-fluid" style="left: 5%;">
+            <!-- 订单信息 -->
+            <div class="col-md-3">
+                <div class="dt">
+                    <h4>订单状态</h4>
                 </div>
-                <button type="submit" class="btn btn-default">Submit</button>
-            </form>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Link</a></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#">Separated link</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
-</nav>
-
-<div class="panel panel-default">
-    <div class="panel-body">
-        <div class="container">
-            <div class="row-fluid">
-                <div  class="col-md-3">
-
-                </div>
-                <!-- 收货人信息 -->
-                <div class="col-md-3">
-                    <div class="dt">
-                        <h4>收货人信息</h4>
-                    </div>
-                    <div class="dd">
-                        <div class="item"><span class="label" style="color:#00ff00;">收货人：</span>
-                            <div class="info-rcol">李二红</div>
-                        </div>
-                        <div class="item"><span class="label">地址：</span>
-                            <div class="info-rcol">上海奉贤区海湾镇华东理工大学(奉贤校区)-海思路999号</div>
-                        </div>
-                        <div class="item"><span class="label">手机号码：</span>
-                            <div class="info-rcol">189****3683</div>
-                        </div>
+                <div class="dd">
+                    <div class="item">
+                        <div class="info-rcol" style="font-size: 20px;">待收货</div>
                     </div>
                 </div>
-                <!-- 配送信息 -->
-                <div class="col-md-3">
-                    <div class="dt">
-                        <h4>配送信息</h4>
+            </div>
+            <!-- 收货人信息 -->
+            <div class="col-md-3">
+                <div class="dt">
+                    <h4>收货人信息</h4>
+                </div>
+                <div class="dd">
+                    <div class="item"><span class="label">收货人：</span>
+                        <div class="info-rcol">李二红</div>
                     </div>
-                    <div class="dd">
-                        <div class="item"><span class="label">配送方式：</span>
-                            <div class="info-rcol">普通快递</div>
-                        </div>
-                        <div class="item"><span class="label">运费：</span>
-                            <div class="info-rcol"><span class="f-price">¥0.00</span></div>
-                        </div>
-                        <div class="item"><span class="label">期望送货日期：</span>
-                            <div class="info-rcol">2019-04-02</div>
-                        </div>
-                        <div class="item"><span class="label">期望配送时间：</span>
-                            <div class="info-rcol">09:00-15:00</div>
-                        </div>
-                        <div class="item"><span class="label"></span>
-                            <div class="info-rcol">  </div>
-                        </div>
+                    <div class="item"><span class="label">地址：</span>
+                        <div class="info-rcol">上海奉贤区海湾镇华东理工大学(奉贤校区)-海思路999号</div>
+                    </div>
+                    <div class="item"><span class="label">手机号码：</span>
+                        <div class="info-rcol">189****3683</div>
                     </div>
                 </div>
-                <!-- 付款信息 -->
-                <div class="col-md-3">
-                    <div class="dt">
-                        <h4>付款信息</h4>
+            </div>
+            <!-- 配送信息 -->
+            <div class="col-md-3">
+                <div class="dt">
+                    <h4>配送信息</h4>
+                </div>
+                <div class="dd">
+                    <div class="item"><span class="label">配送方式：</span>
+                        <div class="info-rcol">普通快递</div>
                     </div>
-                    <div class="dd">
-                        <div class="item"><span class="label">付款方式：</span>
-                            <div class="info-rcol">在线支付</div>
-                        </div>
-                        <div class="item"><span class="label">付款时间：</span>
-                            <div class="info-rcol">2019-04-01 22:54:41</div>
-                        </div>
-                        <div class="item"><span class="label">商品总额：</span>
-                            <div class="info-rcol"><span class="f-price">¥129.60</span></div>
-                        </div>
-                        <div class="item"><span class="label">应支付金额：</span>
-                            <div class="info-rcol"><span class="f-price">¥119.60</span></div>
-                        </div>
-                        <div class="item"><span class="label">返现：</span>
-                            <div class="info-rcol"><span class="f-price">¥10.00</span></div>
-                        </div>
+                    <div class="item"><span class="label">运费：</span>
+                        <div class="info-rcol"><span class="f-price">¥0.00</span></div>
                     </div>
-                    <!-- 续重运费   -->
-                    <div id="freshTips" style="display:none">
-                        <div class="prompt-box prompt-box-yf"> </div>
+                </div>
+            </div>
+            <!-- 付款信息 -->
+            <div class="col-md-3">
+                <div class="dt">
+                    <h4>付款信息</h4>
+                </div>
+                <div class="dd">
+                    <div class="item"><span class="label">付款方式：</span>
+                        <div class="info-rcol">在线支付</div>
+                    </div>
+                    <div class="item"><span class="label">付款时间：</span>
+                        <div class="info-rcol">2019-04-01 22:54:41</div>
+                    </div>
+                    <div class="item"><span class="label">商品总额：</span>
+                        <div class="info-rcol"><span class="f-price">¥129.60</span></div>
+                    </div>
+                    <div class="item"><span class="label">应支付金额：</span>
+                        <div class="info-rcol"><span class="f-price">¥119.60</span></div>
                     </div>
                 </div>
             </div>
@@ -147,61 +104,100 @@
     </div>
 </div>
 
+<div class="panel panel-default" style="width: 90%; margin-left: 5%;">
+    <div class="panel-heading">
+        <table class="table" style="text-align: center; word-break:break-all; word-wrap:break-all;">
+            <tbody>
+            <tr>
+                <!--订单详情-->
+                <td class="col-md-2">
+                    <div>商品图片</div>
+                </td>
+                <td class="col-md-4">
+                    <div>商品名</div>
+                </td>
+                <td class="col-md-2">
+                    <div>商品编号</div>
+                </td>
+                <td class="col-md-1">
+                    <div>单价</div>
+                </td>
+                <td class="col-md-1">
+                    <div>数量</div>
+                </td>
+                <td class="col-md-2">
+                    <div>金额</div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="panel-body">
+        <table class="table table-bordered" style="word-break:break-all; word-wrap:break-all; text-align: center;">
+            <tbody>
+            <tr>
+                <!--订单详情-->
+                <td class="col-md-6" style="vertical-align: middle;">
+                    <div class="col-md-3">
+                        <img src="..." alt="..." class="img-thumbnail img-responsive">
+                    </div>
+                    <div class="col-md-8" style="text-align: left;">
+                        <span>商品名ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd</span>
+                    </div>
+                </td>
+                <td class="col-md-2">
+                    <div><span>201902282110</span></div>
+                </td>
+                <td class="col-md-1">
+                    <div><span>￥9.45</span></div>
+                </td>
+                <td class="col-md-1">
+                    <div><span>x2</span></div>
+                </td>
+                <td class="col-md-2">
+                    <div><span>￥18.90</span></div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
 
-<hr/>
+        <hr style="height: 2px;" />
 
-<footer class="container-fluid" >
-    <div class="container">
-        <p>这里是底部信息的标题</p>
-        <div class="row" c>
-            <!-- 部分：一 -->
-            <div class="col-md-3">
-                <p>部分：一</p>
+        <nav class="pull">
+            <div class="col-md-3 col-md-offset-9" style="text-align: right;">
                 <div class="row">
                     <div class="col-md-6">
-                        <ul>
-                            <li>部分：一内容</li>
-                            <li>部分：一内容</li>
-                            <li>部分：一内容</li>
-                        </ul>
+                        <div>商品总额：</div>
                     </div>
                     <div class="col-md-6">
-                        <ul>
-                            <li>部分：一内容</li>
-                            <li>部分：一内容</li>
-                            <li>部分：一内容</li>
-                        </ul>
+                        <dd>￥18.9</dd>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div>运&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;费：</div>
+                    </div>
+                    <div class="col-md-6">
+                        <dd>￥0.0</dd>
+                    </div>
+                </div>
+                <hr/>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div style="color: red;">应付金额：</div>
+                    </div>
+                    <div class="col-md-6">
+                        <dd>￥18.9</dd>
                     </div>
                 </div>
             </div>
-            <!-- 部分：二 -->
-            <div class="col-md-6">
-                <p>部分：二</p>
-                <ul>
-                    <li>部分：二内容</li>
-                    <li>部分：二内容</li>
-                    <li>部分：二内容</li>
-                    <li>部分：二内容</li>
-                    <li>部分：二内容</li>
-                    <li>部分：二内容</li>
-                </ul>
-            </div>
-            <!-- 部分：三 -->
-            <div class="col-md-3">
-                <ul>
-                    <li>部分：三内容</li>
-                    <li>部分：三内容</li>
-                    <li>部分：三内容</li>
-                    <li>部分：三内容</li>
-                    <li>部分：三内容</li>
-                    <li>部分：三内容</li>
-                </ul>
-            </div>
-        </div>
+        </nav>
 
     </div>
+</div>
 
-</footer>
+<hr/>
+
 
 </body>
 <script src="https://cdn.bootcss.com/jquery/2.0.1/jquery.min.js"></script>

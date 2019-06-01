@@ -1,72 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>个人中心</title>
-    <link href="https://cdn.bootcss.com/twitter-bootstrap/3.4.1/css/bootstrap.css" rel="stylesheet">
+    <div th:replace="/foreground/index::hdcntnt"></div>
 </head>
-
-<style>
-    body{
-        padding-top: 50px;
-        padding-bottom:50px;
-        background-color:#ededed;
-    }
-    footer{
-        position:absolute;
-        height:50px
-        bottom:0px;
-        left:0px;
-        width:100%;
-        background-color: #000000;
-        color:#777;
-        padding: 32px;
-        text-decoration: none;
-    }
-</style>
-
 <body>
-<nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">Brand</a>
-        </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-                <li><a href="#">Link</a></li>
-            </ul>
-            <form class="navbar-form navbar-nav">
-                <div class="form-group col-md-8">
-                    <input type="text" class="form-control" placeholder="Search">
-                </div>
-                <button type="submit" class="btn btn-default">Submit</button>
-            </form>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Link</a></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#">Separated link</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
-</nav>
+<div th:replace="/foreground/index::header"></div>
 
 <div id="container" style="top: 50px; bottom:50px;">
     <div class="row">
@@ -335,58 +275,7 @@
 
 <hr/>
 
-<footer class="container-fluid" >
-    <div class="container">
-        <p>这里是底部信息的标题</p>
-        <div class="row" c>
-            <!-- 部分：一 -->
-            <div class="col-md-3">
-                <p>部分：一</p>
-                <div class="row">
-                    <div class="col-md-6">
-                        <ul>
-                            <li>部分：一内容</li>
-                            <li>部分：一内容</li>
-                            <li>部分：一内容</li>
-                        </ul>
-                    </div>
-                    <div class="col-md-6">
-                        <ul>
-                            <li>部分：一内容</li>
-                            <li>部分：一内容</li>
-                            <li>部分：一内容</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <!-- 部分：二 -->
-            <div class="col-md-6">
-                <p>部分：二</p>
-                <ul>
-                    <li>部分：二内容</li>
-                    <li>部分：二内容</li>
-                    <li>部分：二内容</li>
-                    <li>部分：二内容</li>
-                    <li>部分：二内容</li>
-                    <li>部分：二内容</li>
-                </ul>
-            </div>
-            <!-- 部分：三 -->
-            <div class="col-md-3">
-                <ul>
-                    <li>部分：三内容</li>
-                    <li>部分：三内容</li>
-                    <li>部分：三内容</li>
-                    <li>部分：三内容</li>
-                    <li>部分：三内容</li>
-                    <li>部分：三内容</li>
-                </ul>
-            </div>
-        </div>
-
-    </div>
-
-</footer>
+<div th:replace="/foreground/index::footerAndJs"></div>
 
 </body>
 <script src="https://cdn.bootcss.com/jquery/2.0.1/jquery.min.js"></script>

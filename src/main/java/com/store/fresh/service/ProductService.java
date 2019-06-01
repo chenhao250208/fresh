@@ -36,4 +36,6 @@ public interface ProductService {
 
     List<Product> getOnSaleProductList();
 
+    List<Product> getProductListBySearchInfo(String criteria);
+
 }

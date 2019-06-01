@@ -162,7 +162,7 @@
     </if>
   </select>
 
-  <select id="findAll" resultType="order">
+  <select id="findAll" resultMap="BaseResultMap">
     select * from orders
   </select>
 
