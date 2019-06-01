@@ -1,10 +1,87 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>编辑订单</title>
+    <link href="https://cdn.bootcss.com/twitter-bootstrap/3.4.1/css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../static/plugins/layui/css/layui.css"
+          th:href="@{/plugins/layui/css/layui.css}"/>
 </head>
 <body>
-
+<div class="container">
+    <div class="row">
+        <form id="productForm">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="form-group">
+                    <label>订单号</label>
+                    <input type="text" name="orderId" class="form-control" readonly
+                           th:value="${order.orderId}">
+                </div>
+                <div class="form-group">
+                    <label>商品名称</label>
+                    <input type="text" class="form-control" readonly
+                           th:value="${product.productName}">
+                </div>
+                <div class="form-group">
+                    <label>数量</label>
+                    <input type="number" name="number" class="form-control" th:value="${order.number}">
+                </div>
+                <div class="form-group">
+                    <label>用户名</label>
+                    <input type="text" class="form-control" readonly
+                           th:value="${user.userName}">
+                </div>
+                <div class="form-group">
+                    <label>联系电话</label>
+                    <input type="text" class="form-control" th:value="${user.tel}">
+                </div>
+                <div class="form-group">
+                    <label>收货地址</label>
+                    <textarea name="saId" class="form-control" th:text="${order.saId}"></textarea>
+                </div>
+            </div>
+            <div class="col-md-2"></div>
+        </form>
+        <div class="col-md-8 col-md-offset-2">
+            <button id="submit" class="btn btn-success">提交</button>
+            <button type="reset" class="btn btn-info">重置</button>
+        </div>
+    </div>
+</div>
 </body>
+<script src="https://cdn.bootcss.com/jquery/2.0.1/jquery.min.js"></script>
+<script src="../../../static/plugins/layui/layui.js" th:src="@{/plugins/layui/layui.js}"></script>
+<script src="https://cdn.bootcss.com/layer/2.3/layer.js"></script>
+<script src="../../../static/js/order.js" th:src="@{/js/order.js}"></script>
+<script>
+    $(document).ready(function () {
+        $("#submit").click(function () {
+            $.ajax({
+                dataType: "json",
+                url: "/api/order/edit",
+                type: "post",
+                data: $('#productForm').serialize(),
+                success:
+                    function (data) {
+                        if (data.code == 200) {
+                            layer.msg(data.msg, {icon: 1});
+                            setTimeout(function () {
+                                    window.parent.location.reload();
+                                },
+                                1000);
+                        } else {
+                            layer.msg(data.msg, {icon: 5});
+                        }
+                    },
+                error: function (e) {
+                    var d = e.responseJSON;
+                    if (d) {
+                        layer.msg(d.msg, {icon: 5});
+                    }
+                }
+            });
+        });
+    });
+
+</script>
 </html>

@@ -60,6 +60,14 @@ public class UserApi {
         }
     }
 
+    @GetMapping("/logout")
+    public @ResponseBody
+    ResponseEntity logout(HttpSession session) {
+        Subject subject = SecurityUtils.getSubject();
+        subject.logout();
+        return ResponseEntity.ok("注销登录成功");
+    }
+
     @RequiresRoles("admin")
     @GetMapping("/getList")
     public @ResponseBody

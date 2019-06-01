@@ -287,4 +287,19 @@
         where product_id = #{productId,jdbcType=VARCHAR}
     </select>
 
+    <!-- 每个类别找到销售额的前5位 -->
+    <select id="getOnSaleProductList" resultMap="BaseResultMap" resultType="java.util.List">
+        select a.* from product a inner join orders o
+        on a.product_id = o.product_id
+        where
+        (select count(*) from product b
+        where
+        <![CDATA[
+        a.category=b.category and b.cost>a.cost) < 5
+        group by a.product_name
+        order by a.category asc,  SUM(o.price) desc
+         ]]>
+
+    </select>
+
 </mapper>

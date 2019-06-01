@@ -11,9 +11,11 @@ import java.util.List;
 public interface OrderService {
     public boolean saveOrderList(List<Order> orderList);
 
+    public boolean processOrder(String orderId, String productId, String userId);
+
     long countByExample(OrderExample example);
 
-    int deleteByExample(OrderExample example);
+    int deleteByExample(Order order, OrderExample example);
 
     int insert(Order record);
 
@@ -27,5 +29,5 @@ public interface OrderService {
 
     List<Order> findAll();
 
-    Order selectOrderByPrimaryKey(String orderId);
+    Order selectOrderByPrimaryKey(String orderId, String productId, String userId);
 }

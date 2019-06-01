@@ -3,6 +3,7 @@ package com.store.fresh.mapper;
 import com.store.fresh.entity.Order;
 import com.store.fresh.entity.OrderExample;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -26,5 +27,5 @@ public interface OrderMapper {
 
     List<Order> findAll();
 
-    Order selectOrderByPrimaryKey(String orderId);
+    Order selectOrderByPrimaryKey(Map<String, String> info);
 }

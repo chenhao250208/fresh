@@ -31,6 +31,17 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public List<Product> getOnSaleProductList() {
+        List<Product> productList = productMapper.getOnSaleProductList();
+/*        for(int i=0; i<productList.size(); i++) {
+            String productId = productList.get(i).getProductId();
+            List<String> picturePath = productMapper.getPicturePath(productId);
+            productList.get(i).setPicturePath(picturePath);
+        }*/
+        return productList;
+    }
+
+    @Override
     public List<Product> selectAll() {
         return productMapper.findAll();
     }

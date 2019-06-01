@@ -2,12 +2,120 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>商品设置</title>
+    <title>编辑商品</title>
     <link href="https://cdn.bootcss.com/twitter-bootstrap/3.4.1/css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../static/plugins/layui/css/layui.css"
+          th:href="@{/plugins/layui/css/layui.css}"/>
 </head>
 <body>
+<div class="container">
+    <div class="row">
+        <form id="productForm">
+            <input type="hidden" name="productId" th:value="${product.productId}">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="form-group">
+                    <label>商品名称</label>
+                    <input type="text" name="productName" class="form-control"
+                    th:value="${product.productName}">
+            </div>
+                <div class="form-group">
+                    <label>分类</label>
+                    <select class="form-control" name="category" th:selected="${product.category}">
+                        <option th:selected="${product.category == '其他'}">其他</option>
+                        <option th:selected="${product.category == '水果'}">水果</option>
+                        <option th:selected="${product.category == '肉类'}">肉类</option>
+                        <option th:selected="${product.category == '蔬菜'}">蔬菜</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>成本</label>
+                    <input type="text" name="cost" class="form-control" th:value="${product.cost}">
+                </div>
+                <div class="form-group">
+                    <label>原价</label>
+                    <input type="text" name="prePrice" class="form-control" th:value="${product.prePrice}">
+                </div>
+                <div class="form-group">
+                    <label>售价</label>
+                    <input type="text" name="price" class="form-control" th:value="${product.price}">
+                </div>
+                <div class="form-group">
+                    <label>重量</label>
+                    <input type="text" name="scale" class="form-control" th:value="${product.scale}">
+                </div>
+                <div class="form-group">
+                    <label>度量</label>
+                    <select class="form-control" name="unit">
+                        <option th:selected="${product.unit} == '个'">个</option>
+                        <option th:selected="${product.unit} == '包'">包</option>
+                        <option th:selected="${product.unit} == '盒'">盒</option>
+                        <option th:selected="${product.unit} == '袋'">袋</option>
+                        <option th:selected="${product.unit} == '瓶'">瓶</option>
+                        <option th:selected="${product.unit} == '枚'">枚</option>
+                        <option th:selected="${product.unit} == '斤'">斤</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>库存</label>
+                    <input type="number" name="deposit" class="form-control" th:value="${product.deposit}">
+                </div>
+            </div>
 
+            <div class="col-md-2"></div>
+        </form>
+        <div class="col-md-8 col-md-offset-2">
+            <button id="submit" class="btn btn-success">提交</button>
+            <button type="reset" class="btn btn-info">重置</button>
+        </div>
+    </div>
+</div>
 </body>
 <script src="https://cdn.bootcss.com/jquery/2.0.1/jquery.min.js"></script>
+<script src="../../../static/plugins/layui/layui.js" th:src="@{/plugins/layui/layui.js}"></script>
 <script src="https://cdn.bootcss.com/layer/2.3/layer.js"></script>
+<script>
+    $(document).ready(function () {
+        /*$.get({
+            dataType: "json",
+            url: 'api/product/getOne/',
+            data: {'productId': $('productName').value},
+            success:
+                function (data) {
+                    if (data.code == 200) {
+                        ;
+                    } else {
+                        layer.msg(data.msg, {icon: 5});
+                    }
+                },
+        });
+*/
+        $("#submit").click(function () {
+            $.ajax({
+                dataType: "json",
+                url: "/api/product/edit",
+                type: "post",
+                data: $('#productForm').serialize(),
+                success:
+                    function (data) {
+                        if (data.code == 200) {
+                            layer.msg(data.msg, {icon: 1});
+                            setTimeout(function () {
+                                    window.parent.location.reload();
+                                },
+                                1000);
+                        } else {
+                            layer.msg(data.msg, {icon: 5});
+                        }
+                    },
+                error: function (e) {
+                    var d = e.responseJSON;
+                    if (d) {
+                        layer.msg(d.msg, {icon: 5});
+                    }
+                }
+            });
+        });
+    });
+
+</script>
 </html>

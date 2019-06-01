@@ -18,16 +18,16 @@
             <div class="row">
                 <div class="col-md-4">
                     <form class="navbar-form navbar-left" role="search" id="searchForm">
-                        <div class="form-group">
+                         <div class="form-group">
                             <input class="form-control" type="text" name="criteria"
-                                   placeholder="输入编号、名称或分类"/>
-                        </div>
+                            placeholder="输入编号、名称或分类"/>
+                         </div>
                         <button type="button" class="btn btn-success" onclick="reloadProduct()">查找</button>
                     </form>
                 </div>
-<!--                <div class="col-md-1 col-md-offset-7">
-                    <button id="addProduct" class="btn btn-primary">增加</button>
-                </div>-->
+            <div class="col-md-1 col-md-offset-7">
+                <button id="addProduct" class="btn btn-success" onclick="create()">发布</button>
+            </div>
             </div>
         </div>
         <table id="productTable"></table>
@@ -105,7 +105,9 @@
                         title:'操作',templet:function (data) {
                             var productId = "'"+data.productId+"'";
                             var editButton = '<button type="button" class="btn btn-success" onclick="edit('+productId+')">编辑</button>';
-                            return editButton;
+                            var deleteButton = '<button type="button" class="btn btn-danger" onclick="remove('+productId+')">删除</button>';
+
+                            return [editButton, deleteButton];
                         }
                     }
                 ]
@@ -137,10 +139,11 @@
         maxmin: true, //开启最大化最小化按钮
         area: ['80%', '90%'],
         content: "/background/product/edit/" + productId
-    })
+    });
+
     }
 
-/*    $("#addProduct").click(function () {
+    function create() {
         layer.open({
             type:2,
             title: "新增商品",
@@ -149,7 +152,33 @@
             maxmin: true, //开启最大化最小化按钮
             area: ['80%', '90%'],
             content: "/background/product/create"
-    })
-    });*/
+        });
+    }
+
+    function remove(productId) {
+        $.ajax({
+            url: '/api/product/delete/',
+            method: 'get',
+            dataType: 'json',
+            data: {'productId': productId},
+            success: function (data) {
+                if (data.code == 200) {
+                    layer.msg(data.msg, {icon: 1});
+                    setTimeout(function () {
+                        window.parent.location.reload();
+                    }, 1000);
+                } else {
+                    layer.msg(data.msg, {icon: 2, time: 1000});
+                }
+            },
+            error: function (e) {
+                var d = e.responseJSON;
+                if(d) {
+                    layer.msg(d, {icon: 5, time: 1000});
+                }
+            }
+        });
+    }
+
 </script>
 </html>

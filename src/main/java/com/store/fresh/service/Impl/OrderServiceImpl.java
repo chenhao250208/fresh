@@ -9,15 +9,18 @@ import com.store.fresh.mapper.UserMapper;
 import com.store.fresh.service.OrderService;
 import com.store.fresh.service.UserService;
 import com.store.fresh.util.DataUtil;
+import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.store.fresh.entity.OrderExample;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.HashMap;
 import java.util.List;
 
 import java.util.Date;
+import java.util.Map;
 
 @Service
 public class OrderServiceImpl implements OrderService {
@@ -52,12 +55,33 @@ public class OrderServiceImpl implements OrderService {
         }
         return true;
     }
+
+    @Override
+    @Transactional
+    public boolean processOrder(String orderId, String productId, String userId) {
+        Order order = new Order();
+        order.setState("运输中");
+        OrderExample example = new OrderExample();
+        OrderExample.Criteria criteria = example.createCriteria();
+        criteria.andOrderIdEqualTo(orderId);
+        criteria.andProductIdEqualTo(productId);
+        criteria.andUserIdEqualTo(userId);
+        if(orderMapper.updateByExampleSelective(order, example) == 1) {
+            return true;
+        }
+        return false;
+    }
+
     public long countByExample(OrderExample example) {
         return orderMapper.countByExample(example);
     }
 
-    public int deleteByExample(OrderExample example) {
-        return orderMapper.deleteByExample(example);
+    public int deleteByExample(Order order, OrderExample example) {
+        orderMapper.deleteByExample(example);
+        Product product = new Product();
+        product.setProductId(order.getProductId());
+        product.setDeposit(product.getDeposit() + order.getNumber());
+        return productMapper.updateByPrimaryKeySelective(product);
     }
 
     public int insert(Order record) {
@@ -85,8 +109,12 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public Order selectOrderByPrimaryKey(String orderId) {
-        return orderMapper.selectOrderByPrimaryKey(orderId);
+    public Order selectOrderByPrimaryKey(String orderId, String productId, String userId) {
+        Map<String,String> info = new HashMap<>();
+        info.put("userId", userId);
+        info.put("orderId", orderId);
+        info.put("productId", productId);
+        return orderMapper.selectOrderByPrimaryKey(info);
     }
 
 }

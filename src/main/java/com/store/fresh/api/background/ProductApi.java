@@ -38,6 +38,23 @@ public class ProductApi {
         return ResponseEntity.ok("获取成功").put("pageInfo", pageInfo);
     }
 
+    @GetMapping("/getOnSale")
+    public @ResponseBody
+    ResponseEntity getOnSaleProductList() {
+        List<Product> productList = productService.getOnSaleProductList();
+        return ResponseEntity.ok("查询成功").put("productList", productList);
+    }
+
+    @GetMapping("/getOne")
+    public @ResponseBody
+    ResponseEntity getOne(String productId) {
+        Product product = productService.selectByPrimaryKey(productId);
+        if(null != product)
+            return ResponseEntity.ok().put("data", product);
+        else
+            return ResponseEntity.error(400, "数据接口错误");
+    }
+
     @PostMapping("/save")
     public @ResponseBody
     ResponseEntity save(Product product) {
@@ -53,6 +70,7 @@ public class ProductApi {
     @PostMapping("/edit")
     public @ResponseBody
     ResponseEntity edit(Product product) {
+        System.out.println(product);
         if(productService.updateByPrimaryKeySelective(product) == 1) {
             return ResponseEntity.ok("修改成功").put(product.getProductId(), product);
         }

@@ -38,4 +38,5 @@ public interface ProductMapper {
 
     List<String> getPicturePath(String productId);
 
+    List<Product> getOnSaleProductList();
 }

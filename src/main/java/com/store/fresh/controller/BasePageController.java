@@ -42,7 +42,7 @@ public class BasePageController {
     @RequiresRoles({"admin"})
     @GetMapping("/background/index")
     public String backgroundIndex(){
-        return "background/index";
+        return "background/product/index";
     }
 
     @RequestMapping("/last_access")

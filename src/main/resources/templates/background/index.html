@@ -13,19 +13,19 @@
             <div class="layui-logo">超市后台</div>
             <!-- 头部区域（可配合layui已有的水平导航） -->
             <ul class="layui-nav layui-layout-left">
-                <li class="layui-nav-item"><a href="/background/index">控制台</a></li>
-                <li class="layui-nav-item"><a href="/background/order/index">订单管理</a></li>
-                <li class="layui-nav-item" shiro:hasRole="admin"><a href="/background/user/index">用户管理</a></li>
+                <li class="layui-nav-item"><a href="/index" target="_blank">我的店铺</a></li>
+<!--                <li class="layui-nav-item"><a href="/background/order/index">订单管理</a></li>-->
+<!--                <li class="layui-nav-item" shiro:hasRole="admin"><a href="/background/user/index">用户管理</a></li>-->
                 <!--<li class="layui-nav-item"><a href="">BOM</a></li>-->
                 <!--<li class="layui-nav-item"><a href="">物料管理</a></li>-->
-                <li class="layui-nav-item">
+<!--                <li class="layui-nav-item">
                     <a href="javascript:;">基础设置</a>
                     <dl class="layui-nav-child">
                         <dd><a href="#">用户管理</a></dd>
                         <dd><a href="#">角色管理</a></dd>
                         <dd><a href="#">权限管理</a></dd>
                     </dl>
-                </li>
+                </li>-->
             </ul>
             <ul class="layui-nav layui-layout-right">
                 <li class="layui-nav-item">
@@ -34,11 +34,11 @@
                         你好
                     </a>
                     <dl class="layui-nav-child">
-                        <dd><a href="">基本资料</a></dd>
-                        <dd><a href="">安全设置</a></dd>
+                        <dd><a href="javascript:void(0);" onclick="logout()">注销</a></dd>
+<!--                        <dd><a href="">安全设置</a></dd>-->
                     </dl>
                 </li>
-                <li class="layui-nav-item"><a href="">退了</a></li>
+<!--                <li class="layui-nav-item"><a href="javascript:void(0);" onclick="logout()">退了</a></li>-->
             </ul>
         </div>
 
@@ -47,27 +47,46 @@
                 <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
                 <ul class="layui-nav layui-nav-tree"  lay-filter="test">
                     <li class="layui-nav-item layui-nav-itemed">
-                    <a class="" href="javascript:;">商品</a>
+                    <a class="" href="javascript:void(0);">商品</a>
                     <dl class="layui-nav-child">
-                    <dd><a href="/background/product/index">所有商品</a></dd>
-                    <dd><a href="/api/product/hot">热销商品</a></dd>
-                    <dd><a href="/background/product/checkin">进货管理</a></dd>
+                    <dd><a href="/background/product/index">所有</a></dd>
+                    <dd><a href="/background/product/onsale">热销</a></dd>
+<!--                    <dd><a href="javascript:void(0);" th:onclick="create()">发布</a></dd>-->
 <!--                    <dd><a href="">超链接</a></dd>-->
                     </dl>
                     </li>
-                    <li class="layui-nav-item">
-                    <a href="javascript:;">解决方案</a>
+                    <li class="layui-nav-item layui-nav-itemed">
+                    <a href="javascript:void(0);">订单</a>
                     <dl class="layui-nav-child">
-                    <dd><a href="javascript:;">列表一</a></dd>
-                    <dd><a href="javascript:;">列表二</a></dd>
-                    <dd><a href="">超链接</a></dd>
+                    <dd><a href="/background/order/index">所有</a></dd>
+                    <dd><a href="/background/order/pending">待处理</a></dd>
+                    <dd><a href="/background/order/processing">进行中</a></dd>
+                    <dd><a href="/background/order/solved">已完成</a></dd>
+<!--                    <dd><a href="">超链接</a></dd>-->
                     </dl>
                     </li>
-                    <li class="layui-nav-item"><a href="">云市场</a></li>
-                    <li class="layui-nav-item"><a href="/background/product/create">发布商品</a></li>
+                    <li class="layui-nav-item"><a href="/background/user/index">用户</a></li>
+<!--                    <li class="layui-nav-item"><a href="javascript:void(0);" th:onclick="create()">发布商品</a></li>-->
                 </ul>
             </div>
         </div>
+        <script>
+            function logout() {
+                $.ajax({
+                    url: '/api/user/logout',
+                    method: 'get',
+                    dataType: 'json',
+                    success: function (data) {
+                        if(data.code == 200) {
+                            layer.msg(data.msg, {icon: 2});
+                            setTimeout(function () {
+                                window.location.href = '/background/index';
+                            }, 1000);
+                        }
+                    }
+                });
+            }
+        </script>
     </footer>
 
     <div class="layui-body">
@@ -84,12 +103,7 @@
 </div>
 
 </body>
-<script src="../../static/plugins/layui/layui.js" th:src="@{/plugins/layui/layui.js}"></script>
-<script>
-    //JavaScript代码区域
-    layui.use('element', function(){
-        var element = layui.element;
-
-    });
-</script>
+<script src="https://cdn.bootcss.com/jquery/2.0.1/jquery.min.js"></script>
+<script src="../../../static/plugins/layui/layui.js" th:src="@{/plugins/layui/layui.js}"></script>
+<script src="https://cdn.bootcss.com/layer/2.3/layer.js"></script>
 </html>

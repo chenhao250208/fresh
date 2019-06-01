@@ -166,8 +166,10 @@
     select * from orders
   </select>
 
-  <select id="selectOrderByPrimaryKey" resultType="order">
-    select * from orders where order_id = #{orderId}
+  <select id="selectOrderByPrimaryKey" resultType="order" parameterType="map">
+    select * from orders
+    where order_id = #{orderId} and product_id=#{productId}
+    and user_id = #{userId}
   </select>
 
   <update id="updateByExampleSelective" parameterType="map">
