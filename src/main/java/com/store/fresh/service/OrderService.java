@@ -30,7 +30,7 @@ public interface OrderService {
     List<Order> findAll();
 
     // 陈浩的
-    Order selectOrderByPrimaryKey(String orderId);
+    // Order selectOrderByPrimaryKey(String orderId);
 
     List<Order> listByState(String state);
 
