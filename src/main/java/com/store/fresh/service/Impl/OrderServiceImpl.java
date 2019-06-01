@@ -79,8 +79,7 @@ public class OrderServiceImpl implements OrderService {
 
     public int deleteByExample(Order order, OrderExample example) {
         orderMapper.deleteByExample(example);
-        Product product = new Product();
-        product.setProductId(order.getProductId());
+        Product product = productMapper.selectByPrimaryKey(order.getProductId());
         product.setDeposit(product.getDeposit() + order.getNumber());
         return productMapper.updateByPrimaryKeySelective(product);
     }

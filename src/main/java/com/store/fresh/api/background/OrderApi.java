@@ -4,7 +4,6 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.store.fresh.entity.Order;
 import com.store.fresh.entity.OrderExample;
-import com.store.fresh.mapper.OrderMapper;
 import com.store.fresh.service.OrderService;
 import com.store.fresh.util.Base;
 import com.store.fresh.util.ResponseEntity;
@@ -54,10 +53,15 @@ public class OrderApi {
     public @ResponseBody
     ResponseEntity edit(Order order) {
         OrderExample example = new OrderExample();
-        example.or().andOrderIdEqualTo(order.getOrderId());
+        OrderExample.Criteria criteria = example.createCriteria();
+        criteria.andOrderIdEqualTo(order.getOrderId());
+        criteria.andUserIdEqualTo(order.getUserId());
+        criteria.andProductIdEqualTo(order.getProductId());
+
         if(orderService.updateByExampleSelective(order, example) == 1) {
             return ResponseEntity.ok("修改成功").put(order.getOrderId(), order);
         }
+
         return ResponseEntity.error(400, "修改失败");
     }
 
@@ -75,7 +79,10 @@ public class OrderApi {
     ResponseEntity delete(String orderId, String productId, String userId) {
         Order order = orderService.selectOrderByPrimaryKey(orderId, productId, userId);
         OrderExample orderExample = new OrderExample();
-        orderExample.or().andOrderIdEqualTo(orderId);
+        OrderExample.Criteria criteria = orderExample.createCriteria();
+        criteria.andUserIdEqualTo(userId);
+        criteria.andOrderIdEqualTo(orderId);
+        criteria.andProductIdEqualTo(productId);
 
         if(orderService.deleteByExample(order, orderExample) == 1) {
             return ResponseEntity.ok("订单删除成功");
